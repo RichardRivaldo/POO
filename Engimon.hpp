@@ -6,12 +6,19 @@
 using namespace std;
 
 class Engimon{
-    private:
+    protected:
         string name;
+        string species;
         list<Skill> skill;
-        string* elements;
+        string element;
         int level;
         int experience;
-        int cumulative_Experience;
-};
+        int cumulativeExperience;
 
+    public :
+        Engimon(string nama, list<Skill> skills, string element);
+        ~Engimon();
+
+        bool CheckLevelUp(Engimon engimon);
+        bool CheckDead(Engimon engimon);
+};
