@@ -4,7 +4,11 @@
 
 using namespace std;
 
-class SkillItem : Skill {
-    protected :
-        int jumlah;
+class SkillItem : public Skill
+{
+private:
+    int jumlah;
+
+public:
+    void inc_jumlah() { this->jumlah++; }
 };

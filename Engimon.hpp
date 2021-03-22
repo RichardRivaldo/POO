@@ -5,20 +5,22 @@
 
 using namespace std;
 
-class Engimon{
-    protected:
-        string name;
-        string species;
-        list<Skill> skill;
-        string element;
-        int level;
-        int experience;
-        int cumulativeExperience;
+class Engimon
+{
+protected:
+    string name;
+    string species;
+    list<Skill> skill;
+    string element;
+    int level;
+    int experience;
+    int cumulativeExperience;
 
-    public :
-        Engimon(string nama, list<Skill> skills, string element);
-        ~Engimon();
+public:
+    Engimon(string nama, list<Skill> skills, string element);
+    ~Engimon();
 
-        bool CheckLevelUp(Engimon engimon);
-        bool CheckDead(Engimon engimon);
+    bool CheckLevelUp(Engimon engimon);
+    bool CheckDead(Engimon engimon);
+    string getName();
 };
