@@ -1,14 +1,22 @@
 #include <iostream>
-#include <list>
+#include <utility>
 #include "Skill.hpp"
 
 using namespace std;
 
-class SkillItem : public Skill
-{
-private:
-    int jumlah;
+class SkillItem{
+    protected:
+        // Map to contain skill item and number of the items
+        pair<Skill, int> skillItem;
 
-public:
-    void inc_jumlah() { this->jumlah++; }
+    public:
+        // Default Constructor, fill with default value
+        SkillItem();
+        // User-Defined Constructor
+        SkillItem(Skill skill, int amount);
+
+        // Methods
+        void addItemAmount(int amount = 1);
+        void decItemAmount(int amount = 1);
+        void skillItemInfo();
 };

@@ -33,4 +33,6 @@ int main(){
     // Check modified
     s2.skillInfo();
     cout << "--------------------" << endl;
+
+    return 0;
 }
