@@ -3,6 +3,10 @@
 
 using namespace std;
 
+Position::Position(){
+    x = 0;
+    y = 0;
+}
 Position::Position(int coordinate_x, int coordinate_y){
     x = coordinate_x;
     y = coordinate_y;

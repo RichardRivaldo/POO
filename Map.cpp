@@ -2,11 +2,11 @@
 #include <iostream>
 using namespace std;
 
-Map::Map() : Position(8,8){
-    xmax = 12;
-    ymax = 12;
+Map::Map(){
+    xmax = 10;
+    ymax = 10;
     setCapital = 5;
-    dimensiWater = 6;
+    dimensiWater = 5;
 }
 void Map::printMap(){
     for (int i = 0; i < xmax; i++){
