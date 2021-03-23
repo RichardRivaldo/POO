@@ -3,7 +3,7 @@
 int main(){
     // Init Skill
     vector<string> elmt = {"Fire", "Water", "Wind", "Earth"};
-    Skill autokill("Autokill", 100000, 1000000, elmt);
+    Skill autokill("Autokill", 100000, 1000000, "God", elmt);
 
     // Skill Item
     SkillItem defItem;

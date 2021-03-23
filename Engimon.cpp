@@ -45,3 +45,15 @@ bool Engimon::CheckLevelUp(Engimon engimon)
 }
 
 string Engimon::getName() { return this->name; }
+
+const Skill Engimon::getHighestMastery(){
+    int highest = -9999;
+    Skill highestMasterySkill;
+    for(list<Skill>::iterator iter = skill.begin(); iter != skill.end(); iter++){
+        if(highest <= (*iter).getSkillMastery()){
+            highest = (*iter).getSkillMastery();
+            highestMasterySkill = (*iter);
+        }
+    }
+    return highestMasterySkill;
+}

@@ -23,4 +23,5 @@ public:
     bool CheckLevelUp(Engimon engimon);
     bool CheckDead(Engimon engimon);
     string getName();
+    const Skill getHighestMastery();
 };
