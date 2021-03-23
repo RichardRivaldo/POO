@@ -49,8 +49,8 @@ public:
             // Not found
             if (!finish)
             {
-                SkillItem *s = new SkillItem(skill, 1);
-                this->vector_skillItem.push_back(*s);
+                SkillItem s(skill, 1);
+                this->vector_skillItem.push_back(s);
                 this->max_capacity++;
             }
         }
@@ -70,12 +70,8 @@ public:
         }
 
         if (found)
-        {
             this->engimon_active_index = i;
-        }
         else
-        {
             cout << "Engimon not found!";
-        }
     }
 };
