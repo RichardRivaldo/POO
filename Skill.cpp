@@ -49,3 +49,15 @@ const void Skill::skillInfo(){
 const string Skill::getSkillName(){
     return this->skillName;
 }
+
+const int Skill::getSkillPower(){
+    return this->basePower;
+}
+
+const int Skill::getSkillMaster(){
+    return this->masteryLevel;
+}
+
+const vector<string> Skill::getSuitableElmt(){
+    return this->Elements;
+}

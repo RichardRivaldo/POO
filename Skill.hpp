@@ -30,4 +30,7 @@ class Skill {
 
         // Getter
         const string getSkillName();
+        const int getSkillPower();
+        const int getSkillMaster();
+        const vector<string> getSuitableElmt();
 };

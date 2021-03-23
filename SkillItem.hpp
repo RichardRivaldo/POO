@@ -18,5 +18,9 @@ class SkillItem{
         // Methods
         void addItemAmount(int amount = 1);
         void decItemAmount(int amount = 1);
-        void skillItemInfo();
+        const void skillItemInfo();
+
+        // Getter
+        const Skill getSkill();
+        const int getAmount();
 };
