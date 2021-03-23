@@ -17,7 +17,7 @@ protected:
     int cumulativeExperience;
 
 public:
-    Engimon(string nama, list<Skill> skills, string element);
+    Engimon(string nama, string species, list<Skill> skills, string element);
     ~Engimon();
 
     bool CheckLevelUp(Engimon engimon);
