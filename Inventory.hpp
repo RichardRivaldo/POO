@@ -27,7 +27,7 @@ public:
 
         return *this;
     }
-    Inventory &operator<<(SkillItem &skill)
+    Inventory &operator<<(Skill &skill)
     {
         if (this->vector_skillItem.size() + 1 > this->max_capacity)
             cout << "capacity has been maximum" << endl;
@@ -38,9 +38,9 @@ public:
             bool finish = false;
             while (i < this->vector_skillItem.size() && !finish)
             {
-                if (this->vector_skillItem[i].getSkillName() == skill.getSkillName())
+                if (this->vector_skillItem[i].getSkill().getSkillName() == skill.getSkillName())
                 {
-                    this->vector_skillItem[i].inc_jumlah();
+                    this->vector_skillItem[i].addItemAmount();
                     finish = true;
                 }
                 i++;
@@ -49,7 +49,8 @@ public:
             // Not found
             if (!finish)
             {
-                this->vector_skillItem.push_back(skill);
+                SkillItem *s = new SkillItem(skill, 1);
+                this->vector_skillItem.push_back(*s);
                 this->max_capacity++;
             }
         }

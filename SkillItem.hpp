@@ -4,23 +4,24 @@
 
 using namespace std;
 
-class SkillItem{
-    protected:
-        // Map to contain skill item and number of the items
-        pair<Skill, int> skillItem;
+class SkillItem
+{
+protected:
+    // Map to contain skill item and number of the items
+    pair<Skill, int> skillItem;
 
-    public:
-        // Default Constructor, fill with default value
-        SkillItem();
-        // User-Defined Constructor
-        SkillItem(Skill skill, int amount);
+public:
+    // Default Constructor, fill with default value
+    SkillItem();
+    // User-Defined Constructor
+    SkillItem(Skill skill, int amount);
 
-        // Methods
-        void addItemAmount(int amount = 1);
-        void decItemAmount(int amount = 1);
-        const void skillItemInfo();
+    // Methods
+    void addItemAmount(int amount = 1);
+    void decItemAmount(int amount = 1);
+    const void skillItemInfo();
 
-        // Getter
-        const Skill getSkill();
-        const int getAmount();
+    // Getter
+    Skill getSkill();
+    int getAmount();
 };
