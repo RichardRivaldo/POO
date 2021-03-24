@@ -16,7 +16,9 @@ class Map{
         int dimensiWater;
         //Position player_position;
     public:
-        void printMap();
         Map();
+        void printMap();
+        bool isAboveCapital(int i, int j);
+        vector<string> printElement(int i, int j);
 };
 #endif

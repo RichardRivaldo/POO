@@ -7,8 +7,8 @@ using namespace std;
 
 class Battle {
     private :
-        Engimon engimonPlayer1;
-        Engimon engimonPlayer2; 
+        Engimon engimonPlayer;
+        Engimon engimonWild; 
         int levelEngimon1; // Level Engimon Player 1
         int levelEngimon2; // Level Engimon Player 2
         float multiplierEngimon1; // Element Advantage Engimon Player 1
@@ -21,7 +21,7 @@ class Battle {
         string loser;
     public :
         // Constructor & Destructor
-        Battle(Engimon engimonPlayer1, Engimon engimonPlayer2);
+        Battle(Engimon engimonPlayer, Engimon engimonWild);
         ~Battle();
 
         // Get Class Attribute
@@ -44,5 +44,3 @@ class Battle {
         void showTotalPower();
         void doBattle();
 };
-
-vector<string> elementSplitter(string element);

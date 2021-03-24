@@ -196,8 +196,19 @@ float Battle::checkMultiplier(string elemen1,string elemen2) {
 }
 
 void Battle::showTotalPower() {
-    cout << endl << "Nama   : " << this->engimonPlayer1.getName() << endl;
-    cout << "Level  :" << this->engimonPlayer1.getLevel()
+    cout << endl
+         << "ENGIMON 1" << endl
+         << "Nama           : " << this->engimonPlayer1.getName() << endl
+         << "Level          : " << this->levelEngimon1 << endl
+         << "Elemen         : " << this->engimonPlayer1.getElement() << endl
+         << "Total Power    : " << this->totalPower1 << endl;
+
+    cout << endl
+         << "ENGIMON 2" << endl
+         << "Nama           : " << this->engimonPlayer2.getName() << endl
+         << "Level          : " << this->levelEngimon2 << endl
+         << "Elemen         : " << this->engimonPlayer2.getElement() << endl
+         << "Total Power    : " << this->totalPower2 << endl;
 }
 
 vector<string> elementSplitter(string element) {

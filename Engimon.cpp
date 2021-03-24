@@ -5,10 +5,9 @@
 
 using namespace std;
 
-Engimon::Engimon(string nama, string species, list<Skill> skills, string element)
+Engimon::Engimon(string nama, string species, vector<string> element)
 {
     this->name = nama;
-    this->skill = skills;
     this->element = element;
     this->species = species;
     this->level = 1;
@@ -24,7 +23,7 @@ Engimon::~Engimon()
 bool Engimon::CheckDead(Engimon engimon)
 {
     // Engimon akan mati jika jumlah experience kumulatif >= 3000
-    if (engimon.cumulativeExperience >= 3000)
+    if (engimon.cumulativeExperience >= 5000)
     {
         return true;
     }
@@ -44,8 +43,6 @@ bool Engimon::CheckLevelUp(Engimon engimon)
     }
 }
 
-string Engimon::getName() { return this->name; }
-
 const Skill Engimon::getHighestMastery(){
     int highest = -9999;
     Skill highestMasterySkill;
@@ -57,3 +54,27 @@ const Skill Engimon::getHighestMastery(){
     }
     return highestMasterySkill;
 }
+
+void Engimon::showStats() {
+    cout << "Nama : " << this->getName() << endl;
+    cout << "Spesies : " << this->getSpecies() << endl;
+
+    list<Skill>::iterator it;
+    cout << "List Skills : ";
+    for (it = this->skill.begin(); it != this->skill.end(); it++) {
+        cout << it->getSkillName() << " ";
+    }
+    cout << endl;
+
+    cout << "Element : " << element[0] << "/" << element[1] << endl;
+    cout << "Level : " << this->getLevel() << endl;
+    cout << "Experience : " << this->getExperience() << endl;
+    cout << "Cumulative experience : " << this->getCumulativeExperience() << endl;
+}
+
+string Engimon::getName() { return this->name; }
+string Engimon::getSpecies() { return this->species; }
+vector<string> Engimon::getElement() { return this->element; }
+int Engimon::getLevel() { return this->level; }
+int Engimon::getExperience() { return this->experience; }
+int Engimon::getCumulativeExperience() { return this->cumulativeExperience; }

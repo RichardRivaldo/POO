@@ -11,17 +11,25 @@ protected:
     string name;
     string species;
     list<Skill> skill;
-    string element;
+    vector<string> element;
     int level;
     int experience;
     int cumulativeExperience;
 
 public:
-    Engimon(string nama, string species, list<Skill> skills, string element);
+    Engimon(string nama, string species, vector<string> element);
     ~Engimon();
 
     bool CheckLevelUp(Engimon engimon);
     bool CheckDead(Engimon engimon);
-    string getName();
     const Skill getHighestMastery();
+    void showStats();
+
+    //Getters
+    string getName();
+    string getSpecies();
+    vector<string> getElement();
+    int getLevel();
+    int getExperience();
+    int getCumulativeExperience();
 };
