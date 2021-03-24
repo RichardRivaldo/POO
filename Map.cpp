@@ -20,8 +20,8 @@ void Map::printMap(){
         for(int j = 0; j < ymax; j++){
             if(i > xmax-dimensiWater || j < ymax-dimensiWater){
                 cout << "- ";
-            else if (this.peta.at(i).at(j).getEngimon().g
-            }else{
+            }//else if (peta[i][j].getEngimon().getElemen= )
+            else{
                 cout << "0 ";
             }
         }

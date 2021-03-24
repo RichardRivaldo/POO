@@ -18,7 +18,10 @@ class Map{
     public:
         Map();
         void printMap();
-        bool isAboveCapital(int i, int j);
-        vector<string> printElement(int i, int j);
+        void movePlayerUp();
+        void movePlayerRight();
+        void movePlayerLeft();
+        void movePlayerDown();
+        
 };
 #endif
