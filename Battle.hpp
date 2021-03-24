@@ -19,7 +19,7 @@ class Battle {
         float totalPowerWild;
         string winner;
         string loser;
-        
+
     public :
         // Constructor & Destructor
         Battle();
