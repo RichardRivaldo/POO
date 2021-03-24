@@ -19,11 +19,11 @@ const string ICE = "Ice";
 
 void createSkillsandSkillItems(){   
     // Unique Skill
-    UniqueSkill Fireball("Fireball", 20, 1, vector<string> {FIRE}, ada spesies dsni);
-    UniqueSkill Watercut("Watercut", 20, 1, vector<string> {WATER});
-    UniqueSkill Thunderslash("Thunderslash", 20, 1, vector<string> {ELECTRIC});
-    UniqueSkill Earthquake("Earthquake", 20, 1, vector<string> {GROUND});
-    UniqueSkill Blizzard("Blizzard", 20, 1, vector<string> {ICE});
+    UniqueSkill Fireball("Fireball", 20, 1, vector<string> {FIRE}, "Firemon");
+    UniqueSkill Watercut("Watercut", 20, 1, vector<string> {WATER}, "Watermon");
+    UniqueSkill Thunderslash("Thunderslash", 20, 1, vector<string> {ELECTRIC}, "Electromon");
+    UniqueSkill Earthquake("Earthquake", 20, 1, vector<string> {GROUND}, "Groundmon");
+    UniqueSkill Blizzard("Blizzard", 20, 1, vector<string> {ICE}, "Icemon");
 
     // Regular Skill
     Skill CrimsonFire("Crimson Fire", 10, 1, vector<string> {FIRE});
@@ -53,19 +53,50 @@ void createSkillsandSkillItems(){
     SpecialSkill ThornedRose("Thorned Rose", 75, 1, vector<string>{GROUND}, 10);
     SpecialSkill CastleOfIce("Castle of Ice", 55, 1, vector<string>{ICE}, 10);
     SpecialSkill Avalon("Avalon", 80, 1, vector<string>{ICE}, 10);
-
+    
     // Skill Items
-    SkillItem 
-}
+    SkillItem FireballItem(Fireball, 1);
+    SkillItem WatercutItem(Watercut, 1);
+    SkillItem ThunderslashItem(Thunderslash, 1);
+    SkillItem EarthquakeItem(Earthquake, 1);
+    SkillItem BlizzardItem(Blizzard, 1);
+    SkillItem CrimsonFireItem(CrimsonFire, 1);
+    SkillItem FlamethrowerItem(Flamethrower, 1);
+    SkillItem HeatWaveItem(HeatWave, 1);
+    SkillItem LittleWanderersItem(LittleWanderers, 1);
+    SkillItem DancingRainItem(DancingRain, 1);
+    SkillItem TsunamiItem(Tsunami, 1);
+    SkillItem PlasmaFistItem(PlasmaFist, 1);
+    SkillItem PikaPapowItem(PikaPapow, 1);
+    SkillItem StokedSparksurferItem(StokedSparksurfer, 1);
+    SkillItem SpikesOfDeathItem(SpikesOfDeath, 1);
+    SkillItem ScorchingSandsItem(ScorchingSands, 1);
+    SkillItem TempestOfBladesItem(TempestOfBlades, 1);
+    SkillItem SubzeroSlammerItem(SubzeroSlammer, 1);
+    SkillItem IceSpearheadItem(IceSpearhead, 1);
+    SkillItem AvalancheItem(Avalanche, 1);
+    SkillItem HellfireItem(Hellfire, 1);
+    SkillItem ChasmTrampleItem(ChasmTrample, 1);
+    SkillItem BubbleBeamItem(BubbleBeam, 1);
+    SkillItem PoseidonWrathItem(PoseidonWrath, 1);
+    SkillItem BOLTItem(BOLT, 1);
+    SkillItem ForkedLightningItem(ForkedLightning, 1);
+    SkillItem VoidItem(Void, 1);
+    SkillItem ThornedRoseItem(ThornedRose, 1);
+    SkillItem CastleOfIceItem(CastleOfIce, 1);
+    SkillItem AvalonItem(Avalon, 1);
+} 
 
-Engimon initializeStarterEngimon(int pilihan) {
+Engimon initializeStarterEngimon(int pilihan) { 
     string nama;
+    createSkillsandSkillItems();
     while (true) {
         if (pilihan == 1) {
             cout << "Masukkan nama Firemon mu : ";
             cin >> nama;
             cout << endl;
             Engimon starterEngimon(nama, "Firemon", vector<string>{FIRE, FIRE});    
+            starterEngimon.AddSkill(Fireball);
             return starterEngimon;
         } 
         else if (pilihan == 2) {

@@ -24,6 +24,7 @@ public:
     bool CheckDead(Engimon engimon);
     const Skill getHighestMastery();
     void showStats();
+    void AddSkill(Skill skill);
 
     //Getters
     string getName();
@@ -32,4 +33,5 @@ public:
     int getLevel();
     int getExperience();
     int getCumulativeExperience();
+    list<Skill> getSkill();
 };

@@ -4,74 +4,30 @@
 #include "Skill.hpp"
 using namespace std;
 
+template<class T>
 class Inventory
 {
 protected:
-    int max_capacity;
-    int engimon_active_index; // idx -1 for undefine index
-    vector<Engimon> vector_engimon;
-    vector<SkillItem> vector_skillItem;
+    static const int max_capacity = 100;
+    static int current_capacity = 0;
+    vector<T> vector_inventory;
 
 public:
-    Inventory(int max_capacity) : max_capacity(max_capacity), engimon_active_index(-1){};
+    // Constructor
+    Inventory() { cout << "make inventory" << endl; }
 
-    Inventory &operator<<(const Engimon &engimon)
+    // Operator
+    Inventory &operator<<(const T &inventory_item)
     {
-        if (this->vector_engimon.size() + 1 > this->max_capacity)
-            cout << "capacity has been maximum" << endl;
+        if(Inventory::current_capacity + 1 > Inventory::max_capacity) {
+            throw "full capacity";
+        }
         else
         {
-            this->vector_engimon.push_back(engimon);
-            this->max_capacity++;
+            this->vector_inventory.push_back(inventory_item);
+            Inventory::current_capacity++;
         }
 
         return *this;
-    }
-    Inventory &operator<<(Skill &skill)
-    {
-        if (this->vector_skillItem.size() + 1 > this->max_capacity)
-            cout << "capacity has been maximum" << endl;
-        else
-        {
-            // Check skill already equipped or not
-            int i = 0;
-            bool finish = false;
-            while (i < this->vector_skillItem.size() && !finish)
-            {
-                if (this->vector_skillItem[i].getSkill().getSkillName() == skill.getSkillName())
-                {
-                    this->vector_skillItem[i].addItemAmount();
-                    finish = true;
-                }
-                i++;
-            }
-
-            // Not found
-            if (!finish)
-            {
-                SkillItem s(skill, 1);
-                this->vector_skillItem.push_back(s);
-                this->max_capacity++;
-            }
-        }
-        return *this;
-    }
-
-    void changeActiveEngimon(string engimonName)
-    {
-        int i = 0;
-        bool found = false;
-        while (i < this->vector_engimon.size() && !found)
-        {
-            if (this->vector_engimon[i].getName() == engimonName)
-                found == true;
-            else
-                i++;
-        }
-
-        if (found)
-            this->engimon_active_index = i;
-        else
-            cout << "Engimon not found!";
     }
 };

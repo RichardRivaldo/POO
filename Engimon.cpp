@@ -72,9 +72,14 @@ void Engimon::showStats() {
     cout << "Cumulative experience : " << this->getCumulativeExperience() << endl;
 }
 
+void Engimon::AddSkill(Skill skill) {
+    this->skill.push_back(skill);
+}
+
 string Engimon::getName() { return this->name; }
 string Engimon::getSpecies() { return this->species; }
 vector<string> Engimon::getElement() { return this->element; }
 int Engimon::getLevel() { return this->level; }
 int Engimon::getExperience() { return this->experience; }
 int Engimon::getCumulativeExperience() { return this->cumulativeExperience; }
+list<Skill> Engimon::getSkill() { return this->skill; }
