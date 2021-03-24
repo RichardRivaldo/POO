@@ -71,17 +71,15 @@ void Battle::setMultiplierEngimon() {
     
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
-            if ((elemen1[i] != "") && (elemen2[j] != "")) {
-                mult1 = checkMultiplier(elemen1[i], elemen2[j]);
-                mult2 = checkMultiplier(elemen2[j], elemen1[i]);
+            mult1 = checkMultiplier(elemen1[i], elemen2[j]);
+            mult2 = checkMultiplier(elemen2[j], elemen1[i]);
 
-                if (max1 < mult1) {
-                    max1 = mult1;
-                }
+            if (max1 < mult1) {
+                max1 = mult1;
+            }
 
-                if (max2 < mult2) {
-                    max2 = mult2;
-                }
+            if (max2 < mult2) {
+                max2 = mult2;
             }
         }
     }
@@ -124,100 +122,100 @@ void Battle::setTotalPower() {
 }
 
 float Battle::checkMultiplier(string elemen1,string elemen2) {
-    if (elemen1 == "fire") {
-        if (elemen2 == "fire") {
+    if (elemen1 == "Fire") {
+        if (elemen2 == "Fire") {
             return 1;
         }
-        else if (elemen2 == "water") {
+        else if (elemen2 == "Water") {
             return 0;
         }
-        else if (elemen2 == "electric") {
+        else if (elemen2 == "Electric") {
             return 1;
         }
-        else if (elemen2 == "ground") {
+        else if (elemen2 == "Ground") {
             return 0.5;
         }
-        else if (elemen2 == "ice") {
+        else if (elemen2 == "Ice") {
             return 2;
         }
         else {
             throw elemen2;
         }
     }
-    else if (elemen2 == "water") {
-        if (elemen2 == "fire") {
+    else if (elemen2 == "Water") {
+        if (elemen2 == "Fire") {
             return 2;
         }
-        else if (elemen2 == "water") {
+        else if (elemen2 == "Water") {
             return 1;
         }
-        else if (elemen2 == "electric") {
+        else if (elemen2 == "Electric") {
             return 0;
         }
-        else if (elemen2 == "ground") {
+        else if (elemen2 == "Ground") {
             return 1;
         }
-        else if (elemen2 == "ice") {
+        else if (elemen2 == "Ice") {
             return 1;
         }
         else {
             throw elemen2;
         }
     }
-    else if (elemen2 == "electric") {
-        if (elemen2 == "fire") {
+    else if (elemen2 == "Electric") {
+        if (elemen2 == "Fire") {
             return 1;
         }
-        else if (elemen2 == "water") {
+        else if (elemen2 == "Water") {
             return 2;
         }
-        else if (elemen2 == "electric") {
+        else if (elemen2 == "Electric") {
             return 1;
         }
-        else if (elemen2 == "ground") {
+        else if (elemen2 == "Ground") {
             return 0;
         }
-        else if (elemen2 == "ice") {
+        else if (elemen2 == "Ice") {
             return 1.5;
         }
         else {
             throw elemen2;
         }
     }
-    else if (elemen2 == "ground") {
-        if (elemen2 == "fire") {
+    else if (elemen2 == "Ground") {
+        if (elemen2 == "Fire") {
             return 1.5;
         }
-        else if (elemen2 == "water") {
+        else if (elemen2 == "Water") {
             return 1;
         }
-        else if (elemen2 == "electric") {
+        else if (elemen2 == "Electric") {
             return 2;
         }
-        else if (elemen2 == "ground") {
+        else if (elemen2 == "Ground") {
             return 1;
         }
-        else if (elemen2 == "ice") {
+        else if (elemen2 == "Ice") {
             return 0;
         }
         else {
             throw elemen2;
         }
     }
-    else if (elemen2 == "ice") {
-        if (elemen2 == "fire") {
+    else if (elemen2 == "Ice") {
+        if (elemen2 == "Fire") {
             return 0;
         }
-        else if (elemen2 == "water") {
+        else if (elemen2 == "Water") {
             return 1;
         }
-        else if (elemen2 == "electric") {
+        else if (elemen2 == "Electric") {
             return 0.5;
         }
-        else if (elemen2 == "ground") {
+        else if (elemen2 == "Ground") {
             return 2;
         }
-        else if (elemen2 == "ice") {
+        else if (elemen2 == "Ice") {
             return 1;
         }
         else {
@@ -225,7 +223,7 @@ float Battle::checkMultiplier(string elemen1,string elemen2) {
         }
     }
     else {
-        if ((elemen2 == "ice") || (elemen2 =="fire") || (elemen2 == "water") || (elemen2 == "electric") || (elemen2 == "ground")) {
+        if ((elemen2 == "Ice") || (elemen2 =="Fire") || (elemen2 == "Water") || (elemen2 == "Electric") || (elemen2 == "Ground")) {
             throw elemen1;
         }
         else {
@@ -235,8 +233,21 @@ float Battle::checkMultiplier(string elemen1,string elemen2) {
 }
 
 void Battle::showTotalPower() {
-    string elemenPlayer = (this->engimonPlayer.getElement())[0] + "/" + (this->engimonPlayer.getElement())[1];
-    string elemenWild = (this->engimonWild.getElement())[0] + "/" + (this->engimonWild.getElement())[1];
+    string elemenPlayer, elemenWild;
+
+    if ((this->engimonPlayer.getElement())[0] == (this->engimonPlayer.getElement())[1]){
+        elemenPlayer = (this->engimonPlayer.getElement())[0];
+    }
+    else {
+        elemenPlayer = (this->engimonPlayer.getElement())[0] + " / " + (this->engimonPlayer.getElement())[1];
+    }
+
+    if ((this->engimonWild.getElement())[0] == (this->engimonWild.getElement())[1]){
+        elemenWild = (this->engimonWild.getElement())[0];
+    }
+    else {
+        elemenWild = (this->engimonWild.getElement())[0] + " / " + (this->engimonWild.getElement())[1];
+    }
 
     cout << endl;
     cout << "ENGIMON PLAYER" << endl; 

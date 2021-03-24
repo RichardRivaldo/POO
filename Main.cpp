@@ -17,7 +17,49 @@ const string GROUND = "Ground";
 const string ICE = "Ice";
 // enum Elements {Fire, Water, Electric, Ground, Ice};
 
-void createSkillsandSkillItems(){   
+Engimon initializeStarterEngimon(int pilihan) { 
+    string nama;
+    createSkillsandSkillItems();
+    while (true) {
+        if (pilihan == 1) {
+            cout << "Masukkan nama Firemon mu : ";
+            cin >> nama;
+            cout << endl;
+            Engimon starterEngimon(nama, "Firemon", vector<string>{FIRE, FIRE});    
+            starterEngimon.AddSkill(Fireball);
+            return starterEngimon;
+        } 
+        else if (pilihan == 2) {
+            cout << "Masukkan nama Watermon mu : ";
+            cin >> nama;
+            cout << endl;
+            Engimon starterEngimon(nama, "Watermon", {WATER, WATER});
+            return starterEngimon;
+        } else if (pilihan == 3) {
+            cout << "Masukkan nama Electricmon mu : ";
+            cin >> nama; 
+            cout << endl;
+            Engimon starterEngimon(nama, "Electromon", {ELECTRIC, ELECTRIC}); 
+            return starterEngimon;
+        } else if (pilihan == 4) {
+            cout << "Masukkan nama Groundmon mu : ";
+            cin >> nama;  
+            cout << endl;
+            Engimon starterEngimon(nama, "Groundmon", {GROUND, GROUND});
+            return starterEngimon;
+        } else if (pilihan == 5) {
+            cout << "Masukkan nama Icemon mu : ";
+            cin >> nama;  
+            cout << endl;
+            Engimon starterEngimon(nama, "Icemon", {ICE, ICE});
+            return starterEngimon;
+        } else {
+            cout << "Masukan tidak valid, coba lagi" << endl;
+        }
+    }
+}
+
+int main(){
     // Unique Skill
     UniqueSkill Fireball("Fireball", 20, 1, vector<string> {FIRE}, "Firemon");
     UniqueSkill Watercut("Watercut", 20, 1, vector<string> {WATER}, "Watermon");
@@ -85,51 +127,7 @@ void createSkillsandSkillItems(){
     SkillItem ThornedRoseItem(ThornedRose, 1);
     SkillItem CastleOfIceItem(CastleOfIce, 1);
     SkillItem AvalonItem(Avalon, 1);
-} 
 
-Engimon initializeStarterEngimon(int pilihan) { 
-    string nama;
-    createSkillsandSkillItems();
-    while (true) {
-        if (pilihan == 1) {
-            cout << "Masukkan nama Firemon mu : ";
-            cin >> nama;
-            cout << endl;
-            Engimon starterEngimon(nama, "Firemon", vector<string>{FIRE, FIRE});    
-            starterEngimon.AddSkill(Fireball);
-            return starterEngimon;
-        } 
-        else if (pilihan == 2) {
-            cout << "Masukkan nama Watermon mu : ";
-            cin >> nama;
-            cout << endl;
-            Engimon starterEngimon(nama, "Watermon", {WATER, WATER});
-            return starterEngimon;
-        } else if (pilihan == 3) {
-            cout << "Masukkan nama Electricmon mu : ";
-            cin >> nama; 
-            cout << endl;
-            Engimon starterEngimon(nama, "Electromon", {ELECTRIC, ELECTRIC}); 
-            return starterEngimon;
-        } else if (pilihan == 4) {
-            cout << "Masukkan nama Groundmon mu : ";
-            cin >> nama;  
-            cout << endl;
-            Engimon starterEngimon(nama, "Groundmon", {GROUND, GROUND});
-            return starterEngimon;
-        } else if (pilihan == 5) {
-            cout << "Masukkan nama Icemon mu : ";
-            cin >> nama;  
-            cout << endl;
-            Engimon starterEngimon(nama, "Icemon", {ICE, ICE});
-            return starterEngimon;
-        } else {
-            cout << "Masukan tidak valid, coba lagi" << endl;
-        }
-    }
-}
-
-int main(){
     int pilihan;
     cin >> pilihan;
     
