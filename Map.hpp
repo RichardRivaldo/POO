@@ -16,7 +16,12 @@ class Map{
         int dimensiWater;
         //Position player_position;
     public:
-        void printMap();
         Map();
+        void printMap();
+        void movePlayerUp();
+        void movePlayerRight();
+        void movePlayerLeft();
+        void movePlayerDown();
+        
 };
 #endif
