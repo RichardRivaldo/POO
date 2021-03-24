@@ -15,9 +15,31 @@ Engimon::Engimon(string nama, string species, vector<string> element)
     this->cumulativeExperience = 0;
 }
 
+Engimon::Engimon(const Engimon& engimon)
+{
+    this->name = engimon.name;
+    this->element = engimon.element;
+    this->species = engimon.species;
+    this->level = engimon.level;
+    this->experience = engimon.experience;
+    this->cumulativeExperience = engimon.cumulativeExperience;
+}
+
+
 Engimon::~Engimon()
 {
     cout << "Engimon " << this->name << " mati karena usia tua." << endl;
+}
+
+Engimon& Engimon::operator=(const Engimon& engimon)
+{
+    this->name = engimon.name;
+    this->element = engimon.element;
+    this->species = engimon.species;
+    this->level = engimon.level;
+    this->experience = engimon.experience;
+    this->cumulativeExperience = engimon.cumulativeExperience;
+    return *this;
 }
 
 bool Engimon::CheckDead(Engimon engimon)

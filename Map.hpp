@@ -17,6 +17,7 @@ class Map{
         Position player_position;
     public:
         Map();
+        ~Map();
         void printMap();
         void movePlayerUp();
         void movePlayerRight();

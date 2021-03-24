@@ -18,7 +18,9 @@ protected:
 
 public:
     Engimon(string nama, string species, vector<string> element);
+    Engimon(const Engimon& engimon);
     ~Engimon();
+    Engimon& operator=(const Engimon&);
 
     bool CheckLevelUp(Engimon engimon);
     bool CheckDead(Engimon engimon);
