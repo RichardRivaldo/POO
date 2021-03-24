@@ -8,6 +8,7 @@ Map::Map(){
     setCapital = 5;
     dimensiWater = 5;
 }
+
 void Map::printMap(){
     for (int i = 0; i < xmax; i++){
         for (int j = 0; j < ymax; j++){
