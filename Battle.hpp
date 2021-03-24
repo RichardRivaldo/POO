@@ -11,12 +11,12 @@ class Battle {
         Engimon engimonPlayer2; 
         int levelEngimon1; // Level Engimon Player 1
         int levelEngimon2; // Level Engimon Player 2
-        int multiplierEngimon1; // Element Advantage Engimon Player 1
-        int multiplierEngimon2; // Element Advantage Engimon Player 2
+        float multiplierEngimon1; // Element Advantage Engimon Player 1
+        float multiplierEngimon2; // Element Advantage Engimon Player 2
         int skillPower1; // Total skill base power Engimon Player 1
         int skillPower2; // Total skill base power Engimon Player 2
-        int totalPower1;
-        int totalPower2;
+        float totalPower1;
+        float totalPower2;
         string winner;
         string loser;
     public :
@@ -40,8 +40,7 @@ class Battle {
         void setTotalPower();
 
         // Fungsi dan Prosedur
-        
-        int checkMultiplier(string element1, string elemen2);
+        float checkMultiplier(string element1, string elemen2);
         void showTotalPower();
         void doBattle();
 };

@@ -93,6 +93,111 @@ void Battle::setSkillPower() {
         power1 += skill2.getSkillPower() * skill2.getSkillMastery();
         advance(it2,1);
     }
+
+    this->skillPower1 = power1;
+    this->skillPower2 = power2;
+}
+
+void Battle::setTotalPower() {
+    int total1, total2;
+    total1 = this->levelEngimon1 * this->multiplierEngimon1 + this->skillPower1;
+    total2 = this->levelEngimon2 * this->multiplierEngimon2 + this->skillPower2;
+
+    this->totalPower1 = total1;
+    this->totalPower2 = total2;
+}
+
+float Battle::checkMultiplier(string elemen1,string elemen2) {
+    if (elemen1 == "fire") {
+        if (elemen2 == "fire") {
+            return 1;
+        }
+        else if (elemen2 == "water") {
+            return 0;
+        }
+        else if (elemen2 == "electric") {
+            return 1;
+        }
+        else if (elemen2 == "ground") {
+            return 0.5;
+        }
+        else if (elemen2 == "ice") {
+            return 2;
+        }
+    }
+    else if (elemen2 == "water") {
+        if (elemen2 == "fire") {
+            return 2;
+        }
+        else if (elemen2 == "water") {
+            return 1;
+        }
+        else if (elemen2 == "electric") {
+            return 0;
+        }
+        else if (elemen2 == "ground") {
+            return 1;
+        }
+        else if (elemen2 == "ice") {
+            return 1;
+        }
+    }
+    else if (elemen2 == "electric") {
+        if (elemen2 == "fire") {
+            return 1;
+        }
+        else if (elemen2 == "water") {
+            return 2;
+        }
+        else if (elemen2 == "electric") {
+            return 1;
+        }
+        else if (elemen2 == "ground") {
+            return 0;
+        }
+        else if (elemen2 == "ice") {
+            return 1.5;
+        }
+    }
+    else if (elemen2 == "ground") {
+        if (elemen2 == "fire") {
+            return 1.5;
+        }
+        else if (elemen2 == "water") {
+            return 1;
+        }
+        else if (elemen2 == "electric") {
+            return 2;
+        }
+        else if (elemen2 == "ground") {
+            return 1;
+        }
+        else if (elemen2 == "ice") {
+            return 0;
+        }
+    }
+    else if (elemen2 == "ice") {
+        if (elemen2 == "fire") {
+            return 0;
+        }
+        else if (elemen2 == "water") {
+            return 1;
+        }
+        else if (elemen2 == "electric") {
+            return 0.5;
+        }
+        else if (elemen2 == "ground") {
+            return 2;
+        }
+        else if (elemen2 == "ice") {
+            return 1;
+        }
+    }
+}
+
+void Battle::showTotalPower() {
+    cout << endl << "Nama   : " << this->engimonPlayer1.getName() << endl;
+    cout << "Level  :" << this->engimonPlayer1.getLevel()
 }
 
 vector<string> elementSplitter(string element) {
