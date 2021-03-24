@@ -1,9 +1,19 @@
+#include "Engimon.hpp"
 class Position {
     protected :
-        int x, y;
+        int x;
+        int y;
+        Engimon * engimon;
+        bool isPlayer;
+        bool isActiveEngimon;
+
     public:
         Position();
         Position(int coordinate_x, int coordinate_y);
         Position(const Position&);
-        void setPosition(int a, int b);
+        bool getisPlayer();
+        bool getisActiveEngimon();
+        Engimon * getEngimon();
+        int getXCoordinate();
+        int getYCoordinate();
 };
