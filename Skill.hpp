@@ -1,3 +1,5 @@
+#ifndef __SKILL__HPP__
+#define __SKILL__HPP__
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -12,8 +14,6 @@ class Skill {
         int basePower;
         // Mastery Level
         int masteryLevel;
-        //
-        string Species;
         // Elements
         vector<string> Elements;
 
@@ -21,14 +21,14 @@ class Skill {
         // Default Constructor, fill with default of each attribute
         Skill();
         // User-Defined Constructor
-        Skill(string name, int power, int mastery, string species, vector<string> Elmts);
+        Skill(string name, int power, int mastery, vector<string> Elmts);
         // Destructor - Not really needed, just to ensure the object is destructed correctly
         // ~Skill();
 
         // Methods
-        const bool isSkillLearnable(string engimonElmt, string species);
+        virtual const bool isSkillLearnable(string engimonElmt);
         void masteryLevelUp(int bpIncrease);
-        const void skillInfo();
+        virtual const void skillInfo();
         const Skill getHighestMastery();
 
         // Getter
@@ -36,5 +36,6 @@ class Skill {
         const int getSkillPower();
         const int getSkillMastery();
         const vector<string> getSuitableElmt();
-        const string getSkillSpecies();
 };
+
+#endif

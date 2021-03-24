@@ -1,4 +1,4 @@
-#include "Skill.hpp"
+#include "SkillCat.hpp"
 
 int main(){
     // Init ELements
@@ -6,7 +6,7 @@ int main(){
 
     // Construct the object
     Skill s1;
-    Skill s2("Autokill", 100000, 1000000, "God", elmt);
+    Skill s2("Autokill", 100000, 1000000, elmt);
 
     // Print Skill Info
     s1.skillInfo();
@@ -15,10 +15,10 @@ int main(){
     cout << "--------------------" << endl;
 
     // Method Check: isSkillLearnable
-    if(!s2.isSkillLearnable("Dirt", "God")){
+    if(!s2.isSkillLearnable("Dirt")){
         cout << "Not Learnable" << endl;
     }
-    if(s2.isSkillLearnable("Fire", "God")){
+    if(s2.isSkillLearnable("Fire")){
         cout << "Learnable" << endl;
     }
     cout << "--------------------" << endl;
@@ -44,5 +44,20 @@ int main(){
         cout << "Assigned" << endl;
     }
 
+    cout << "--------------------" << endl;
+
+    // Unique Skill
+    UniqueSkill unique("Endgame", 100000, 1000000, elmt, "God");
+    unique.skillInfo();
+    cout << unique.getSkillSpecies() << endl;
+
+    cout << "--------------------" << endl;
+
+    // Special Skill
+    SpecialSkill special("BOOM!", 100000, 9999999, elmt, 1);
+    special.skillInfo();
+    cout << special.getAddPower() << endl;
+    cout << special.totalDamage() << endl;
+    cout << "--------------------" << endl;
     return 0;
 }

@@ -1,3 +1,5 @@
+#ifndef __SKILLITEM__HPP__
+#define __SKILLITEM__HPP__
 #include <iostream>
 #include <utility>
 #include "Skill.hpp"
@@ -25,3 +27,5 @@ public:
     const Skill getSkill();
     const int getAmount();
 };
+
+#endif
