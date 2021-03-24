@@ -14,7 +14,7 @@ class Map{
         vector<vector<Position>> peta;
         int setCapital; /* X >= setCapital (Huruf Besar), X < setCapital (Huruf Kecil)*/
         int dimensiWater;
-        //Position player_position;
+        Position player_position;
     public:
         Map();
         void printMap();
@@ -22,6 +22,8 @@ class Map{
         void movePlayerRight();
         void movePlayerLeft();
         void movePlayerDown();
+        vector<string> getCurrElement(Position k);
+        bool isAboveLevel(Position k);
         
 };
 #endif
