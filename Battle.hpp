@@ -8,17 +8,7 @@ using namespace std;
 class Battle {
     private :
         Engimon engimonPlayer;
-        Engimon engimonWild; 
-<<<<<<< Updated upstream
-        int levelEngimon1; // Level Engimon Player 1
-        int levelEngimon2; // Level Engimon Player 2
-        float multiplierEngimon1; // Element Advantage Engimon Player 1
-        float multiplierEngimon2; // Element Advantage Engimon Player 2
-        int skillPower1; // Total skill base power Engimon Player 1
-        int skillPower2; // Total skill base power Engimon Player 2
-        float totalPower1;
-        float totalPower2;
-=======
+        Engimon engimonWild;
         int levelEngimonPlayer; // Level Engimon Player 1
         int levelEngimonWild; // Level Engimon Player 2
         float multiplierEngimonPlayer; // Element Advantage Engimon Player 1
@@ -27,11 +17,12 @@ class Battle {
         int skillPowerWild; // Total skill base power Engimon Player 2
         float totalPowerPlayer;
         float totalPowerWild;
->>>>>>> Stashed changes
         string winner;
         string loser;
+        
     public :
         // Constructor & Destructor
+        Battle();
         Battle(Engimon engimonPlayer, Engimon engimonWild);
         ~Battle();
 
@@ -49,6 +40,7 @@ class Battle {
         void setMultiplierEngimon();
         void setSkillPower();
         void setTotalPower();
+        void setElement();
 
         // Fungsi dan Prosedur
         float checkMultiplier(string elemen1, string elemen2);

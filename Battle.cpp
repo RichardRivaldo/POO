@@ -3,6 +3,8 @@
 #include "Battle.hpp"
 using namespace std;
 
+Battle::Battle() {}
+
 Battle::Battle(Engimon EngimonPlayer, Engimon EngimonWild) {
     this->engimonPlayer = EngimonPlayer;
     this->engimonWild = EngimonWild;
@@ -233,60 +235,58 @@ float Battle::checkMultiplier(string elemen1,string elemen2) {
 }
 
 void Battle::showTotalPower() {
-<<<<<<< Updated upstream
-    cout << endl
-         << "ENGIMON 1" << endl
-         << "Nama           : " << this->engimonPlayer1.getName() << endl
-         << "Level          : " << this->levelEngimon1 << endl
-         << "Elemen         : " << this->engimonPlayer1.getElement() << endl
-         << "Total Power    : " << this->totalPower1 << endl;
+    string elemenPlayer = (this->engimonPlayer.getElement())[0] + "/" + (this->engimonPlayer.getElement())[1];
+    string elemenWild = (this->engimonWild.getElement())[0] + "/" + (this->engimonWild.getElement())[1];
 
-    cout << endl
-         << "ENGIMON 2" << endl
-         << "Nama           : " << this->engimonPlayer2.getName() << endl
-         << "Level          : " << this->levelEngimon2 << endl
-         << "Elemen         : " << this->engimonPlayer2.getElement() << endl
-         << "Total Power    : " << this->totalPower2 << endl;
-=======
     cout << endl;
     cout << "ENGIMON PLAYER" << endl; 
     cout << "Nama           : " << this->engimonPlayer.getName() << endl;
     cout << "Level          : " << this->levelEngimonPlayer << endl;
-    cout << "Elemen         : " << this->engimonPlayer.getElement() << endl;
+    cout << "Elemen         : " << elemenPlayer << endl;
     cout << "Total Power    : " << this->totalPowerPlayer << endl;;
 
     cout << endl;
     cout << "ENGIMON WILD" << endl;
     cout << "Nama           : " << this->engimonWild.getName() << endl;
     cout << "Level          : " << this->levelEngimonWild << endl;
-    cout << "Elemen         : " << this->engimonWild.getElement() << endl;
+    cout << "Elemen         : " << elemenWild << endl;
     cout << "Total Power    : " << this->totalPowerWild << endl;;
     cout << endl;
->>>>>>> Stashed changes
 }
 
 void Battle::doBattle() {
     this->showTotalPower();
 
     if (this->totalPowerPlayer > this->totalPowerWild) {
-        this->winner = this->engimonPlayer;
-        this->loser = this->engimonWild;
+        this->winner = this->engimonPlayer.getName();
+        this->loser = this->engimonWild.getName();
     }
     else if (this->totalPowerPlayer < this->totalPowerWild) {
-        this->winner = this->engimonWild;
-        this->loser = this->engimonPlayer;
+        this->winner = this->engimonWild.getName();
+        this->loser = this->engimonPlayer.getName();
     }
     else {
         if (this->levelEngimonPlayer > this->levelEngimonWild) {
-            this->winner = this->engimonPlayer;
-            this->loser = this->engimonWild;
+            this->winner = this->engimonPlayer.getName();
+            this->loser = this->engimonWild.getName();
         }
         else if (this->levelEngimonPlayer < this->levelEngimonWild) {
-            this->winner = this->engimonPlayer;
-            this->loser = this->engimonWild;
+            this->winner = this->engimonPlayer.getName();
+            this->loser = this->engimonWild.getName();
         }
         else {
-            if (this->)
+            if (this->multiplierEngimonPlayer > this->multiplierEngimonWild) {
+                this->winner = this->engimonPlayer.getName();
+                this->loser = this->engimonWild.getName();
+            }
+            else if (this->multiplierEngimonPlayer < this->multiplierEngimonWild) {
+                this->winner = this->engimonPlayer.getName();
+                this->loser = this->engimonWild.getName();
+            }
+            else {
+                this->winner = "";
+                this->loser = this->engimonPlayer.getName() + " dan " + this->engimonWild.getName();
+            }
         }
     }
 }
