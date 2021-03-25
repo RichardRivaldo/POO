@@ -1,11 +1,13 @@
 #include <string>
 #include <iostream>
+#include <cmath>
 #include "Battle.hpp"
 using namespace std;
 
 Battle::Battle() {}
 
-Battle::Battle(Engimon EngimonPlayer, Engimon EngimonWild) {
+Battle::Battle(Player player, Engimon EngimonPlayer, Engimon EngimonWild) {
+    this->player = player;
     this->engimonPlayer = EngimonPlayer;
     this->engimonWild = EngimonWild;
     this->levelEngimonPlayer = EngimonPlayer.getLevel();
@@ -271,32 +273,43 @@ void Battle::doBattle() {
     if (this->totalPowerPlayer > this->totalPowerWild) {
         this->winner = this->engimonPlayer.getName();
         this->loser = this->engimonWild.getName();
+        this->player.addEngimon(this->engimonWild);
+        this->engimonPlayer.addExp(floor(100/this->levelEngimonPlayer));
     }
     else if (this->totalPowerPlayer < this->totalPowerWild) {
         this->winner = this->engimonWild.getName();
         this->loser = this->engimonPlayer.getName();
+        this->engimonPlayer.~Engimon();
     }
     else {
         if (this->levelEngimonPlayer > this->levelEngimonWild) {
             this->winner = this->engimonPlayer.getName();
             this->loser = this->engimonWild.getName();
+            this->player.addEngimon(this->engimonWild);
+            this->engimonPlayer.addExp(floor(100/this->levelEngimonPlayer));
         }
         else if (this->levelEngimonPlayer < this->levelEngimonWild) {
             this->winner = this->engimonPlayer.getName();
             this->loser = this->engimonWild.getName();
+            this->engimonPlayer.~Engimon();
         }
         else {
             if (this->multiplierEngimonPlayer > this->multiplierEngimonWild) {
                 this->winner = this->engimonPlayer.getName();
                 this->loser = this->engimonWild.getName();
+                this->player.addEngimon(this->engimonWild);
+                this->engimonPlayer.addExp(floor(100/this->levelEngimonPlayer));
             }
             else if (this->multiplierEngimonPlayer < this->multiplierEngimonWild) {
                 this->winner = this->engimonPlayer.getName();
                 this->loser = this->engimonWild.getName();
+                this->engimonPlayer.~Engimon();
             }
             else {
                 this->winner = "";
                 this->loser = this->engimonPlayer.getName() + " dan " + this->engimonWild.getName();
+                this->engimonPlayer.~Engimon();
+                this->engimonWild.~Engimon();
             }
         }
     }
