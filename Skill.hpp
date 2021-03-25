@@ -21,7 +21,7 @@ class Skill {
         // Default Constructor, fill with default of each attribute
         Skill();
         // User-Defined Constructor
-        Skill(string name, int power, int mastery, vector<string> Elmts);
+        Skill(string name, int power, vector<string> Elmts, int mastery = 1);
         // Destructor - Not really needed, just to ensure the object is destructed correctly
         // ~Skill();
 

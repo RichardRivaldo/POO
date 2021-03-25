@@ -4,7 +4,7 @@
 int main(){
     // Init Skill
     vector<string> elmt = {"Fire", "Water", "Wind", "Earth"};
-    Skill autokill("Autokill", 100000, 1000000, elmt);
+    Skill autokill("Autokill", 100000, elmt, 1000000);
 
     // Skill Item
     SkillItem defItem;
@@ -27,11 +27,11 @@ int main(){
     cout << "---------------------" << endl;
 
     // Unique and Special Skill Item
-    SpecialSkill special("BOOM!", 100000, 9999999, elmt, 1);
-    UniqueSkill unique("Endgame", 100000, 1000000, elmt, "God");
+    SpecialSkill special("BOOM!", 100000, elmt, 1);
+    UniqueSkill unique("Endgame", 100000, elmt, "God");
 
-    SkillItem specialItem(special, 20);
-    SkillItem uniqueItem(unique, 20);
+    SkillItem specialItem(special);
+    SkillItem uniqueItem(unique);
 
     // Check
     cout << "---------------------" << endl;

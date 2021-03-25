@@ -6,7 +6,7 @@ Skill::Skill(): skillName("Skill"), basePower(0), masteryLevel(1){
     vector<string> Elements;
 }
 
-Skill::Skill(string name, int power, int mastery, vector<string> Elmts):skillName(name), 
+Skill::Skill(string name, int power, vector<string> Elmts, int mastery):skillName(name), 
                                                                         basePower(power), 
                                                                         masteryLevel(mastery),
                                                                         Elements(Elmts){}
@@ -31,7 +31,7 @@ const void Skill::skillInfo(){
     // Output attributes info
     cout << "Skill Name         : " << this->skillName << endl;
     cout << "Base Power         : " << this->basePower << endl;
-    cout << "Master Level       : " << this->masteryLevel << endl;
+    cout << "Mastery Level      : " << this->masteryLevel << endl;
     cout << "Available Elements : [";
 
     // Iterate through vector with iterator

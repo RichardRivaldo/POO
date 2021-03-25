@@ -6,7 +6,7 @@ int main(){
 
     // Construct the object
     Skill s1;
-    Skill s2("Autokill", 100000, 1000000, elmt);
+    Skill s2("Autokill", 100000, elmt);
 
     // Print Skill Info
     s1.skillInfo();
@@ -47,14 +47,14 @@ int main(){
     cout << "--------------------" << endl;
 
     // Unique Skill
-    UniqueSkill unique("Endgame", 100000, 1000000, elmt, "God");
+    UniqueSkill unique("Endgame", 100000, elmt, "God");
     unique.skillInfo();
     cout << unique.getSkillSpecies() << endl;
 
     cout << "--------------------" << endl;
 
     // Special Skill
-    SpecialSkill special("BOOM!", 100000, 9999999, elmt, 1);
+    SpecialSkill special("BOOM!", 100000, elmt, 1);
     special.skillInfo();
     cout << special.getAddPower() << endl;
     cout << special.totalDamage() << endl;

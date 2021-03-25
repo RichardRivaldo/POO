@@ -16,7 +16,7 @@ public:
     // Default Constructor, fill with default value
     SkillItem();
     // User-Defined Constructor
-    SkillItem(Skill skill, int amount);
+    SkillItem(Skill skill, int amount = 1);
 
     // Methods
     void addItemAmount(int amount = 1);

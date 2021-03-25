@@ -3,7 +3,7 @@
 // Unique Skill Definitions
 UniqueSkill::UniqueSkill(): Skill(), Species("Species"){}
 
-UniqueSkill::UniqueSkill(string name, int basePower, int mastery, vector<string> elmts, string species): Skill(name, basePower, mastery, elmts),
+UniqueSkill::UniqueSkill(string name, int basePower, vector<string> elmts, string species, int mastery): Skill(name, basePower, elmts, mastery),
                                                                                                          Species(species){}
 
 const bool UniqueSkill::isSkillLearnable(string engimonElmt, string species){
@@ -22,7 +22,7 @@ const string UniqueSkill::getSkillSpecies(){
 // Special Skill Definitions
 SpecialSkill::SpecialSkill(): Skill(), additionalPower(0){}
 
-SpecialSkill::SpecialSkill(string name, int basePower, int mastery, vector<string> elmts, int addPower): Skill(name, basePower, mastery, elmts),
+SpecialSkill::SpecialSkill(string name, int basePower, vector<string> elmts, int addPower, int mastery): Skill(name, basePower, elmts, mastery), 
                                                                                                          additionalPower(addPower){}
 
 const int SpecialSkill::totalDamage(){
