@@ -5,10 +5,6 @@ class Position{
     protected :
         int x;
         int y;
-        list<Engimon> engimon;
-        bool isPlayer;
-        bool isActiveEngimon;
-        bool isOccupied;
 
     public:
         Position();
@@ -16,9 +12,6 @@ class Position{
         Position(const Position&);
         ~Position();
         Position& operator=(const Position& pos);
-        bool getisPlayer();
-        bool getisActiveEngimon();
-        Engimon getEngimon();
         int getXCoordinate();
         int getYCoordinate();
 };

@@ -142,6 +142,9 @@ void Map::movePlayerDown(){
     }
 }
 
+void Map::moveAllEngimon(){
+    for_each()
+}
 int main(int argc, char const *argv[])
 {
     Map m = Map();
