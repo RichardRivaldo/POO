@@ -24,8 +24,8 @@ public:
     ~Engimon();
     Engimon& operator=(const Engimon&);
 
-    bool CheckLevelUp(Engimon engimon);
-    bool CheckDead(Engimon engimon);
+    bool CheckLevelUp(Engimon* engimon);
+    bool CheckDead(Engimon* engimon);
     const Skill getHighestMastery();
     void showStats();
     void AddSkill(Skill skill);

@@ -29,7 +29,7 @@ Engimon::Engimon(const Engimon& engimon)
 
 Engimon::~Engimon()
 {
-    cout << "Engimon " << this->name << " mati karena usia tua." << endl;
+    
 }
 
 Engimon& Engimon::operator=(const Engimon& engimon)
@@ -43,10 +43,10 @@ Engimon& Engimon::operator=(const Engimon& engimon)
     return *this;
 }
 
-bool Engimon::CheckDead(Engimon engimon)
+bool Engimon::CheckDead(Engimon* engimon)
 {
     // Engimon akan mati jika jumlah experience kumulatif >= 3000
-    if (engimon.cumulativeExperience >= 5000)
+    if (engimon->cumulativeExperience >= 5000)
     {
         return true;
     }
@@ -56,10 +56,10 @@ bool Engimon::CheckDead(Engimon engimon)
     }
 }
 
-bool Engimon::CheckLevelUp(Engimon engimon)
+bool Engimon::CheckLevelUp(Engimon* engimon)
 {
     // Level up akan terjadi setiap experience mencapai lebih dari 100
-    if (engimon.experience >= 100)
+    if (engimon->experience >= 100)
     {
         this->level += 1;
         this->experience -= 100;
