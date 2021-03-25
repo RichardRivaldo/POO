@@ -1,4 +1,5 @@
 #include "Map.hpp"
+#include "Player.hpp"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -25,7 +26,7 @@ void Map::printMap(){
         for(int j = 0; j < ymax; j++){
             if(i > xmax-dimensiWater || j < ymax-dimensiWater){
                 cout << "- ";
-            }else if (peta.at(i).at(j).getisPlayer()){
+            }else if (get){
                 cout << "P ";
             }else if (peta.at(i).at(j).getisActiveEngimon()){
                 cout << "X ";
