@@ -2,11 +2,13 @@
 #include <iostream>
 #include <vector>
 #include "Engimon.hpp"
+#include "Player.hpp"
 
 using namespace std;
 
 class Battle {
     private :
+        Player player;
         Engimon engimonPlayer;
         Engimon engimonWild;
         int levelEngimonPlayer; // Level Engimon Player 1
@@ -23,7 +25,7 @@ class Battle {
     public :
         // Constructor & Destructor
         Battle();
-        Battle(Engimon engimonPlayer, Engimon engimonWild);
+        Battle(Player player, Engimon engimonPlayer, Engimon engimonWild);
         ~Battle();
 
         // Get Class Attribute

@@ -26,7 +26,7 @@ class Map{
         void movePlayerLeft();
         void movePlayerDown();
         vector<Engimon> getEngimon();
-        vector<string> getCurrElement(Position k);
+        //vector<string> getCurrElement(Position k);
         bool isAboveLevel(Position k);
         
 };

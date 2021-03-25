@@ -32,6 +32,17 @@ public:
         return *this;
     }
 
+    void decrementCurrentCapacity() { Inventory::current_capacity--; }
+
+    void removeItem(int index)
+    {
+        if (index > this->vector_inventory.size() - 1)
+            throw "index out of bound";
+        else
+            this->vector_inventory.erase(this->vector_inventory.begin() + index);
+    }
+
     vector<T> getInventoryVector() { return this->vector_inventory; }
+
     int getInventorySize() { return this->vector_inventory.size(); }
 };

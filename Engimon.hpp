@@ -29,6 +29,8 @@ public:
     const Skill getHighestMastery();
     void showStats();
     void AddSkill(Skill skill);
+    void RemoveSkillByIdx(int skillIdx);
+    void RemoveSkill(Skill skill);
 
     Engimon breed(Engimon engimon1, Engimon engimon2);
     bool isSkillSizeValid(Engimon engimon);

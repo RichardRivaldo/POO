@@ -2,6 +2,7 @@
 #include <list>
 #include <iostream>
 #include "Engimon.hpp"
+#include "Skill.hpp"
 
 using namespace std;
 
@@ -98,19 +99,63 @@ void Engimon::AddSkill(Skill skill) {
     this->skill.push_back(skill);
 }
 
+void Engimon::RemoveSkillByIdx(int SkillIdx){
+    list<Skill>::iterator iter = skill.begin();
+    advance(iter, SkillIdx - 1);
+    this->skill.erase(iter);
+}
+
+void Engimon::RemoveSkill(Skill skill) {
+    for(list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++){
+        if(skill.getSkillName() == (*iter).getSkillName()){
+            this->skill.erase(iter);
+        }
+    }
+}
+
 Engimon Engimon::breed(Engimon engimon1, Engimon engimon2) {
     if (engimon1.getElement() != engimon2.getElement()){
         cout << "Tidak bisa melakukan cross breeding";
     } else if (engimon1.getLevel() < 30 || engimon2.getLevel() < 30) {
         cout << "Engimon parent belum cukup umur";
     } else {
+        Engimon engimon1tmp = engimon1;
+        Engimon engimon2tmp = engimon2;
         string nama;
         cout << "Masukkan nama Engimon mu : ";
         cin >> nama;
         cout << endl;
         Engimon engimonAnak = Engimon(nama, engimon1.species, engimon1.element);
-        list<Skill> tmpskill = engimon1.getSkill();
-        tmpskill.merge(engimon2.getSkill());
+        
+        for (int i = 0; i<4; i++) {
+            Skill highest1 = engimon1tmp.getHighestMastery();
+            Skill highest2 = engimon2tmp.getHighestMastery();
+            if (highest1.getSkillName() == highest2.getSkillName()) {
+                if (highest1.getSkillMastery() == highest2.getSkillMastery()){
+                    Skill tmp = highest1;
+                    tmp.masteryLevelUp(tmp.getSkillPower());
+                    engimonAnak.AddSkill(tmp);
+                    engimon1tmp.RemoveSkill(highest1);
+                    engimon2tmp.RemoveSkill(highest2);
+                } else if (highest1.getSkillMastery() > highest2.getSkillMastery()) {
+                    engimonAnak.AddSkill(highest1);
+                    engimon1tmp.RemoveSkill(highest1);
+                    engimon2tmp.RemoveSkill(highest2);
+                } else if (highest1.getSkillMastery() < highest2.getSkillMastery()) {
+                    engimonAnak.AddSkill(highest2);
+                    engimon1tmp.RemoveSkill(highest1);
+                    engimon2tmp.RemoveSkill(highest2);
+                }
+            }
+            if (highest1.getSkillMastery() >= highest2.getSkillMastery()) {
+                engimonAnak.AddSkill(highest1);
+                engimon1tmp.RemoveSkill(highest1);
+            } else {
+                engimonAnak.AddSkill(highest2);
+                engimon2tmp.RemoveSkill(highest2);
+            }
+        }
+        return engimonAnak;
     }
 }
 

@@ -11,6 +11,10 @@ class UniqueSkill: public Skill{
         UniqueSkill();
         // User-Defined Constructor
         UniqueSkill(string name, int basePower, vector<string> elmts, string species, int mastery = 1);
+        // Copy Constructor
+        UniqueSkill(const UniqueSkill& unique);
+        // Operator=
+        UniqueSkill& operator=(const UniqueSkill& unique);
 
         // Methods
         const bool isSkillLearnable(string engimonElmt, string species);
@@ -29,6 +33,10 @@ class SpecialSkill: public Skill{
         SpecialSkill();
         // User-Defined Constructor
         SpecialSkill(string name, int basePower, vector<string> elmts, int addPower, int mastery = 1);
+        // Copy Constructor
+        SpecialSkill(const SpecialSkill& special);
+        // Operator=
+        SpecialSkill& operator=(const SpecialSkill& special);
 
         // Methods
         const int totalDamage();

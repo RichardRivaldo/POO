@@ -5,6 +5,7 @@
 #include "SkillCat.hpp"
 #include "SkillItem.hpp"
 #include "Map.hpp"
+#include "Battle.hpp"
 #include <string>
 
 using namespace std;
@@ -17,16 +18,15 @@ const string GROUND = "Ground";
 const string ICE = "Ice";
 // enum Elements {Fire, Water, Electric, Ground, Ice};
 
-Engimon initializeStarterEngimon(int pilihan) { 
+Engimon initializeStarterEngimon(int pilihan, Skill Skill1, Skill Skill2, Skill Skill3, Skill Skill4, Skill Skill5) { 
     string nama;
-    createSkillsandSkillItems();
     while (true) {
         if (pilihan == 1) {
             cout << "Masukkan nama Firemon mu : ";
             cin >> nama;
             cout << endl;
             Engimon starterEngimon(nama, "Firemon", vector<string>{FIRE, FIRE});    
-            starterEngimon.AddSkill(Fireball);
+            starterEngimon.AddSkill(Skill1);
             return starterEngimon;
         } 
         else if (pilihan == 2) {
@@ -34,24 +34,28 @@ Engimon initializeStarterEngimon(int pilihan) {
             cin >> nama;
             cout << endl;
             Engimon starterEngimon(nama, "Watermon", {WATER, WATER});
+            starterEngimon.AddSkill(Skill2);
             return starterEngimon;
         } else if (pilihan == 3) {
             cout << "Masukkan nama Electricmon mu : ";
             cin >> nama; 
             cout << endl;
-            Engimon starterEngimon(nama, "Electromon", {ELECTRIC, ELECTRIC}); 
+            Engimon starterEngimon(nama, "Electromon", {ELECTRIC, ELECTRIC});
+            starterEngimon.AddSkill(Skill3); 
             return starterEngimon;
         } else if (pilihan == 4) {
             cout << "Masukkan nama Groundmon mu : ";
             cin >> nama;  
             cout << endl;
             Engimon starterEngimon(nama, "Groundmon", {GROUND, GROUND});
+            starterEngimon.AddSkill(Skill4);
             return starterEngimon;
         } else if (pilihan == 5) {
             cout << "Masukkan nama Icemon mu : ";
             cin >> nama;  
             cout << endl;
             Engimon starterEngimon(nama, "Icemon", {ICE, ICE});
+            starterEngimon.AddSkill(Skill5);
             return starterEngimon;
         } else {
             cout << "Masukan tidak valid, coba lagi" << endl;
@@ -131,7 +135,9 @@ int main(){
     int pilihan;
     cin >> pilihan;
     
-    createSkillsandSkillItems();
-    Engimon firstEngimon = initializeStarterEngimon(pilihan);
+    Engimon firstEngimon = initializeStarterEngimon(pilihan, Fireball, Watercut, Thunderslash, Earthquake, Blizzard);
     
+    //Tambahin firstEngimon ke inventory player
+
+    return 0;
 }
