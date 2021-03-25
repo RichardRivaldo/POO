@@ -29,6 +29,7 @@ public:
     const Skill getHighestMastery();
     void showStats();
     void AddSkill(Skill skill);
+    void RemoveSkill(int skillIdx);
 
     //Getters
     string getName();

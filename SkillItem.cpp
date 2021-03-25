@@ -13,6 +13,18 @@ SkillItem::SkillItem(Skill skill, int amount)
     this->skillItem.second = amount;
 }
 
+SkillItem::SkillItem(const SkillItem& item){
+    this->skillItem.first = item.skillItem.first;
+    this->skillItem.second = item.skillItem.second;
+}
+
+SkillItem& SkillItem::operator=(const SkillItem&& item){
+    this->skillItem.first = item.skillItem.first;
+    this->skillItem.second = item.skillItem.second;
+
+    return *this;
+}
+
 void SkillItem::addItemAmount(int amount) { this->skillItem.second += amount; }
 
 void SkillItem::decItemAmount(int amount) { this->skillItem.second -= amount; }

@@ -98,6 +98,10 @@ void Engimon::AddSkill(Skill skill) {
     this->skill.push_back(skill);
 }
 
+void Engimon::RemoveSkill(int SkillIdx){
+    this->skill.remove(this->skill[SkillIdx]);
+}
+
 Engimon Engimon::breed(Engimon engimon1, Engimon engimon2, Skill skill1, Skill skill2) {
     if (engimon1.getElement() != engimon2.getElement()){
         cout << "Tidak bisa melakukan cross breeding";

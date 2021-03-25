@@ -12,6 +12,22 @@ Skill::Skill(string name, int power, vector<string> Elmts, int mastery) : skillN
                                                                           masteryLevel(mastery),
                                                                           Elements(Elmts) {}
 
+Skill::Skill(const Skill& skill){
+    this->skillName = skill.skillName;
+    this->basePower = skill.basePower;
+    this->masteryLevel = skill.masteryLevel;
+    this->Elements = skill.Elements;
+}
+
+Skill& Skill::operator=(const Skill& skill){
+    this->skillName = skill.skillName;
+    this->basePower = skill.basePower;
+    this->masteryLevel = skill.masteryLevel;
+    this->Elements = skill.Elements;
+    
+    return *this;
+}
+
 // Skill::~Skill(){
 //     // Output Message
 //     cout << this->skillName << " is deleted successfully." << endl;

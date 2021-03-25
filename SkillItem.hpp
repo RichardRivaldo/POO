@@ -17,6 +17,10 @@ public:
     SkillItem();
     // User-Defined Constructor
     SkillItem(Skill skill, int amount = 1);
+    // Copy Constructor
+    SkillItem(const SkillItem& item);
+    // Operator=
+    SkillItem& operator=(const SkillItem&& item);
 
     // Methods
     void addItemAmount(int amount = 1);
