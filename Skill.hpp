@@ -25,12 +25,15 @@ public:
     Skill(string name, int power, vector<string> Elmts, int mastery = 1);
     // Destructor - Not really needed, just to ensure the object is destructed correctly
     // ~Skill();
+    // Copy Constructor
+    Skill(const Skill& skill);
+    // Operator = 
+    Skill& operator=(const Skill& skill);
 
     // Methods
     virtual const bool isSkillLearnable(string engimonElmt);
     void masteryLevelUp(int bpIncrease);
     virtual const void skillInfo();
-    const Skill getHighestMastery();
 
     // Getter
     string getSkillName();

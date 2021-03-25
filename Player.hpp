@@ -57,6 +57,9 @@ public:
 
     //Battle
     void doBattle();
+
+    void learnSkill(string SkillName);
+    void replaceSkillItem(int replacedSkillIdx, Skill newSkill)
 };
 
 #endif
