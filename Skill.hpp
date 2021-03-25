@@ -34,7 +34,6 @@ public:
     virtual const bool isSkillLearnable(string engimonElmt);
     void masteryLevelUp(int bpIncrease);
     virtual const void skillInfo();
-    const Skill getHighestMastery();
 
     // Getter
     string getSkillName();
