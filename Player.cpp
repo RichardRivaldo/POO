@@ -50,36 +50,54 @@ void Player::addEngimon(Engimon newEngimon)
     }
 }
 
-void Player::learnSkill(string SkillName){
-    int i = 0; bool found = false; SkillItem newSkillItem; Skill newSkill;
+void Player::learnSkill(string SkillName)
+{
+    int i = 0;
+    bool found = false;
+    SkillItem newSkillItem;
+    Skill newSkill;
 
-    while (i < this->inventorySkillItem.getInventorySize() && !found){
-        if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName() == SkillName){
-            found = true; 
+    while (i < this->inventorySkillItem.getInventorySize() && !found)
+    {
+        if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName() == SkillName)
+        {
+            found = true;
             newSkillItem = this->inventorySkillItem.getInventoryVector()[i];
             newSkill = this->inventorySkillItem.getInventoryVector()[i].getSkill();
         }
     }
 
-    if (found != true){
-        cout << "Tidak ada Skill Item untuk Skill ini di dalam Inventory!" << endl; return;
+    if (found != true)
+    {
+        cout << "Tidak ada Skill Item untuk Skill ini di dalam Inventory!" << endl;
+        return;
     }
-    else{
+    else
+    {
         int skillIdx;
         string choice;
-        if (this.ActiveEngimon.getSkill().size() == 4){
+        if (this->ActiveEngimon.getSkill().size() == 4)
+        {
             cout << "Engimon kamu sudah memiliki 4 buah Skill." << endl;
             cout << "Apakah kamu ingin mengganti salah satu Skill tersebut? (Y/N)";
             cin >> choice;
 
-            if (choice == "Y"){
+            if (choice == "Y")
+            {
                 cout << "Pilih nomor Skill yang ingin kamu ganti: ";
                 cin >> skillIdx;
-                this.replaceSkillItem(skillIdx, newSkill);
+                this->replaceSkillItem(skillIdx, newSkill);
                 cout << "Skill berhasil ditambahkan!" << endl;
+
                 // Remove or Decrease Item from Inventory here
+                if (newSkillItem.getAmount() > 1)
+                    this->inventorySkillItem.getInventoryVector()[i].decItemAmount(); // ini ngurangin di skill item
+                else
+                    this->inventorySkillItem.removeItem(i);          // ini buang skill dari invent
+                this->inventorySkillItem.decrementCurrentCapacity(); // ini ngurangin di invent
             }
-            else{
+            else
+            {
                 cout << "Penggunaan Skill Item Dibatalkan!" << endl;
                 return;
             }
@@ -87,12 +105,15 @@ void Player::learnSkill(string SkillName){
     }
 }
 
-void Player::replaceSkillItem(int replacedSkillIdx, Skill newSkill){
-    if(replacedSkillIdx - 1 > this->ActiveEngimon.getSkill().size() - 1){
+void Player::replaceSkillItem(int replacedSkillIdx, Skill newSkill)
+{
+    if (replacedSkillIdx - 1 > this->ActiveEngimon.getSkill().size() - 1)
+    {
         cout << "Indeks Invalid! Pergantian Gagal" << endl;
         return;
     }
-    else{
+    else
+    {
         this->ActiveEngimon.RemoveSkill(replacedSkillIdx);
         this->ActiveEngimon.AddSkill(newSkill);
     }
