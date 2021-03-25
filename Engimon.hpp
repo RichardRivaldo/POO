@@ -19,18 +19,20 @@ protected:
     int cumulativeExperience;
 
 public:
+    Engimon();
     Engimon(string nama, string species, vector<string> element);
     Engimon(const Engimon& engimon);
     ~Engimon();
     Engimon& operator=(const Engimon&);
 
-    bool CheckLevelUp(Engimon* engimon);
-    bool CheckDead(Engimon* engimon);
+    bool CheckLevelUp(Engimon engimon);
+    bool CheckDead(Engimon engimon);
     const Skill getHighestMastery();
     void showStats();
     void AddSkill(Skill skill);
     void RemoveSkillByIdx(int skillIdx);
     void RemoveSkill(Skill skill);
+    bool containsSkill(list<Skill> listSkill, string skillName);
 
     Engimon breed(Engimon engimon1, Engimon engimon2);
     bool isSkillSizeValid(Engimon engimon);
@@ -43,5 +45,8 @@ public:
     int getExperience();
     int getCumulativeExperience();
     list<Skill> getSkill();
+
+    //Setters
+    void setLevel(int level); // Used for debugging purposes
 };
 #endif
