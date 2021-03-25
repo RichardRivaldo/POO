@@ -5,6 +5,8 @@
 #include <list>
 #include "Position.hpp"
 #include "Inventory.hpp"
+#include "Engimon.hpp"
+#include "SkillItem.hpp"
 
 using namespace std;
 
@@ -19,33 +21,42 @@ using namespace std;
     Battle (prioritas WASD)
 */
 
-class Player {
-    private :
-        Position pos;
-    public :
-        //Ctor
-        Player();
+class Player
+{
+private:
+    Position pos;
+    Inventory<Engimon> inventoryEngimon;
+    Inventory<SkillItem> inventorySkillItem;
 
-        //Move Command
-        void moveUp();
-        void moveDown();
-        void moveLeft();
-        void moveRight();
+public:
+    //Ctor
+    Player(Position pos);
 
-        //Engimon Command
-        void showOwnedEngimon();
-        void showStatsEngimon(Engimon a);
-        void showActiveEngimon();
-        void swapActiveEngimon(Engimon b);
+    // Inventory
+    void addSkill(SkillItem newSkillItem);
+    void addEngimon(Engimon newEngimon);
 
-        //Skill Command
-        void showOwnedSkill();
-        void useOwnedSkill(Skill x, Engimon y);
+    //Move Command
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
 
-        //Breed
-        void doBreed(Engimon a, Engimon b);
+    //Engimon Command
+    void showOwnedEngimon();
+    void showStatsEngimon(Engimon a);
+    void showActiveEngimon();
+    void swapActiveEngimon(Engimon b);
 
-        //Battle
-        void doBattle();
+    //Skill Command
+    void showOwnedSkill();
+    void useOwnedSkill(Skill x, Engimon y);
+
+    //Breed
+    void doBreed(Engimon a, Engimon b);
+
+    //Battle
+    void doBattle();
 };
+
 #endif

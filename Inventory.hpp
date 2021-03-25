@@ -4,7 +4,7 @@
 #include "Skill.hpp"
 using namespace std;
 
-template<class T>
+template <class T>
 class Inventory
 {
 protected:
@@ -19,7 +19,8 @@ public:
     // Operator
     Inventory &operator<<(const T &inventory_item)
     {
-        if(Inventory::current_capacity + 1 > Inventory::max_capacity) {
+        if (Inventory::current_capacity + 1 > Inventory::max_capacity)
+        {
             throw "full capacity";
         }
         else
@@ -30,4 +31,7 @@ public:
 
         return *this;
     }
+
+    vector<T> getInventoryVector() { return this->vector_inventory; }
+    int getInventorySize() { return this->vector_inventory.size(); }
 };

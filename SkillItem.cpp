@@ -23,7 +23,7 @@ const void SkillItem::skillItemInfo()
     cout << "Amount of Items : " << this->skillItem.second << endl;
 }
 
-const Skill SkillItem::getSkill()
+Skill SkillItem::getSkill()
 {
     return this->skillItem.first;
 }
