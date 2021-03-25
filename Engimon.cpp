@@ -98,18 +98,19 @@ void Engimon::AddSkill(Skill skill) {
     this->skill.push_back(skill);
 }
 
-Engimon Engimon::breed(Engimon engimon1, Engimon engimon2, Skill skill1, Skill skill2) {
+Engimon Engimon::breed(Engimon engimon1, Engimon engimon2) {
     if (engimon1.getElement() != engimon2.getElement()){
         cout << "Tidak bisa melakukan cross breeding";
+    } else if (engimon1.getLevel() < 30 || engimon2.getLevel() < 30) {
+        cout << "Engimon parent belum cukup umur";
     } else {
         string nama;
         cout << "Masukkan nama Engimon mu : ";
         cin >> nama;
         cout << endl;
         Engimon engimonAnak = Engimon(nama, engimon1.species, engimon1.element);
-        engimonAnak.AddSkill(skill1);
-        engimonAnak.AddSkill(skill2);
-        return engimonAnak;
+        list<Skill> tmpskill = engimon1.getSkill();
+        tmpskill.merge(engimon2.getSkill());
     }
 }
 

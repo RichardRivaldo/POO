@@ -30,6 +30,9 @@ public:
     void showStats();
     void AddSkill(Skill skill);
 
+    Engimon breed(Engimon engimon1, Engimon engimon2);
+    bool isSkillSizeValid(Engimon engimon);
+
     //Getters
     string getName();
     string getSpecies();
