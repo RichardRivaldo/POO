@@ -40,6 +40,7 @@ public:
     const int getSkillPower();
     const int getSkillMastery();
     const vector<string> getSuitableElmt();
+
 };
 
 #endif

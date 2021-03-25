@@ -1,4 +1,5 @@
 #include "Skill.hpp"
+#include "SkillCat.hpp"
 
 using namespace std;
 
