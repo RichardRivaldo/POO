@@ -6,36 +6,37 @@
 
 using namespace std;
 
-class Skill {
-    protected :
-        // Skill name
-        string skillName;
-        // Power
-        int basePower;
-        // Mastery Level
-        int masteryLevel;
-        // Elements
-        vector<string> Elements;
+class Skill
+{
+protected:
+    // Skill name
+    string skillName;
+    // Power
+    int basePower;
+    // Mastery Level
+    int masteryLevel;
+    // Elements
+    vector<string> Elements;
 
-    public:
-        // Default Constructor, fill with default of each attribute
-        Skill();
-        // User-Defined Constructor
-        Skill(string name, int power, vector<string> Elmts, int mastery = 1);
-        // Destructor - Not really needed, just to ensure the object is destructed correctly
-        // ~Skill();
+public:
+    // Default Constructor, fill with default of each attribute
+    Skill();
+    // User-Defined Constructor
+    Skill(string name, int power, vector<string> Elmts, int mastery = 1);
+    // Destructor - Not really needed, just to ensure the object is destructed correctly
+    // ~Skill();
 
-        // Methods
-        virtual const bool isSkillLearnable(string engimonElmt);
-        void masteryLevelUp(int bpIncrease);
-        virtual const void skillInfo();
-        const Skill getHighestMastery();
+    // Methods
+    virtual const bool isSkillLearnable(string engimonElmt);
+    void masteryLevelUp(int bpIncrease);
+    virtual const void skillInfo();
+    const Skill getHighestMastery();
 
-        // Getter
-        const string getSkillName();
-        const int getSkillPower();
-        const int getSkillMastery();
-        const vector<string> getSuitableElmt();
+    // Getter
+    string getSkillName();
+    const int getSkillPower();
+    const int getSkillMastery();
+    const vector<string> getSuitableElmt();
 };
 
 #endif

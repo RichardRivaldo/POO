@@ -24,7 +24,7 @@ public:
     const void skillItemInfo();
 
     // Getter
-    const Skill getSkill();
+    Skill getSkill();
     const int getAmount();
 };
 

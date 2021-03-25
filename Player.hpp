@@ -3,6 +3,8 @@
 #include <list>
 #include "Position.hpp"
 #include "Inventory.hpp"
+#include "Engimon.hpp"
+#include "SkillItem.hpp"
 
 using namespace std;
 
@@ -17,12 +19,20 @@ using namespace std;
     Battle (prioritas WASD)
 */
 
-class Player {
-    private :
-        Position pos;
-    public :
+class Player
+{
+private:
+    Position pos;
+    Inventory<Engimon> inventoryEngimon;
+    Inventory<SkillItem> inventorySkillItem;
+
+public:
     //Ctor
     Player(Position pos);
+
+    // Inventory
+    void addSkill(SkillItem newSkillItem);
+    void addEngimon(Engimon newEngimon);
 
     //Move Command
     void moveUp();
