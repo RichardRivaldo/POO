@@ -4,9 +4,8 @@
 
 using namespace std;
 
-Player :: Player(int posx, int posy){
-    this.posx = 2;
-    this.posy = 2;
+Player::Player(Position pos){
+    Position pos = Position(2,2);
 }
 
 //Move Command

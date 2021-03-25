@@ -19,11 +19,10 @@ using namespace std;
 
 class Player {
     private :
-        int posx;
-        int posy;
+        Position pos;
     public :
     //Ctor
-    Player(int posx, int posy);
+    Player(Position pos);
 
     //Move Command
     void moveUp();
