@@ -5,8 +5,8 @@
 using namespace std;
 
 Player :: Player(int posx, int posy){
-    this.posx = 0;
-    this.posy = 0;
+    this.posx = 2;
+    this.posy = 2;
 }
 
 //Move Command
@@ -31,7 +31,7 @@ void Player::showOwnedEngimon(){
     
 }
 
-void Player::showStatsEngimon(){
+void Player::showStatsEngimon(Engimon a){
     
 }
 
@@ -39,7 +39,7 @@ void Player::showActiveEngimon(){
     
 }
 
-void Player::swapActiveEngimon(){
+void Player::swapActiveEngimon(Engimon b){
     
 }
 
@@ -48,12 +48,12 @@ void Player::showOwnedSkill(){
     
 }
 
-void Player::useOwnedSkill(){
+void Player::useOwnedSkill(Skill x, Engimon y){
     
 }
 
-//Breed
-void Player::doBreed(){
+//Breed 
+void Player::doBreed(Engimon a, Engimon b){
     
 }
 
