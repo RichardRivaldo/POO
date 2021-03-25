@@ -1,3 +1,5 @@
+#ifndef ENGIMON_HPP
+#define ENGIMON_HPP
 #include <string>
 #include <list>
 #include <iostream>
@@ -37,3 +39,4 @@ public:
     int getCumulativeExperience();
     list<Skill> getSkill();
 };
+#endif

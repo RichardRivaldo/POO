@@ -1,3 +1,5 @@
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 #include <string>
 #include <iostream>
 #include <list>
@@ -21,28 +23,29 @@ class Player {
     private :
         Position pos;
     public :
-    //Ctor
-    Player(Position pos);
+        //Ctor
+        Player();
 
-    //Move Command
-    void moveUp();
-    void moveDown();
-    void moveLeft();
-    void moveRight();
+        //Move Command
+        void moveUp();
+        void moveDown();
+        void moveLeft();
+        void moveRight();
 
-    //Engimon Command
-    void showOwnedEngimon();
-    void showStatsEngimon(Engimon a);
-    void showActiveEngimon();
-    void swapActiveEngimon(Engimon b);
+        //Engimon Command
+        void showOwnedEngimon();
+        void showStatsEngimon(Engimon a);
+        void showActiveEngimon();
+        void swapActiveEngimon(Engimon b);
 
-    //Skill Command
-    void showOwnedSkill();
-    void useOwnedSkill(Skill x, Engimon y);
+        //Skill Command
+        void showOwnedSkill();
+        void useOwnedSkill(Skill x, Engimon y);
 
-    //Breed
-    void doBreed(Engimon a, Engimon b);
+        //Breed
+        void doBreed(Engimon a, Engimon b);
 
-    //Battle
-    void doBattle();
+        //Battle
+        void doBattle();
 };
+#endif

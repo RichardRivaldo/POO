@@ -1,5 +1,4 @@
 #include <iostream>
-#include <list>
 #include "Position.hpp"
 
 using namespace std;
