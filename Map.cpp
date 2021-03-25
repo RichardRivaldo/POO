@@ -1,5 +1,6 @@
 #include "Map.hpp"
-#include "Player.hpp"
+#include "Position.cpp"
+//#include "Engimon.cpp"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -10,25 +11,38 @@ Map::Map(){
     setCapital = 5;
     dimensiWater = 5;
     for (int i = 0; i < xmax; i++){
-        peta.push_back(vector<Position>());
+        peta.push_back(vector<char>());
         for(int j = 0; j < ymax; j++){
-            peta.at(i).push_back(Position(i,j));
+            if(i >= xmax-dimensiWater || j < ymax-dimensiWater){
+                peta.at(i).push_back('-');
+            }else{
+                peta.at(i).push_back('0');
+            }
         }
     }
 }
 
+
 Map::~Map(){
     //
 }
-
+void Map::printMap(){
+    for (int i = 0; i < xmax; i++){
+        for(int j = 0; j < ymax; j++){
+            cout << peta[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+/*
 void Map::printMap(){
     for (int i = 0; i < xmax; i++){
         for(int j = 0; j < ymax; j++){
             if(i > xmax-dimensiWater || j < ymax-dimensiWater){
                 cout << "- ";
-            }else if (get){
+            }else if (i == player_position.getXCoordinate() && j == player_position.getYCoordinate()){
                 cout << "P ";
-            }else if (peta.at(i).at(j).getisActiveEngimon()){
+            }else if (i == ActiveEngimon_positon.getXCoordinate() && j == ActiveEngimon_positon.getYCoordinate()){
                 cout << "X ";
             }else if (getCurrElement(peta.at(i).at(j)).at(0)=="Fire"){
                 if (isAboveLevel(peta.at(i).at(j))){
@@ -89,8 +103,8 @@ void Map::printMap(){
         }
         cout << endl;
     }
-}
-
+}*/
+/*
 vector<string> Map::getCurrElement(Position k){
     return k.getEngimon().getElement();
 }
@@ -98,7 +112,7 @@ vector<string> Map::getCurrElement(Position k){
 bool Map::isAboveLevel(Position k){
     return (k.getEngimon().getLevel() >= setCapital);
 }
-
+*/
 void Map::movePlayerUp(){
     if((player_position.getYCoordinate())-1>=0){
         int a = player_position.getXCoordinate();
@@ -145,7 +159,7 @@ void Map::movePlayerDown(){
 
 void Map::moveAllEngimon(){
     for_each()
-}
+}*/
 int main(int argc, char const *argv[])
 {
     Map m = Map();
