@@ -1,6 +1,7 @@
 #include "SkillCat.hpp"
+#include <cassert>
 
-int main(){
+void test_constructor_skill(){
     // Init ELements
     vector<string> elmt = {"Fire", "Water", "Wind", "Earth"};
 
@@ -14,6 +15,20 @@ int main(){
     s2.skillInfo();
     cout << "--------------------" << endl;
 
+    assert(s2.getSkillName() == "Autokill");
+    assert(s2.getSkillMastery() == 1);
+    assert(s1.getSkillPower() == 0);
+    assert(s2.getSuitableElmt() == elmt);
+}
+
+void test_properties(){
+    // Init ELements
+    vector<string> elmt = {"Fire", "Water", "Wind", "Earth"};
+
+    // Construct the object
+    Skill s1;
+    Skill s2("Autokill", 100000, elmt);
+
     // Method Check: isSkillLearnable
     if(!s2.isSkillLearnable("Dirt")){
         cout << "Not Learnable" << endl;
@@ -23,9 +38,8 @@ int main(){
     }
     cout << "--------------------" << endl;
 
-    // Method Check: getSkillName
-    cout << s2.getSkillName() << endl;
-    cout << "--------------------" << endl;
+    assert(!s2.isSkillLearnable("Dirt"));
+    assert(s2.isSkillLearnable("Fire"));
 
     // Method Check: masteryLevelUp
     s2.masteryLevelUp(11111);
@@ -34,23 +48,17 @@ int main(){
     s2.skillInfo();
     cout << "--------------------" << endl;
 
-    // Getters Check
-    cout << s2.getSkillName() << endl;
-    cout << s2.getSkillMastery() << endl;
-    cout << s2.getSkillPower() << endl;
-    
-    vector<string> elmts = s2.getSuitableElmt();
-    if(elmts.size() == 4){
-        cout << "Assigned" << endl;
-    }
+    assert(s2.getSkillMastery() == 2);
+    assert(s2.getSkillPower() == 111111);
+}
 
-    cout << "--------------------" << endl;
+void test_unique_special(){
+    // Init ELements
+    vector<string> elmt = {"Fire", "Water", "Wind", "Earth"};
 
-    // Unique Skill
     UniqueSkill unique("Endgame", 100000, elmt, "God");
     unique.skillInfo();
     cout << unique.getSkillSpecies() << endl;
-
     cout << "--------------------" << endl;
 
     // Special Skill
@@ -59,5 +67,12 @@ int main(){
     cout << special.getAddPower() << endl;
     cout << special.totalDamage() << endl;
     cout << "--------------------" << endl;
+}
+
+int main(){
+    test_constructor_skill();
+    test_properties();
+    test_unique_special();
+    
     return 0;
 }
