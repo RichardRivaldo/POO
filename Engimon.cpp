@@ -98,6 +98,25 @@ void Engimon::AddSkill(Skill skill) {
     this->skill.push_back(skill);
 }
 
+Engimon Engimon::breed(Engimon engimon1, Engimon engimon2, Skill skill1, Skill skill2) {
+    if (engimon1.getElement() != engimon2.getElement()){
+        cout << "Tidak bisa melakukan cross breeding";
+    } else {
+        string nama;
+        cout << "Masukkan nama Engimon mu : ";
+        cin >> nama;
+        cout << endl;
+        Engimon engimonAnak = Engimon(nama, engimon1.species, engimon1.element);
+        engimonAnak.AddSkill(skill1);
+        engimonAnak.AddSkill(skill2);
+        return engimonAnak;
+    }
+}
+
+bool Engimon::isSkillSizeValid(Engimon engimon) {
+    return (engimon.skill.size() <= 4);
+}
+
 string Engimon::getName() { return this->name; }
 string Engimon::getSpecies() { return this->species; }
 vector<string> Engimon::getElement() { return this->element; }
