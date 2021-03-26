@@ -215,7 +215,7 @@ void Map::moveAllEngimonLiar()
                 engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() - 1);
             }
             else if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice"){
-                if (engimonLiar.at(a).first.getXCoordinate() < xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() >= ymax - dimensiWater){
+                if (engimonLiar.at(a).first.getXCoordinate() >= xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() < ymax - dimensiWater){
                     engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() - 1);
                 }
             }else{
@@ -225,7 +225,7 @@ void Map::moveAllEngimonLiar()
             }
         }else if (arah == "South" && engimonLiar.at(a).first.getYCoordinate() + 1 < ymax && engimonLiar.at(a).first.getYCoordinate() + 1 != playerPosition.getYCoordinate() && engimonLiar.at(a).first.getYCoordinate() + 1 != activeEngimonPositon.getYCoordinate()){
             if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice"){
-                if (engimonLiar.at(a).first.getXCoordinate() < xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() >= ymax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() + 1 < ymax - dimensiWater){
+                if (engimonLiar.at(a).first.getXCoordinate() >= xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() < ymax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() + 1 < ymax - dimensiWater){
                     engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() + 1);
                 }
             }else{
@@ -233,7 +233,7 @@ void Map::moveAllEngimonLiar()
             }
         }else if (arah == "West" && engimonLiar.at(a).first.getXCoordinate() - 1 >= 0 && engimonLiar.at(a).first.getXCoordinate() - 1 != playerPosition.getXCoordinate() && engimonLiar.at(a).first.getXCoordinate() - 1 != activeEngimonPositon.getXCoordinate()){
             if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice"){
-                if (engimonLiar.at(a).first.getXCoordinate() < xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() >= ymax - dimensiWater && engimonLiar.at(a).first.getXCoordinate() - 1 >= xmax - dimensiWater){
+                if (engimonLiar.at(a).first.getXCoordinate() >= xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() < ymax - dimensiWater && engimonLiar.at(a).first.getXCoordinate() - 1 >= xmax - dimensiWater){
                     engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() - 1);
                 }
             }else{
@@ -244,7 +244,7 @@ void Map::moveAllEngimonLiar()
                 engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() + 1);
             }
             else if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice"){
-                if (engimonLiar.at(a).first.getXCoordinate() < xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() >= ymax - dimensiWater){
+                if (engimonLiar.at(a).first.getXCoordinate() >= xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() < ymax - dimensiWater){
                     engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() + 1);
                 }
             }else{

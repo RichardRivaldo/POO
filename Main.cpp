@@ -227,6 +227,7 @@ int main()
                             player.addSkillItem(item);
                             player.addEngimon(player.getMap().getengimonLiar().at(i).second);
                             player.getActiveEngimon().addExp(floor(100 / player.getActiveEngimon().getLevel()));
+                            player.getMap().removeEngimonLiar(player.getMap().getengimonLiar().at(i).second);
                             cout << "Player mendapatkan skill item baru: " << item.getSkill().getSkillName() << endl;
                         }
                         else
