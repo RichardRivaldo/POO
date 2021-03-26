@@ -16,6 +16,8 @@ Engimon::Engimon()
     this->experience = -1;
     this->cumulativeExperience = -1;
     this->message = "";
+    this->parent1 = new string("");
+    this->parent2 = new string("");
 }
 
 Engimon::Engimon(string nama, string species, vector<string> element)
@@ -27,6 +29,8 @@ Engimon::Engimon(string nama, string species, vector<string> element)
     this->experience = 0;
     this->cumulativeExperience = 0;
     this->message = "I'm an Engimon";
+    this->parent1 = new string("");
+    this->parent2 = new string("");
 }
 
 Engimon::Engimon(const Engimon &engimon)
@@ -39,6 +43,8 @@ Engimon::Engimon(const Engimon &engimon)
     this->cumulativeExperience = engimon.cumulativeExperience;
     this->skill = engimon.skill;
     this->message = engimon.message;
+    this->parent1 = new string(*engimon.parent1);
+    this->parent2 = new string(*engimon.parent2);
 }
 
 Engimon::~Engimon()
@@ -55,6 +61,8 @@ Engimon &Engimon::operator=(const Engimon &engimon)
     this->experience = engimon.experience;
     this->cumulativeExperience = engimon.cumulativeExperience;
     this->message = engimon.message;
+    this->parent1 = new string(*engimon.parent1);
+    this->parent2 = new string(*engimon.parent2);
     for (list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++)
     {
         this->skill.push_back(*iter);
@@ -114,13 +122,8 @@ void Engimon::showStats()
     cout << "Nama : " << this->getName() << endl;
     cout << "Spesies : " << this->getSpecies() << endl;
 
-    if (this->parents.size() > 0)
-    {
-        cout << "Parents : ";
-        for (int i = 0; i < this->parents.size() - 1; i++)
-            cout << this->parents[i].getName() << ", ";
-        cout << this->parents[this->parents.size() - 1].getName() << endl;
-    }
+    cout << "Parents : ";
+    cout << *(this->parent1) << ", " << *(this->parent2) << endl;
 
     list<Skill>::iterator it;
     cout << "List Skills : | ";
@@ -173,15 +176,23 @@ void Engimon::RemoveSkill(Skill skill)
     }
 }
 
-void Engimon::pushToParents(Engimon parent)
-{
-    this->parents.push_back(parent);
-}
+// void Engimon::pushToParents(Engimon parent)
+// {
+//     this->parents.push_back(parent);
+// }
+
+// void Engimon::setParent1(string engimon1) {
+//     this->parent1 = &engimon1;
+// }
+
+// void Engimon::setParent2(string engimon2) {
+//     this->parent2 = &engimon2;
+// }
 
 Engimon Engimon::breed(Engimon anotherEngimon)
 {
     Engimon engimonAnak = Engimon();
-    if (this->getElement() != anotherEngimon.getElement())
+    if (this->getElement() == anotherEngimon.getElement())
     {
         return engimonAnak;
     }
@@ -201,10 +212,12 @@ Engimon Engimon::breed(Engimon anotherEngimon)
         cout << "Masukkan nama Engimon mu : ";
         cin >> nama;
         cout << endl;
-        engimonAnak = Engimon(nama, this->species, this->element);
+        Engimon tmp(nama, this->species, this->element);
+        // engimonAnak = Engimon(nama, this->species, this->element);
+        engimonAnak = tmp;
 
-        engimonAnak.pushToParents(*this);
-        engimonAnak.pushToParents(anotherEngimon);
+        engimonAnak.parent1 = new string(this->getName());
+        engimonAnak.parent2 = new string(anotherEngimon.getName());
 
         for (int i = 0; i < this->getSkill().size(); i++)
         {

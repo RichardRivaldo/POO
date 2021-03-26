@@ -18,7 +18,10 @@ protected:
     int level;
     int experience;
     int cumulativeExperience;
-    vector<Engimon> parents;
+    // string *parent1;
+    // string *parent2;
+    string* parent1;
+    string* parent2;
     string message;
 
 public:
@@ -56,5 +59,7 @@ public:
     void setLevel(int level); // Used for debugging purposes
     void pushToParents(Engimon parent);
     void setMessage(string newMessage);
+    void setParent1(string engimon1);
+    void setParent2(string engimon2);
 };
 #endif
