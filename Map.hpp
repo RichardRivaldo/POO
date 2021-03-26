@@ -16,15 +16,14 @@ class Map{
         //vector<Engimon> engimon;
         int setCapital; /* X >= setCapital (Huruf Besar), X < setCapital (Huruf Kecil)*/
         int dimensiWater;
-        Position ActiveEngimon_positon;
+        Position playerPosition;
+        Position activeEngimonPositon;
     public:
         Map();
         ~Map();
         void printMap();
-        void movePlayerUp();
-        void movePlayerRight();
-        void movePlayerLeft();
-        void movePlayerDown();
+        Position getplayerPosition();
+        void setplayerPosition();
         vector<Engimon> getEngimon();
         //vector<string> getCurrElement(Position k);
         bool isAboveLevel(Position k);

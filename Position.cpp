@@ -35,3 +35,11 @@ int Position::getXCoordinate(){
 int Position::getYCoordinate(){
     return this->y;
 }
+
+int Position::setXCoordinate(int _x){
+    this->x = _x;
+}
+
+int Position::setYCoordinate(int _y){
+    this->y = _y;
+}

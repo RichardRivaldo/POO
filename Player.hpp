@@ -7,6 +7,7 @@
 #include "Inventory.hpp"
 #include "Engimon.hpp"
 #include "SkillItem.hpp"
+#include "Map.hpp"
 
 using namespace std;
 
