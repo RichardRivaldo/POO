@@ -10,6 +10,7 @@ Map::Map(){
     ymax = 10;
     setCapital = 5;
     dimensiWater = 5;
+    map<Position, Engimon> engimonLiar = map<Position, Engimon>();
     for (int i = 0; i < xmax; i++){
         peta.push_back(vector<char>());
         for(int j = 0; j < ymax; j++){
@@ -21,9 +22,6 @@ Map::Map(){
         }
     }
 }
-
-Map::Map()
-
 
 Map::~Map(){
     //
@@ -57,6 +55,20 @@ void Map::setplayerPosition(int _x, int _y){
     playerPosition.setXCoordinate(_x);
     playerPosition.setXCoordinate(_y);
 }
+
+int Map::getactiveEngimonPositionX(){
+    return this->activeEngimonPositon.getXCoordinate();
+}
+
+int Map::getactiveEngimonPositionY(){
+    return this->activeEngimonPositon.getYCoordinate();
+}
+
+void Map::setactiveEngimonPosition(int _x, int _y){
+    activeEngimonPositon.setXCoordinate(_x);
+    activeEngimonPositon.setXCoordinate(_y);
+}
+
 /*
 void Map::printMap(){
     for (int i = 0; i < xmax; i++){
