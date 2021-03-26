@@ -65,7 +65,7 @@ void Player::addEngimon(Engimon newEngimon)
 
 Map Player::getMap()
 {
-    return this->map;
+    return map;
 }
 
 Inventory<Engimon> Player::getInventoryEngimon() { return this->inventoryEngimon; }
