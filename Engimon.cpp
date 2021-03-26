@@ -185,7 +185,7 @@ Engimon Engimon::breed(Engimon anotherEngimon)
     {
         return engimonAnak;
     }
-    else if (this->getLevel() < 30 || anotherEngimon.getLevel() < 30)
+    else if (this->getLevel() < 1 || anotherEngimon.getLevel() < 1)
     {
         return engimonAnak;
     }
@@ -194,8 +194,8 @@ Engimon Engimon::breed(Engimon anotherEngimon)
         Engimon engimon1tmp = *this;
         Engimon engimon2tmp = anotherEngimon;
 
-        this->setLevel(this->getLevel() - 29);
-        anotherEngimon.setLevel(anotherEngimon.getLevel() - 29);
+        // this->setLevel(this->getLevel() - 29);
+        // anotherEngimon.setLevel(anotherEngimon.getLevel() - 29);
 
         string nama;
         cout << "Masukkan nama Engimon mu : ";
@@ -242,8 +242,6 @@ Engimon Engimon::breed(Engimon anotherEngimon)
             }
             else
             {
-                engimon1tmp.showStats();
-                engimon2tmp.showStats();
                 if (highest1.getSkillName() == highest2.getSkillName())
                 {
                     Skill tmp = highest1;
