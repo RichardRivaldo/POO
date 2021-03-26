@@ -226,7 +226,9 @@ int main()
                             SkillItem item = B.getRandomSkill(fireItems, waterItems, electricItems, groundItems, iceItems);
                             player.addSkillItem(item);
                             player.addEngimon(player.getMap().getengimonLiar().at(i).second);
-                            player.getActiveEngimon().addExp(floor(100 / player.getActiveEngimon().getLevel()));
+                            int exp = floor(100 / player.getActiveEngimon().getLevel()); 
+                            // cout << exp;
+                            player.getActiveEngimon().addExp(exp);
                             player.getMap().removeEngimonLiar(player.getMap().getengimonLiar().at(i).second);
                             cout << "Player mendapatkan skill item baru: " << item.getSkill().getSkillName() << endl;
                         }
