@@ -223,7 +223,6 @@ int main()
                     {
                         found = true;
                         Battle B(player, player.getActiveEngimon(), player.getMap().getengimonLiar().at(i).second);
-                        cout << "lewat" << endl;
                         B.doBattle();
                         if (B.getWinner() == player.getActiveEngimon().getName())
                         {
@@ -257,7 +256,7 @@ int main()
                 cout << "Invalid Command!" << endl;
             }
         }
-        catch (string e)
+        catch (char const* e)
         {
             cout << "Error ";
             cout << e << endl;

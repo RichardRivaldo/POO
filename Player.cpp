@@ -284,7 +284,6 @@ void Player::swapActiveEngimon(string newEngimonName)
     int i = 0;
     while (i < this->inventoryEngimon.getInventorySize() && !finish)
     {
-        cout << "sss" << endl;
         if (this->inventoryEngimon.getInventoryVector()[i].getName().compare(newEngimonName) == 0)
         {
             this->ActiveEngimon = this->inventoryEngimon.getInventoryVector()[i];
@@ -295,7 +294,7 @@ void Player::swapActiveEngimon(string newEngimonName)
     }
 
     if (!finish)
-        cout << "gagal" << endl;
+        cout << "Gagal mengganti Engimon!" << endl;
 }
 
 void Player::interactWithEngimon() { cout << this->ActiveEngimon.getName() << " : " << this->ActiveEngimon.getMessage() << endl; }

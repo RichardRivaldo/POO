@@ -124,8 +124,9 @@ void Engimon::showStats()
 
     cout << "Parents : ";
     if (*this->parent1 != "") {
-        cout << *(this->parent1) << ", " << *(this->parent2) << endl;
+        cout << *(this->parent1) << ", " << *(this->parent2);
     }
+    cout << endl;
     
     list<Skill>::iterator it;
     cout << "List Skills : | ";
