@@ -1,6 +1,7 @@
 #include "Map.hpp"
 #include "Position.cpp"
 #include "Engimon.cpp"
+#include <stdlib.h>
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -36,46 +37,74 @@ void Map::printMap(){
     }
 }
 
-int Map::getmaxEngimonLiar(){
-    return this->maxEngimonLiar; 
-}
-Position Map::getplayerPosition(){
-    return this->playerPosition;
+void Map::addEngimonLiar(){
+    if(engimonLiar.size() < maxEngimonLiar){
+        int coorX;
+        int coorY;
+        bool foundx = false;
+        bool foundy = false;
+        while(!foundx){
+            coorX = rand() % (xmax-1);
+            if (coorX != getplayerPositionX() && coorX != getactiveEngimonPositionX()){
+                foundx = true;
+            }
+        }
+        while(!foundy){
+            coorY = rand() % (ymax-1);
+            if (coorY != getplayerPositionY() && coorY != getactiveEngimonPositionY()){
+                foundy = true;
+            }
+        }
+        Position engimonLiarpos = Position(coorX,coorY);
+        //coorX dan coorY ketemu
+        //random nama
+        enum Name {Omnimon, Skull, Greymon, Piedmon, War_Greymon, MagnaAngemon, Garurumon, Devimon, Apocalypmon, Etemon, Agumon};
+        static const char *enum_str_name[] = {"Omnimon", "Skull", "Greymon", "Piedmon", "War_Greymon", "MagnaAngemon", "Garurumon", "Devimon", "Apocalypmon", "Etemon", "Agumon"};
+        Name name = Name(rand()%10);
+        string nama(enum_str_name[name]);
+        //nama ketemu
+        //random species
+        enum Species {Firemon, Watermon, Electromon, Groundmon, Icemon};
+        static const char *enum_str_species[] = { "Firemon", "Watermon", "Electromon", "Groundmon", "Icemon" };
+        Species species = Species(rand()%4);
+        string spesies(enum_str_species[species]);
+        //spesies ketemu
+        //random element (susah nih wkwk)
+        enum Element {W, I, F, G, E, L, S, N};
+        static const char *enum_str_element[] = { "Water", "Ice", "Fire", "Ground", "Electric", "Fire/Electric", "Water/Ice", "Water/Ground" };
+        Element element = Element(rand()%7);
+        string elemen(enum_str_element[element]);
+        vector<string> elemennya = vector<string>();
+        if (elemen == "Fire/Electric"){
+            elemennya = {"Fire", "Electric"};
+        }else if (elemen == "Water/Ice"){
+            elemennya = {"Water","Ice"};
+        }else if (elemen == "Water/Ground"){
+            elemennya = {"Water","Ground"};
+        }else{
+            elemennya = {elemen,elemen};
+        }
+        Engimon engimonbaru = Engimon(nama, spesies, elemennya);
+        engimonLiar.insert({engimonLiarpos, engimonbaru});
+    }
 }
 
-int Map::getplayerPositionX(){
-    return this->playerPosition.getXCoordinate();
-}
+//getter
+int Map::getmaxEngimonLiar(){ return this->maxEngimonLiar; }
+int Map::getxmax(){ return this->xmax; }
+int Map::getymax(){ return this->ymax; }
+Position Map::getplayerPosition(){ return this->playerPosition; }
+Position Map::getactiveEngimonPosition(){ return this->activeEngimonPositon; }
+int Map::getplayerPositionX(){ return this->playerPosition.getXCoordinate(); }
+int Map::getplayerPositionY(){ return this->playerPosition.getYCoordinate(); }
+int Map::getactiveEngimonPositionX(){ return this->activeEngimonPositon.getXCoordinate(); }
+int Map::getactiveEngimonPositionY(){ return this->activeEngimonPositon.getYCoordinate(); }
 
-int Map::getplayerPositionY(){
-    return this->playerPosition.getYCoordinate();
-}
-
-int Map::getxmax(){
-    return this->xmax;
-}
-
-int Map::getymax(){
-    return this->ymax;
-}
-
+//setter
 void Map::setplayerPosition(int _x, int _y){
     playerPosition.setXCoordinate(_x);
     playerPosition.setXCoordinate(_y);
 }
-
-Position Map::getactiveEngimonPosition(){
-    return this->activeEngimonPositon;
-}
-
-int Map::getactiveEngimonPositionX(){
-    return this->activeEngimonPositon.getXCoordinate();
-}
-
-int Map::getactiveEngimonPositionY(){
-    return this->activeEngimonPositon.getYCoordinate();
-}
-
 void Map::setactiveEngimonPosition(int _x, int _y){
     activeEngimonPositon.setXCoordinate(_x);
     activeEngimonPositon.setXCoordinate(_y);

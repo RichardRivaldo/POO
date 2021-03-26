@@ -35,6 +35,7 @@ class Map{
         int getactiveEngimonPositionX();
         int getactiveEngimonPositionY();
         void setactiveEngimonPosition(int _x, int _y);
+        void addEngimonLiar();
         vector<Engimon> getEngimon();
         //vector<string> getCurrElement(Position k);
         bool isAboveLevel(Position k);
