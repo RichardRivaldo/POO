@@ -210,6 +210,82 @@ void Map::addEngimonLiar()
     }
 }
 
+/*void Map::moveAllEngimonLiar()
+{
+    //cleaning dulu
+    for (int i = 0; i < xmax; i++)
+    {
+        for (int j = 0; j < ymax; j++)
+        {
+            if (peta[i][j] != 'P' && peta[i][j] != 'X')
+            {
+                if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
+                {
+                    peta.at(i).at(j) = '-';
+                }
+                else
+                {
+                    peta.at(i).at(j) = '0';
+                }
+            }
+        }
+    }
+    for (int a = 0; a < engimonLiar.size(); a++)
+    {
+        if (engimonLiar.at(a).second.getElement().at(i) ==)
+    }
+}
+
+void Map::moveEngimonLiar(Position pos, Engimon engimon){
+    enum Direction
+    {
+        N,
+        E,
+        S,
+        W,
+    };
+    static const char *enum_str_direction[] = {"North", "East", "South", "West"};
+    Direction direction = Direction(rand() % 3);
+    string arah(enum_str_direction[direction]);
+    if (arah == "North" && )
+
+    //BRB
+    if(pos.getXCoordinate())
+    if (engimon.getElement().at(0) == "Fire" && engimongetElement().at(1) == "Fire")
+        {
+            
+            peta[coorX][coorY] = 'f';
+        }
+        else if (engimon.getElement().at(0) == "Water" && engimon.getElement().at(1) == "Water")
+        {
+            peta[coorX][coorY] = 'w';
+        }
+        else if (engimon.getElement().at(0) == "Ice" && engimon.getElement().at(1) == "Ice")
+        {
+            peta[coorX][coorY] = 'i';
+        }
+        else if (engimon.getElement().at(0) == "Ground" && engimon.getElement().at(1) == "Ground")
+        {
+            peta[coorX][coorY] = 'g';
+        }
+        else if (engimon.getElement().at(0) == "Electric" && engimon.getElement().at(1) == "Electric")
+        {
+            peta[coorX][coorY] = 'e';
+        }
+        else if (engimon.getElement().at(0) == "Fire" && engimon.getElement().at(1) == "Electric")
+        {
+            peta[coorX][coorY] = 'l';
+        }
+        else if (engimon.getElement().at(0) == "Water" && engimon.getElement().at(1) == "Ice")
+        {
+            peta[coorX][coorY] = 's';
+        }
+        else if (engimon.getElement().at(0) == "Water" && engimon.getElement().at(1) == "Ground")
+        {
+            peta[coorX][coorY] = 'n';
+        }
+}
+*/
 //getter
 int Map::getmaxEngimonLiar() { return this->maxEngimonLiar; }
 int Map::getxmax() { return this->xmax; }

@@ -30,7 +30,6 @@ public:
     Position getplayerPosition();
     vector<pair<Position, Engimon>> getengimonLiar();
     int getplayerPositionX();
-
     int getplayerPositionY();
     int getxmax();
     int getymax();
@@ -40,5 +39,7 @@ public:
     int getactiveEngimonPositionY();
     void setactiveEngimonPosition(int _x, int _y);
     void addEngimonLiar();
+    /*void moveAllEngimonLiar();
+    void moveEngimonLiar(Engimon eng);*/
 };
 #endif

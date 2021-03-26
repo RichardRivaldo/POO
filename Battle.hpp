@@ -6,7 +6,7 @@
 #include <vector>
 #include "Engimon.hpp"
 #include "Player.hpp"
-#include "SkillandElementsInit.hpp"
+#include "SkillItem.hpp"
 
 using namespace std;
 
