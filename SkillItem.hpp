@@ -10,7 +10,7 @@ class SkillItem
 {
 protected:
     // Map to contain skill item and number of the items
-    pair<Skill, int> skillItem;
+    pair<Skill, int *> skillItem;
 
 public:
     // Default Constructor, fill with default value
@@ -18,9 +18,9 @@ public:
     // User-Defined Constructor
     SkillItem(Skill skill, int amount = 1);
     // Copy Constructor
-    SkillItem(const SkillItem& item);
+    SkillItem(const SkillItem &item);
     // Operator=
-    SkillItem& operator=(const SkillItem& item);
+    SkillItem &operator=(const SkillItem &item);
 
     // Methods
     void addItemAmount(int amount = 1);

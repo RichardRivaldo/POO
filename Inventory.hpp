@@ -14,7 +14,7 @@ protected:
 
 public:
     // Constructor
-    Inventory() { cout << "make inventory" << endl; }
+    Inventory() {}
 
     // Operator
     Inventory<T> &operator<<(const T &inventory_item)
@@ -26,15 +26,17 @@ public:
 
     void removeItem(int index)
     {
-        if (index > this->vector_inventory.size() - 1)
+        if (index - 1 > this->vector_inventory.size())
             throw "index out of bound";
         else
-            this->vector_inventory.erase(this->vector_inventory.begin() + index);
+            this->vector_inventory.erase(this->vector_inventory.begin() + (index - 1));
     }
 
     vector<T> getInventoryVector() { return this->vector_inventory; }
 
     int getInventorySize() { return this->vector_inventory.size(); }
+
+    void setInventoryItem(int idx, T value) { this->vector_inventory[idx] = value; }
 };
 
 #endif

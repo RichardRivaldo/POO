@@ -39,7 +39,6 @@ public:
     int getactiveEngimonPositionY();
     void setactiveEngimonPosition(int _x, int _y);
     void addEngimonLiar();
-    /*void moveAllEngimonLiar();
-    void moveEngimonLiar(Engimon eng);*/
+    void removeEngimonLiar(Engimon engimon);
 };
 #endif

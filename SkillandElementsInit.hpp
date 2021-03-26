@@ -18,12 +18,12 @@ const string ICE = "Ice";
 vector<Skill> createFireSkills()
 {
     UniqueSkill Fireball("Fireball", 20, vector<string>{FIRE}, "Firemon");
-    Skill CrimsonFire("Crimson Fire", 10, vector<string>{FIRE});
-    Skill Flamethrower("Flame Thrower", 12, vector<string>{FIRE, ELECTRIC});
-    Skill HeatWave("Heat Wave", 14, vector<string>{FIRE});
+    Skill CrimsonFire("CrimsonFire", 10, vector<string>{FIRE});
+    Skill Flamethrower("FlameThrower", 12, vector<string>{FIRE, ELECTRIC});
+    Skill HeatWave("HeatWave", 14, vector<string>{FIRE});
     Skill ScorchingSands("ScorchingSands", 12, vector<string>{GROUND, FIRE});
     SpecialSkill Hellfire("Hellfire", 65, vector<string>{FIRE}, 10);
-    SpecialSkill ChasmTrample("Chasm Trample", 70, vector<string>{FIRE}, 10);
+    SpecialSkill ChasmTrample("ChasmTrample", 70, vector<string>{FIRE}, 10);
 
     return vector<Skill>{Fireball, CrimsonFire, Flamethrower, HeatWave, Hellfire, ChasmTrample, ScorchingSands};
 }
@@ -31,11 +31,11 @@ vector<Skill> createFireSkills()
 vector<Skill> createWaterSkills()
 {
     UniqueSkill Watercut("Watercut", 20, vector<string>{WATER}, "Watermon");
-    Skill LittleWanderers("Little Wanderers", 10, vector<string>{WATER});
-    Skill DancingRain("Dancing Rain", 12, vector<string>{WATER, ICE});
+    Skill LittleWanderers("LittleWanderers", 10, vector<string>{WATER});
+    Skill DancingRain("DancingRain", 12, vector<string>{WATER, ICE});
     Skill Tsunami("Tsunami", 14, vector<string>{WATER});
-    Skill SubzeroSlammer("Subzero Slammer", 10, vector<string>{ICE, WATER});
-    SpecialSkill BubbleBeam("Bubble Beam", 60, vector<string>{WATER}, 10);
+    Skill SubzeroSlammer("SubzeroSlammer", 10, vector<string>{ICE, WATER});
+    SpecialSkill BubbleBeam("BubbleBeam", 60, vector<string>{WATER}, 10);
     SpecialSkill PoseidonWrath("Poseidon's Wrath", 75, vector<string>{WATER}, 10);
 
     return vector<Skill>{Watercut, LittleWanderers, DancingRain, Tsunami, BubbleBeam, PoseidonWrath, SubzeroSlammer};
@@ -45,11 +45,11 @@ vector<Skill> createElectricSkills()
 {
     UniqueSkill Thunderslash("Thunderslash", 20, vector<string>{ELECTRIC}, "Electromon");
     Skill PlasmaFist("PlasmaFist", 10, vector<string>{ELECTRIC});
-    Skill PikaPapow("Pika Papow", 12, vector<string>{ELECTRIC});
-    Skill Flamethrower("Flame Thrower", 12, vector<string>{FIRE, ELECTRIC});
-    Skill StokedSparksurfer("Stoked Sparksurfer", 14, vector<string>{ELECTRIC, GROUND});
-    SpecialSkill BOLT("10,000,000 Volt Thunderbolt", 75, vector<string>{ELECTRIC}, 10);
-    SpecialSkill ForkedLightning("Forked Lightning", 60, vector<string>{ELECTRIC}, 10);
+    Skill PikaPapow("PikaPapow", 12, vector<string>{ELECTRIC});
+    Skill Flamethrower("FlameThrower", 12, vector<string>{FIRE, ELECTRIC});
+    Skill StokedSparksurfer("StokedSparksurfer", 14, vector<string>{ELECTRIC, GROUND});
+    SpecialSkill BOLT("10,000,000VoltThunderbolt", 75, vector<string>{ELECTRIC}, 10);
+    SpecialSkill ForkedLightning("ForkedLightning", 60, vector<string>{ELECTRIC}, 10);
 
     return vector<Skill>{Thunderslash, PlasmaFist, PikaPapow, StokedSparksurfer, BOLT, ForkedLightning, Flamethrower};
 }
@@ -57,12 +57,12 @@ vector<Skill> createElectricSkills()
 vector<Skill> createGroundSkills()
 {
     UniqueSkill Earthquake("Earthquake", 20, vector<string>{GROUND}, "Groundmon");
-    Skill SpikesOfDeath("Spikes of Death", 10, vector<string>{GROUND});
+    Skill SpikesOfDeath("SpikesofDeath", 10, vector<string>{GROUND});
     Skill ScorchingSands("ScorchingSands", 12, vector<string>{GROUND, FIRE});
-    Skill TempestOfBlades("Tempest of Blades", 14, vector<string>{GROUND});
-    Skill StokedSparksurfer("Stoked Sparksurfer", 14, vector<string>{ELECTRIC, GROUND});
+    Skill TempestOfBlades("TempestofBlades", 14, vector<string>{GROUND});
+    Skill StokedSparksurfer("StokedSparksurfer", 14, vector<string>{ELECTRIC, GROUND});
     SpecialSkill Void("Void", 70, vector<string>{GROUND}, 10);
-    SpecialSkill ThornedRose("Thorned Rose", 75, vector<string>{GROUND}, 10);
+    SpecialSkill ThornedRose("ThornedRose", 75, vector<string>{GROUND}, 10);
 
     return vector<Skill>{Earthquake, SpikesOfDeath, ScorchingSands, TempestOfBlades, Void, ThornedRose, StokedSparksurfer};
 }
@@ -70,11 +70,11 @@ vector<Skill> createGroundSkills()
 vector<Skill> createIceSkills()
 {
     UniqueSkill Blizzard("Blizzard", 20, vector<string>{ICE}, "Icemon");
-    Skill SubzeroSlammer("Subzero Slammer", 10, vector<string>{ICE, WATER});
-    Skill IceSpearhead("Ice Spearhead", 12, vector<string>{ICE});
+    Skill SubzeroSlammer("SubzeroSlammer", 10, vector<string>{ICE, WATER});
+    Skill IceSpearhead("IceSpearhead", 12, vector<string>{ICE});
     Skill Avalanche("Avalanche", 14, vector<string>{ICE});
-    Skill DancingRain("Dancing Rain", 12, vector<string>{WATER, ICE});
-    SpecialSkill CastleOfIce("Castle of Ice", 55, vector<string>{ICE}, 10);
+    Skill DancingRain("DancingRain", 12, vector<string>{WATER, ICE});
+    SpecialSkill CastleOfIce("CastleofIce", 55, vector<string>{ICE}, 10);
     SpecialSkill Avalon("Avalon", 80, vector<string>{ICE}, 10);
 
     return vector<Skill>{Blizzard, SubzeroSlammer, IceSpearhead, Avalanche, CastleOfIce, Avalon, DancingRain};

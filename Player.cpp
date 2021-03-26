@@ -17,9 +17,8 @@ Player::Player()
     map.setactiveEngimonPosition(0, 0);
 }
 
-Player::Player(Engimon activeEngimon)
+Player::Player(Engimon activeEngimon) : ActiveEngimon(activeEngimon)
 {
-    this->ActiveEngimon = activeEngimon;
     this->map = Map();
     this->addEngimon(activeEngimon);
     map.setplayerPosition(1, 1);
@@ -38,10 +37,10 @@ void Player::addSkillItem(SkillItem newSkillItem)
     int i = 0;
     while (i < this->inventorySkillItem.getInventorySize())
     {
-        if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName() == newSkillItem.getSkill().getSkillName())
+        if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName().compare(newSkillItem.getSkill().getSkillName()) == 0)
         {
             cout << "Menambahkan Skill Item untuk " << newSkillItem.getSkill().getSkillName() << endl;
-            this->inventorySkillItem.getInventoryVector()[i].addItemAmount();
+            this->inventorySkillItem.getInventoryVector()[i].addItemAmount(1);
             return;
         }
         i++;
@@ -82,12 +81,13 @@ void Player::learnSkill(string SkillName)
 
     while (i < this->inventorySkillItem.getInventorySize() && !found)
     {
-        if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName() == SkillName)
+        if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName().compare(SkillName) == 0)
         {
             found = true;
             newSkillItem = this->inventorySkillItem.getInventoryVector()[i];
             newSkill = this->inventorySkillItem.getInventoryVector()[i].getSkill();
         }
+        i++;
     }
 
     if (found != true)
@@ -114,7 +114,7 @@ void Player::learnSkill(string SkillName)
 
                 // Remove or Decrease Item from Inventory here
                 if (newSkillItem.getAmount() > 1)
-                    this->inventorySkillItem.getInventoryVector()[i].decItemAmount(); // ini ngurangin di skill item
+                    this->inventorySkillItem.getInventoryVector()[i - 1].decItemAmount(1); // ini ngurangin di skill item
                 else
                     this->inventorySkillItem.removeItem(i); // ini buang skill dari invent
             }
@@ -123,6 +123,16 @@ void Player::learnSkill(string SkillName)
                 cout << "Penggunaan Skill Item Dibatalkan!" << endl;
                 return;
             }
+        }
+        else
+        {
+            this->ActiveEngimon.AddSkill(newSkill);
+            cout << "Skill Berhasil Ditambahkan!" << endl;
+            // Remove or Decrease Item from Inventory here
+            if (newSkillItem.getAmount() > 1)
+                this->inventorySkillItem.getInventoryVector()[i - 1].decItemAmount(1); // ini ngurangin di skill item
+            else
+                this->inventorySkillItem.removeItem(i); // ini buang skill dari invent
         }
     }
 }
@@ -230,6 +240,7 @@ void Player::showOwnedEngimon()
         for (Engimon engimon : this->inventoryEngimon.getInventoryVector())
         {
             cout << index << ". " << engimon.getName() << endl;
+            index++;
         }
     }
 }
@@ -248,15 +259,22 @@ void Player::showActiveEngimon()
 
 void Player::swapActiveEngimon(string newEngimonName)
 {
-    for (int i = 0; i < this->inventoryEngimon.getInventorySize(); i++)
-        if (this->inventoryEngimon.getInventoryVector()[i].getName() == newEngimonName)
+    bool finish = false;
+    int i = 0;
+    while (i < this->inventoryEngimon.getInventorySize() && !finish)
+    {
+        cout << "sss" << endl;
+        if (this->inventoryEngimon.getInventoryVector()[i].getName().compare(newEngimonName) == 0)
         {
-            Engimon temp = this->ActiveEngimon;
             this->ActiveEngimon = this->inventoryEngimon.getInventoryVector()[i];
-            this->inventoryEngimon.getInventoryVector()[i] = temp;
             cout << "Success change active engimon" << endl;
-            break;
+            finish = true;
         }
+        i++;
+    }
+
+    if (!finish)
+        cout << "gagal" << endl;
 }
 
 void Player::interactWithEngimon() { cout << this->ActiveEngimon.getName() << " : " << this->ActiveEngimon.getMessage() << endl; }
@@ -266,7 +284,7 @@ void Player::showOwnedItems()
 {
     if (this->inventorySkillItem.getInventorySize() == 0)
     {
-        cout << "Tidak ada Skill Items di Inventory!";
+        cout << "Tidak ada Skill Items di Inventory!" << endl;
     }
     else
     {

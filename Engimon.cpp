@@ -62,6 +62,15 @@ Engimon &Engimon::operator=(const Engimon &engimon)
     return *this;
 }
 
+bool Engimon::operator==(const Engimon &engimon) const{
+    return (this->name == engimon.name 
+    && this->species == engimon.species
+    && this->level == engimon.level
+    && this->experience == engimon.experience
+    && this->cumulativeExperience == engimon.cumulativeExperience
+    && this->message == engimon.message);
+}
+
 bool Engimon::CheckDead(Engimon engimon)
 {
     // Engimon akan mati jika jumlah experience kumulatif >= 3000
@@ -75,7 +84,7 @@ bool Engimon::CheckDead(Engimon engimon)
     }
 }
 
-bool Engimon::CheckLevelUp(Engimon engimon)
+void Engimon::CheckLevelUp(Engimon engimon)
 {
     // Level up akan terjadi setiap experience mencapai lebih dari 100
     if (engimon.experience >= 100)
@@ -121,7 +130,12 @@ void Engimon::showStats()
     }
     cout << endl;
 
-    cout << "Element : " << element[0] << "/" << element[1] << endl;
+    if (element[0] != element[1]) {
+        cout << "Element : " << element[0] << " / " << element[1] << endl;
+    }
+    else {
+        cout << "Element : " << element[0] << endl;
+    }
     cout << "Level : " << this->getLevel() << endl;
     cout << "Experience : " << this->getExperience() << endl;
     cout << "Cumulative experience : " << this->getCumulativeExperience() << endl;
