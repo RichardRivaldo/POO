@@ -39,6 +39,7 @@ public:
 
     Engimon breed(Engimon anotherEngimon);
     bool isSkillSizeValid(Engimon engimon);
+    void addExp(int exp);
 
     //Getters
     string getName();

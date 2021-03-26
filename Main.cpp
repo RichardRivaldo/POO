@@ -6,7 +6,6 @@
 #include "SkillItem.hpp"
 #include "Map.hpp"
 #include "Battle.hpp"
-#include "SkillandElementsInit.cpp"
 #include <string>
 
 using namespace std;
@@ -31,7 +30,7 @@ void showHelp()
     cout << "quit: Exit The Game." << endl;
 }
 
-Engimon initializeStarterEngimon(int pilihan, Skill Skill1, Skill Skill2, Skill Skill3, Skill Skill4, Skill Skill5)
+Engimon initializeStarterEngimon(int pilihan, vector<Skill> fireSkills, vector<Skill> waterSkills, vector<Skill> electricSkills, vector<Skill> groundSkills, vector<Skill> iceSkills)
 {
     string nama;
     while (true)
@@ -42,7 +41,7 @@ Engimon initializeStarterEngimon(int pilihan, Skill Skill1, Skill Skill2, Skill 
             cin >> nama;
             cout << endl;
             Engimon starterEngimon(nama, "Firemon", vector<string>{FIRE, FIRE});
-            starterEngimon.AddSkill(Skill1);
+            starterEngimon.AddSkill(fireSkills[0]);
             return starterEngimon;
         }
         else if (pilihan == 2)
@@ -51,7 +50,7 @@ Engimon initializeStarterEngimon(int pilihan, Skill Skill1, Skill Skill2, Skill 
             cin >> nama;
             cout << endl;
             Engimon starterEngimon(nama, "Watermon", {WATER, WATER});
-            starterEngimon.AddSkill(Skill2);
+            starterEngimon.AddSkill(waterSkills[0]);
             return starterEngimon;
         }
         else if (pilihan == 3)
@@ -60,7 +59,7 @@ Engimon initializeStarterEngimon(int pilihan, Skill Skill1, Skill Skill2, Skill 
             cin >> nama;
             cout << endl;
             Engimon starterEngimon(nama, "Electromon", {ELECTRIC, ELECTRIC});
-            starterEngimon.AddSkill(Skill3);
+            starterEngimon.AddSkill(electricSkills[0]);
             return starterEngimon;
         }
         else if (pilihan == 4)
@@ -69,7 +68,7 @@ Engimon initializeStarterEngimon(int pilihan, Skill Skill1, Skill Skill2, Skill 
             cin >> nama;
             cout << endl;
             Engimon starterEngimon(nama, "Groundmon", {GROUND, GROUND});
-            starterEngimon.AddSkill(Skill4);
+            starterEngimon.AddSkill(groundSkills[0]);
             return starterEngimon;
         }
         else if (pilihan == 5)
@@ -78,7 +77,7 @@ Engimon initializeStarterEngimon(int pilihan, Skill Skill1, Skill Skill2, Skill 
             cin >> nama;
             cout << endl;
             Engimon starterEngimon(nama, "Icemon", {ICE, ICE});
-            starterEngimon.AddSkill(Skill5);
+            starterEngimon.AddSkill(iceSkills[0]);
             return starterEngimon;
         }
         else
@@ -88,9 +87,17 @@ Engimon initializeStarterEngimon(int pilihan, Skill Skill1, Skill Skill2, Skill 
     }
 }
 
+void showWelcomingMessage()
+{
+    cout << "    Welcome to Willy Wangky's Engimon Factory. For those of you who do not recognise me, allow me to introduce myself. Hi, I'm Willy Wangky, the greatest theme park builder. Why am I great? you may ask. Well, the answer is because I do not build the theme park myself. I get students to do it for me." << endl;
+    cout << "    Type in 'help' to see the list of all available commands" << endl;
+}
+
 int main()
 {
     bool gameEnd = false;
+
+    showWelcomingMessage();
 
     // Init Skills
     vector<Skill> fireSkills = createFireSkills();
@@ -109,58 +116,112 @@ int main()
     // Starting game, initialize starter engimon
     int pilihan;
     cin >> pilihan;
+    Engimon starterEngimon = initializeStarterEngimon(pilihan, fireSkills, waterSkills, electricSkills, groundSkills, iceSkills);
 
-    Engimon starterEngimon = initializeStarterEngimon(pilihan, fireSkills[0], waterSkills[0], electricSkills[0], groundSkills[0], iceSkills[0]);
+    Player player(starterEngimon);
 
     while (!gameEnd)
     {
+        // Cek kondisi game end disini
+
+        // Ngeprint tampilan
+        player.getMap().printMap();
+        cout << "---------------------" << endl;
         string command;
         cout << "$ ";
         cin >> command;
         cout << endl;
 
+        // Jalanin Commands
         if (command == "help")
         {
             showHelp();
         }
         else if (command == "w")
         {
+            player.moveUp();
         }
         else if (command == "a")
         {
+            player.moveRight();
         }
         else if (command == "s")
         {
+            player.moveDown();
         }
         else if (command == "d")
         {
+            player.moveLeft();
         }
         else if (command == "items")
         {
+            player.showOwnedItems();
         }
         else if (command == "engimons")
         {
+            player.showOwnedEngimon();
         }
         else if (command == "breed")
         {
+            string pilihan1, pilihan2;
+            player.showOwnedEngimon();
+            cout << "Input nama engimon yang akan di breed : " << endl;
+            cout << "$ ";
+            cout << endl;
+            cout << "Input nama pasangannya : " << endl;
+            cout << "$ ";
+            cout << endl;
+            player.doBreed(pilihan1, pilihan2);
         }
         else if (command == "stats")
         {
+            player.showActiveEngimon();
         }
         else if (command == "engi")
         {
+            player.interactWithEngimon();
         }
         else if (command == "swap")
         {
+            string engimonName;
+            cout << "Enter the name of Engimon that you want to swap!" << endl;
+            cin >> engimonName;
+            cout << "Swapping Active Engimon..." << endl;
+            player.swapActiveEngimon(engimonName);
         }
         else if (command == "learn")
         {
+            string skillName;
+            cout << "Enter the name of the Skill that you want to learn!" << endl;
+            cin >> skillName;
+            cout << "Learning the new skill..." << endl;
+            player.learnSkill(skillName);
         }
         else if (command == "battle")
         {
+            bool found = false;
+            for (int i = 0; i < player.getMap().getengimonLiar().size(); i++)
+            {
+                if (player.getMap().getengimonLiar().at(i).first == player.getMap().getplayerPosition() || (player.getMap().getengimonLiar().at(i).first.getXCoordinate() == player.getMap().getplayerPositionX() - 1 && player.getMap().getengimonLiar().at(i).first.getYCoordinate() == player.getMap().getplayerPositionY()) || (player.getMap().getengimonLiar().at(i).first.getXCoordinate() == player.getMap().getplayerPositionX() + 1 && player.getMap().getengimonLiar().at(i).first.getYCoordinate() == player.getMap().getplayerPositionY()) || (player.getMap().getengimonLiar().at(i).first.getXCoordinate() == player.getMap().getplayerPositionX() && player.getMap().getengimonLiar().at(i).first.getYCoordinate() == player.getMap().getplayerPositionY() - 1) || (player.getMap().getengimonLiar().at(i).first.getXCoordinate() == player.getMap().getplayerPositionX() && player.getMap().getengimonLiar().at(i).first.getYCoordinate() == player.getMap().getplayerPositionY() + 1))
+                {
+                    found = true;
+                    Battle B(player, player.getActiveEngimon(), player.getMap().getengimonLiar().at(i).second);
+                    B.doBattle();
+                    if (B.getWinner() == player.getActiveEngimon().getName())
+                    {
+                        player.addSkillItem(B.getRandomSkill(fireItems, waterItems, electricItems, groundItems, iceItems));
+                    }
+                }
+                else if (found == true)
+                {
+                    break;
+                }
+            }
         }
         else if (command == "quit")
         {
+            cout << "Thank you for playing!" << endl;
+            gameEnd = true;
         }
         else
         {

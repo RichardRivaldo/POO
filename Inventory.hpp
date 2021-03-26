@@ -1,3 +1,5 @@
+#ifndef __INVENTORY__HPP__
+#define __INVENTORY__HPP__
 #include <vector>
 #include "SkillItem.hpp"
 #include "Engimon.hpp"
@@ -8,8 +10,6 @@ template <class T>
 class Inventory
 {
 protected:
-    static const int max_capacity = 100;
-    static int current_capacity = 0;
     vector<T> vector_inventory;
 
 public:
@@ -17,22 +17,12 @@ public:
     Inventory() { cout << "make inventory" << endl; }
 
     // Operator
-    Inventory &operator<<(const T &inventory_item)
+    Inventory<T> &operator<<(const T &inventory_item)
     {
-        if (Inventory::current_capacity + 1 > Inventory::max_capacity)
-        {
-            throw "full capacity";
-        }
-        else
-        {
-            this->vector_inventory.push_back(inventory_item);
-            Inventory::current_capacity++;
-        }
+        this->vector_inventory.push_back(inventory_item);
 
         return *this;
     }
-
-    void decrementCurrentCapacity() { Inventory::current_capacity--; }
 
     void removeItem(int index)
     {
@@ -46,3 +36,5 @@ public:
 
     int getInventorySize() { return this->vector_inventory.size(); }
 };
+
+#endif

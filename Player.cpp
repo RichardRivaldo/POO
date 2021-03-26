@@ -1,58 +1,77 @@
 #include <string>
 #include <iostream>
+#include <cmath>
 #include "Player.hpp"
 #include "Engimon.hpp"
 #include "Skill.hpp"
+#include "Map.hpp"
 
 using namespace std;
 
-Player::Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem)
+const int Player::MAX_CAPACITY = 20;
+
+Player::Player()
 {
-    this->pos = pos;
-    this->ActiveEngimon = activeEngi;
-    this->inventoryEngimon = inventoryEngimon;
-    this->inventorySkillItem = inventorySkillItem;
     this->map = Map();
+    map.setplayerPosition(1, 1);
+    map.setactiveEngimonPosition(0, 0);
+}
+
+Player::Player(Engimon activeEngimon)
+{
+    this->ActiveEngimon = activeEngimon;
+    this->map = Map();
+    this->addEngimon(activeEngimon);
+    map.setplayerPosition(1, 1);
+    map.setactiveEngimonPosition(0, 0);
 }
 
 // Inventory
 void Player::addSkillItem(SkillItem newSkillItem)
 {
-    try
+    if (this->inventoryEngimon.getInventorySize() + this->inventorySkillItem.getInventorySize() + 1 > Player::MAX_CAPACITY)
     {
-        int i = 0;
-        while (i < this->inventorySkillItem.getInventorySize())
-        {
-            if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName() == newSkillItem.getSkill().getSkillName())
-            {
-                cout << "Menambahkan Skill Item untuk " << newSkillItem.getSkill().getSkillName() << endl;
-                this->inventorySkillItem.getInventoryVector()[i].addItemAmount();
-                return;
-            }
-            i++;
-        }
+        throw "Maximum capacity";
+        return;
+    }
 
-        cout << "Berhasil menambahkan skill item baru!" << endl;
-        this->inventorySkillItem << newSkillItem;
-    }
-    catch (string err)
+    int i = 0;
+    while (i < this->inventorySkillItem.getInventorySize())
     {
-        cout << err << endl;
+        if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName() == newSkillItem.getSkill().getSkillName())
+        {
+            cout << "Menambahkan Skill Item untuk " << newSkillItem.getSkill().getSkillName() << endl;
+            this->inventorySkillItem.getInventoryVector()[i].addItemAmount();
+            return;
+        }
+        i++;
     }
+
+    this->inventorySkillItem << newSkillItem;
+    cout << "Berhasil menambahkan skill item baru!" << endl;
 }
 
 void Player::addEngimon(Engimon newEngimon)
 {
-    try
+    if (this->inventoryEngimon.getInventorySize() + this->inventorySkillItem.getInventorySize() + 1 > Player::MAX_CAPACITY)
     {
-        this->inventoryEngimon << newEngimon;
-        cout << "Berhasil menambahkan engimon baru" << endl;
+        throw "Maximum capacity";
+        return;
     }
-    catch (string err)
-    {
-        cout << err << endl;
-    }
+
+    this->inventoryEngimon << newEngimon;
+    cout << "Berhasil menambahkan engimon baru" << endl;
 }
+
+Map Player::getMap()
+{
+    return this->map;
+}
+
+Inventory<Engimon> Player::getInventoryEngimon() { return this->inventoryEngimon; }
+Inventory<SkillItem> Player::getInventorySkillItem() { return this->inventorySkillItem; }
+
+Engimon Player::getActiveEngimon() { return this->ActiveEngimon; }
 
 void Player::learnSkill(string SkillName)
 {
@@ -97,8 +116,7 @@ void Player::learnSkill(string SkillName)
                 if (newSkillItem.getAmount() > 1)
                     this->inventorySkillItem.getInventoryVector()[i].decItemAmount(); // ini ngurangin di skill item
                 else
-                    this->inventorySkillItem.removeItem(i);          // ini buang skill dari invent
-                this->inventorySkillItem.decrementCurrentCapacity(); // ini ngurangin di invent
+                    this->inventorySkillItem.removeItem(i); // ini buang skill dari invent
             }
             else
             {
@@ -131,6 +149,11 @@ void Player::moveUp()
         Position prevpos = Position(map.getplayerPosition());
         this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY() - 1);
         this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
+        int peluang = rand() % 100;
+        if (peluang > 50)
+        {
+            this->map.addEngimonLiar();
+        }
     }
     else
     {
@@ -145,6 +168,11 @@ void Player::moveDown()
         Position prevpos = Position(map.getplayerPosition());
         this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY() + 1);
         this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
+        int peluang = rand() % 100;
+        if (peluang > 50)
+        {
+            this->map.addEngimonLiar();
+        }
     }
     else
     {
@@ -159,6 +187,11 @@ void Player::moveLeft()
         Position prevpos = Position(map.getplayerPosition());
         this->map.setplayerPosition(this->map.getplayerPositionX() - 1, this->map.getplayerPositionY());
         this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
+        int peluang = rand() % 100;
+        if (peluang > 50)
+        {
+            this->map.addEngimonLiar();
+        }
     }
     else
     {
@@ -173,6 +206,11 @@ void Player::moveRight()
         Position prevpos = Position(map.getplayerPosition());
         this->map.setplayerPosition(this->map.getplayerPositionX() + 1, this->map.getplayerPositionY());
         this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
+        int peluang = rand() % 100;
+        if (peluang > 50)
+        {
+            this->map.addEngimonLiar();
+        }
     }
     else
     {
@@ -183,6 +221,7 @@ void Player::moveRight()
 //Engimon Command
 void Player::showOwnedEngimon()
 {
+    int index = 1;
     if (this->inventoryEngimon.getInventorySize() == 0)
         cout << "Tidak ada engimon di inventory" << endl;
     else
@@ -190,8 +229,7 @@ void Player::showOwnedEngimon()
         cout << "Daftar engimon yang dimiliki" << endl;
         for (Engimon engimon : this->inventoryEngimon.getInventoryVector())
         {
-            engimon.showStats();
-            cout << endl;
+            cout << index << ". " << engimon.getName() << endl;
         }
     }
 }
@@ -260,7 +298,15 @@ void Player::doBreed(string firstEngimonName, string secondEngimonName)
         Engimon engimonParent2 = this->inventoryEngimon.getInventoryVector()[secondEngimonIdx];
         Engimon engimonChild = engimonParent1.breed(engimonParent2);
 
-        this->addEngimon(engimonChild);
+        if (engimonChild.getLevel() == -1)
+        {
+            cout << "Breeding gagal" << endl;
+        }
+        else
+        {
+            this->addEngimon(engimonChild);
+            cout << "Breeding berhasil" << endl;
+        }
     }
     else
     {

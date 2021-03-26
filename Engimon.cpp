@@ -169,11 +169,11 @@ Engimon Engimon::breed(Engimon anotherEngimon)
     Engimon engimonAnak = Engimon();
     if (this->getElement() != anotherEngimon.getElement())
     {
-        cout << "Tidak bisa melakukan cross breeding";
+        return engimonAnak;
     }
     else if (this->getLevel() < 30 || anotherEngimon.getLevel() < 30)
     {
-        cout << "Engimon parent belum cukup umur";
+        return engimonAnak;
     }
     else
     {
@@ -265,6 +265,17 @@ bool Engimon::containsSkill(list<Skill> listSkill, string skillName)
         }
     }
     return false;
+}
+
+void Engimon::addExp(int exp)
+{
+    this->experience += exp;
+    this->cumulativeExperience += exp;
+    if (this->experience >= 100)
+    {
+        this->experience -= 100;
+        this->level += 1;
+    }
 }
 
 //Getters

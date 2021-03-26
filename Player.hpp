@@ -9,31 +9,30 @@
 #include "SkillItem.hpp"
 #include "Map.hpp"
 
-using namespace std;
+// #define MAX_CAPACITY 20
 
-/*  To Do : 
-    Gerak (Engimon mengikuti di belakang)
-    Show List Engimon
-    Show Data Engimon
-    Select, Swap Active Engimon
-    Menggunakan Skill
-    Mengecek dan Mengganti Active Engimon
-    Breeding
-    Battle (prioritas WASD)
-*/
+using namespace std;
 
 class Player
 {
 private:
+    static const int MAX_CAPACITY;
     Engimon ActiveEngimon;
-    Position pos;
     Inventory<Engimon> inventoryEngimon;
     Inventory<SkillItem> inventorySkillItem;
     Map map;
 
 public:
     //Ctor
-    Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem);
+    Player();
+    Player(Engimon activeEngimon);
+
+    // Getter
+
+    Map getMap();
+    Inventory<Engimon> getInventoryEngimon();
+    Inventory<SkillItem> getInventorySkillItem();
+    Engimon getActiveEngimon();
 
     // Inventory
     void addSkillItem(SkillItem newSkillItem);

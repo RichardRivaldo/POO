@@ -28,6 +28,10 @@ Position &Position::operator=(const Position &pos)
     return *this;
 }
 
+bool Position::operator==(const Position &pos) const
+{
+    return (x == pos.x && y == pos.y);
+}
 Position::~Position()
 {
     //
@@ -43,12 +47,12 @@ int Position::getYCoordinate()
     return this->y;
 }
 
-int Position::setXCoordinate(int _x)
+void Position::setXCoordinate(int _x)
 {
-    this->x = _x;
+    x = _x;
 }
 
-int Position::setYCoordinate(int _y)
+void Position::setYCoordinate(int _y)
 {
-    this->y = _y;
+    y = _y;
 }
