@@ -332,9 +332,16 @@ void Map::setplayerPosition(int _x, int _y)
     {
         for (int j = 0; j < ymax; j++)
         {
-            if (peta[j][i] == 'P')
+            if (peta[i][j] == 'P')
             {
-                peta[j][i] = 'X';
+                if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
+                {
+                    peta.at(i).at(j) = '-';
+                }
+                else
+                {
+                    peta.at(i).at(j) = '0';
+                }
             }
         }
     }
