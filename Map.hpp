@@ -42,5 +42,6 @@ public:
     void removeEngimonLiar(Engimon engimon);
     void moveAllEngimonLiar();
     void setAlphabet(Engimon engimonbaru, int coorY, int coorX);
+    void bacaMap(string namafile);
 };
 #endif
