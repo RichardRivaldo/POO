@@ -128,7 +128,8 @@ void Player::moveUp()
 {
     if(this->map.getplayerPositionY()-1>=0){
         this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY()-1);
-    }else{
+    }
+    else{
         throw "Invalid move Player Up (Mentok)";
     }
 }
