@@ -334,7 +334,7 @@ void Map::setplayerPosition(int _x, int _y)
         {
             if (peta[j][i] == 'P')
             {
-                peta[j][i] = '-';
+                peta[j][i] = 'X';
             }
         }
     }
@@ -350,7 +350,14 @@ void Map::setactiveEngimonPosition(int _x, int _y)
         {
             if (peta[j][i] == 'X')
             {
-                peta[j][i] = '-';
+                if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
+                {
+                    peta.at(j).at(i) = '-';
+                }
+                else
+                {
+                    peta.at(j).at(i) = '0';
+                }
             }
         }
     }
