@@ -14,9 +14,9 @@ class Map{
     private :
         int xmax;
         int ymax;
+        int maxEngimonLiar;
         vector<vector<char>> peta;
         map<Position, Engimon> engimonLiar;
-        //vector<Engimon> engimon;
         int setCapital; /* X >= setCapital (Huruf Besar), X < setCapital (Huruf Kecil)*/
         int dimensiWater;
         Position playerPosition;
@@ -25,6 +25,7 @@ class Map{
         Map();
         ~Map();
         void printMap();
+        int getmaxEngimonLiar();
         Position getplayerPosition();
         int getplayerPositionX();
         int getplayerPositionY();

@@ -6,13 +6,13 @@
 
 using namespace std;
 
-Player::Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem, Map map)
+Player::Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem)
 {
     this->pos = pos;
     this->ActiveEngimon = activeEngi;
     this->inventoryEngimon = inventoryEngimon;
     this->inventorySkillItem = inventorySkillItem;
-    this->map = map;
+    this->map = Map();
 }
 
 // Inventory

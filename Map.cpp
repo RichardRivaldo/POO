@@ -10,6 +10,7 @@ Map::Map(){
     ymax = 10;
     setCapital = 5;
     dimensiWater = 5;
+    maxEngimonLiar = 5;
     map<Position, Engimon> engimonLiar = map<Position, Engimon>();
     for (int i = 0; i < xmax; i++){
         peta.push_back(vector<char>());
@@ -35,6 +36,9 @@ void Map::printMap(){
     }
 }
 
+int Map::getmaxEngimonLiar(){
+    return this->maxEngimonLiar; 
+}
 Position Map::getplayerPosition(){
     return this->playerPosition;
 }

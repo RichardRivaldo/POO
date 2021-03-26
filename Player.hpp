@@ -33,7 +33,7 @@ private:
 
 public:
     //Ctor
-    Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem, Map map);
+    Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem);
 
     // Inventory
     void addSkillItem(SkillItem newSkillItem);
