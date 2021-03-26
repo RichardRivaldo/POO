@@ -15,9 +15,9 @@ protected:
     string species;
     list<Skill> skill;
     vector<string> element;
-    int level;
-    int experience;
-    int cumulativeExperience;
+    int* level;
+    int* experience;
+    int* cumulativeExperience;
     // string *parent1;
     // string *parent2;
     string* parent1;

@@ -12,9 +12,9 @@ Engimon::Engimon()
     this->name = "NO NAME";
     this->species = "NO SPECIES";
     this->element = {"NULL", "NULL"};
-    this->level = -1;
-    this->experience = -1;
-    this->cumulativeExperience = -1;
+    this->level = new int(-1);
+    this->experience = new int(-1);
+    this->cumulativeExperience = new int(-1);
     this->message = "";
     this->parent1 = new string("");
     this->parent2 = new string("");
@@ -25,9 +25,9 @@ Engimon::Engimon(string nama, string species, vector<string> element)
     this->name = nama;
     this->element = element;
     this->species = species;
-    this->level = 1;
-    this->experience = 0;
-    this->cumulativeExperience = 0;
+    this->level = new int (1);
+    this->experience = new int(0);
+    this->cumulativeExperience = new int(0);
     this->message = "I'm an Engimon";
     this->parent1 = new string("");
     this->parent2 = new string("");
@@ -57,9 +57,9 @@ Engimon &Engimon::operator=(const Engimon &engimon)
     this->species = engimon.species;
     this->skill = engimon.skill;
     this->element = engimon.element;
-    this->level = engimon.level;
-    this->experience = engimon.experience;
-    this->cumulativeExperience = engimon.cumulativeExperience;
+    this->level = new int(*engimon.level);
+    this->experience = new int (*engimon.experience);
+    this->cumulativeExperience = new int (*engimon.cumulativeExperience);
     this->message = engimon.message;
     this->parent1 = new string(*engimon.parent1);
     this->parent2 = new string(*engimon.parent2);
@@ -79,28 +79,28 @@ bool Engimon::operator==(const Engimon &engimon) const{
     && this->message == engimon.message);
 }
 
-bool Engimon::CheckDead(Engimon engimon)
-{
-    // Engimon akan mati jika jumlah experience kumulatif >= 3000
-    if (engimon.cumulativeExperience >= 5000)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
+// bool Engimon::CheckDead(Engimon engimon)
+// {
+//     // Engimon akan mati jika jumlah experience kumulatif >= 3000
+//     if (engimon.cumulativeExperience >= 5000)
+//     {
+//         return true;
+//     }
+//     else
+//     {
+//         return false;
+//     }
+// }
 
-void Engimon::CheckLevelUp(Engimon engimon)
-{
-    // Level up akan terjadi setiap experience mencapai lebih dari 100
-    if (engimon.experience >= 100)
-    {
-        this->level += 1;
-        this->experience -= 100;
-    }
-}
+// void Engimon::CheckLevelUp(Engimon engimon)
+// {
+//     // Level up akan terjadi setiap experience mencapai lebih dari 100
+//     if (engimon.experience >= 100)
+//     {
+//         this->level += 1;
+//         this->experience -= 100;
+//     }
+// }
 
 const Skill Engimon::getHighestMastery()
 {
@@ -123,8 +123,10 @@ void Engimon::showStats()
     cout << "Spesies : " << this->getSpecies() << endl;
 
     cout << "Parents : ";
-    cout << *(this->parent1) << ", " << *(this->parent2) << endl;
-
+    if (*this->parent1 != "") {
+        cout << *(this->parent1) << ", " << *(this->parent2) << endl;
+    }
+    
     list<Skill>::iterator it;
     cout << "List Skills : | ";
     for (it = this->skill.begin(); it != this->skill.end(); it++)
@@ -294,12 +296,12 @@ bool Engimon::containsSkill(list<Skill> listSkill, string skillName)
 
 void Engimon::addExp(int exp)
 {
-    this->experience += exp;
-    this->cumulativeExperience += exp;
-    if (this->experience >= 100)
+    this->experience = new int (*(this->experience + exp));
+    this->cumulativeExperience = new int (*(this->cumulativeExperience + exp));
+    if (*this->experience >= 100)
     {
-        this->experience -= 100;
-        this->level += 1;
+        *(this->experience) -= 100;
+        *(this->level) += 1;
     }
 }
 
@@ -307,12 +309,12 @@ void Engimon::addExp(int exp)
 string Engimon::getName() { return this->name; }
 string Engimon::getSpecies() { return this->species; }
 vector<string> Engimon::getElement() { return this->element; }
-int Engimon::getLevel() { return this->level; }
-int Engimon::getExperience() { return this->experience; }
-int Engimon::getCumulativeExperience() { return this->cumulativeExperience; }
+int Engimon::getLevel() { return *this->level; }
+int Engimon::getExperience() { return *this->experience; }
+int Engimon::getCumulativeExperience() { return *this->cumulativeExperience; }
 list<Skill> Engimon::getSkill() { return this->skill; }
 string Engimon::getMessage() { return this->message; }
 
 //Setters
-void Engimon::setLevel(int level) { this->level = level; }
+void Engimon::setLevel(int level) { *this->level = level; }
 void Engimon::setMessage(string newMessage) { this->message = newMessage; }

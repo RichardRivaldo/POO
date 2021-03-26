@@ -413,8 +413,9 @@ void Map::bacaMap(string namafile){
     myReadFile.open(namafile);
     char output[100];
     if (myReadFile.is_open()) {
-    while (!myReadFile.eof()) {
-        myReadFile >> output;
-        cout<<output;
+        while (!myReadFile.eof()) {
+            myReadFile >> output;
+            cout<<output;
+        }
     }
 }
