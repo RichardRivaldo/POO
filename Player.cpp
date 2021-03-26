@@ -64,7 +64,7 @@ void Player::addEngimon(Engimon newEngimon)
 
 Map Player::getMap()
 {
-    return this->map;
+    return map;
 }
 
 Inventory<Engimon> Player::getInventoryEngimon() { return this->inventoryEngimon; }
@@ -163,6 +163,8 @@ void Player::moveUp()
         if (peluang > 50)
         {
             this->map.addEngimonLiar();
+        }else{
+            this->map.moveAllEngimonLiar();
         }
     }
     else
@@ -182,6 +184,8 @@ void Player::moveDown()
         if (peluang > 50)
         {
             this->map.addEngimonLiar();
+        }else{
+            this->map.moveAllEngimonLiar();
         }
     }
     else
@@ -201,6 +205,8 @@ void Player::moveLeft()
         if (peluang > 50)
         {
             this->map.addEngimonLiar();
+        }else{
+            this->map.moveAllEngimonLiar();
         }
     }
     else
@@ -220,6 +226,8 @@ void Player::moveRight()
         if (peluang > 50)
         {
             this->map.addEngimonLiar();
+        }else{
+            this->map.moveAllEngimonLiar();
         }
     }
     else

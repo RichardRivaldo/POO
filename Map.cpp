@@ -175,41 +175,151 @@ void Map::addEngimonLiar()
         engimonnya.first = engimonLiarpos;
         engimonnya.second = engimonbaru;
         engimonLiar.push_back(engimonnya);
-        if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Fire")
-        {
-            peta[coorY][coorX] = 'f';
-        }
-        else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Water")
-        {
-            peta[coorY][coorX] = 'w';
-        }
-        else if (engimonbaru.getElement().at(0) == "Ice" && engimonbaru.getElement().at(1) == "Ice")
-        {
-            peta[coorY][coorX] = 'i';
-        }
-        else if (engimonbaru.getElement().at(0) == "Ground" && engimonbaru.getElement().at(1) == "Ground")
-        {
-            peta[coorY][coorX] = 'g';
-        }
-        else if (engimonbaru.getElement().at(0) == "Electric" && engimonbaru.getElement().at(1) == "Electric")
-        {
-            peta[coorY][coorX] = 'e';
-        }
-        else if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Electric")
-        {
-            peta[coorY][coorX] = 'l';
-        }
-        else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ice")
-        {
-            peta[coorY][coorX] = 's';
-        }
-        else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ground")
-        {
-            peta[coorY][coorX] = 'n';
-        }
+        setAlphabet(engimonbaru, coorX, coorY);
     }
 }
 
+void Map::moveAllEngimonLiar()
+{
+    //cleaning dulu
+    for (int i = 0; i < xmax; i++)
+    {
+        for (int j = 0; j < ymax; j++)
+        {
+            if (peta[i][j] != 'P' && peta[i][j] != 'X')
+            {
+                if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
+                {
+                    peta.at(i).at(j) = '-';
+                }
+                else
+                {
+                    peta.at(i).at(j) = '0';
+                }
+            }
+        }
+    }
+    for (int a = 0; a < engimonLiar.size(); a++)
+    {
+        enum Direction
+        {
+            N,
+            E,
+            S,
+            W
+        };
+        static const char *enum_str_direction[] = {"North", "East", "South", "West"};
+        Direction direction = Direction(rand() % 3);
+        string arah(enum_str_direction[direction]);
+        if (arah == "North" && engimonLiar.at(a).first.getYCoordinate() - 1 >= 0 && engimonLiar.at(a).first.getYCoordinate() - 1 != playerPosition.getYCoordinate() && engimonLiar.at(a).first.getYCoordinate() - 1 != activeEngimonPositon.getYCoordinate())
+        {
+            if (engimonLiar.at(a).second.getElement().at(0) == "Water" && engimonLiar.at(a).second.getElement().at(0) == "Ground")
+            {
+                engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() - 1);
+            }
+            else if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice")
+            {
+                if (engimonLiar.at(a).first.getXCoordinate() >= xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() < ymax - dimensiWater)
+                {
+                    engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() - 1);
+                }
+            }
+            else
+            {
+                if (engimonLiar.at(a).first.getYCoordinate() - 1 >= ymax - dimensiWater)
+                {
+                    engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() - 1);
+                }
+            }
+        }
+        else if (arah == "South" && engimonLiar.at(a).first.getYCoordinate() + 1 < ymax && engimonLiar.at(a).first.getYCoordinate() + 1 != playerPosition.getYCoordinate() && engimonLiar.at(a).first.getYCoordinate() + 1 != activeEngimonPositon.getYCoordinate())
+        {
+            if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice")
+            {
+                if (engimonLiar.at(a).first.getXCoordinate() >= xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() < ymax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() + 1 < ymax - dimensiWater)
+                {
+                    engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() + 1);
+                }
+            }
+            else
+            {
+                engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() + 1);
+            }
+        }
+        else if (arah == "West" && engimonLiar.at(a).first.getXCoordinate() - 1 >= 0 && engimonLiar.at(a).first.getXCoordinate() - 1 != playerPosition.getXCoordinate() && engimonLiar.at(a).first.getXCoordinate() - 1 != activeEngimonPositon.getXCoordinate())
+        {
+            if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice")
+            {
+                if (engimonLiar.at(a).first.getXCoordinate() >= xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() < ymax - dimensiWater && engimonLiar.at(a).first.getXCoordinate() - 1 >= xmax - dimensiWater)
+                {
+                    engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() - 1);
+                }
+            }
+            else
+            {
+                engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() - 1);
+            }
+        }
+        else if (arah == "East" && engimonLiar.at(a).first.getXCoordinate() + 1 < xmax && engimonLiar.at(a).first.getXCoordinate() + 1 != playerPosition.getXCoordinate() && engimonLiar.at(a).first.getXCoordinate() + 1 != activeEngimonPositon.getXCoordinate())
+        {
+            if (engimonLiar.at(a).second.getElement().at(0) == "Water" && engimonLiar.at(a).second.getElement().at(0) == "Ground")
+            {
+                engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() + 1);
+            }
+            else if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice")
+            {
+                if (engimonLiar.at(a).first.getXCoordinate() >= xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() < ymax - dimensiWater)
+                {
+                    engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() + 1);
+                }
+            }
+            else
+            {
+                if (engimonLiar.at(a).first.getXCoordinate() + 1 < xmax - dimensiWater)
+                {
+                    engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() - 1);
+                }
+            }
+        }
+        setAlphabet(engimonLiar.at(a).second, engimonLiar.at(a).first.getYCoordinate(), engimonLiar.at(a).first.getXCoordinate());
+    }
+}
+
+void Map::setAlphabet(Engimon engimonbaru, int coorY, int coorX)
+{
+    if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Fire")
+    {
+        peta[coorY][coorX] = 'f';
+    }
+    else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Water")
+    {
+        peta[coorY][coorX] = 'w';
+    }
+    else if (engimonbaru.getElement().at(0) == "Ice" && engimonbaru.getElement().at(1) == "Ice")
+    {
+        peta[coorY][coorX] = 'i';
+    }
+    else if (engimonbaru.getElement().at(0) == "Ground" && engimonbaru.getElement().at(1) == "Ground")
+    {
+        peta[coorY][coorX] = 'g';
+    }
+    else if (engimonbaru.getElement().at(0) == "Electric" && engimonbaru.getElement().at(1) == "Electric")
+    {
+        peta[coorY][coorX] = 'e';
+    }
+    else if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Electric")
+    {
+        peta[coorY][coorX] = 'l';
+    }
+    else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ice")
+    {
+        peta[coorY][coorX] = 's';
+    }
+    else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ground")
+    {
+        peta[coorY][coorX] = 'n';
+    }
+}
 void Map::removeEngimonLiar(Engimon engimon)
 {
     int index;
@@ -254,9 +364,16 @@ void Map::setplayerPosition(int _x, int _y)
     {
         for (int j = 0; j < ymax; j++)
         {
-            if (peta[j][i] == 'P')
+            if (peta[i][j] == 'P')
             {
-                peta[j][i] = '-';
+                if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
+                {
+                    peta.at(i).at(j) = '-';
+                }
+                else
+                {
+                    peta.at(i).at(j) = '0';
+                }
             }
         }
     }
@@ -270,9 +387,16 @@ void Map::setactiveEngimonPosition(int _x, int _y)
     {
         for (int j = 0; j < ymax; j++)
         {
-            if (peta[j][i] == 'X')
+            if (peta[i][j] == 'X')
             {
-                peta[j][i] = '-';
+                if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
+                {
+                    peta.at(i).at(j) = '-';
+                }
+                else
+                {
+                    peta.at(i).at(j) = '0';
+                }
             }
         }
     }
