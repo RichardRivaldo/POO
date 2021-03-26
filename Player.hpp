@@ -29,6 +29,7 @@ private:
     Position pos;
     Inventory<Engimon> inventoryEngimon;
     Inventory<SkillItem> inventorySkillItem;
+    Map map;
 
 public:
     //Ctor
@@ -61,7 +62,7 @@ public:
     void doBattle();
 
     void learnSkill(string SkillName);
-    void replaceSkillItem(int replacedSkillIdx, Skill newSkill)
+    void replaceSkillItem(int replacedSkillIdx, Skill newSkill);
 };
 
 #endif

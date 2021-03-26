@@ -1,7 +1,7 @@
-s #include<iostream>
+#include <iostream>
 #include "Position.hpp"
 
-    using namespace std;
+using namespace std;
 
 Position::Position()
 {
@@ -11,7 +11,7 @@ Position::Position()
 
 Position::Position(int coordinate_x, int coordinate_y)
 {
-    x = coordinate_xf;
+    x = coordinate_x;
     y = coordinate_y;
 }
 

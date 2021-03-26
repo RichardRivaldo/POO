@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <map>
 #include "Engimon.hpp"
 #include "Position.hpp"
 
@@ -12,8 +13,9 @@ class Map{
     private :
         int xmax;
         int ymax;
+        int maxEngimonLiar;
         vector<vector<char>> peta;
-        //vector<Engimon> engimon;
+        map<Position, Engimon> engimonLiar;
         int setCapital; /* X >= setCapital (Huruf Besar), X < setCapital (Huruf Kecil)*/
         int dimensiWater;
         Position playerPosition;
@@ -22,8 +24,17 @@ class Map{
         Map();
         ~Map();
         void printMap();
+        int getmaxEngimonLiar();
         Position getplayerPosition();
-        void setplayerPosition();
+        int getplayerPositionX();
+        int getplayerPositionY();
+        int getxmax();
+        int getymax();
+        void setplayerPosition(int _x, int _y);
+        Position getactiveEngimonPosition();
+        int getactiveEngimonPositionX();
+        int getactiveEngimonPositionY();
+        void setactiveEngimonPosition(int _x, int _y);
         vector<Engimon> getEngimon();
         //vector<string> getCurrElement(Position k);
         bool isAboveLevel(Position k);

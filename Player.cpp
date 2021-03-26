@@ -12,6 +12,7 @@ Player::Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEng
     this->ActiveEngimon = activeEngi;
     this->inventoryEngimon = inventoryEngimon;
     this->inventorySkillItem = inventorySkillItem;
+    this->map = Map();
 }
 
 // Inventory
@@ -125,18 +126,58 @@ void Player::replaceSkillItem(int replacedSkillIdx, Skill newSkill)
 //Move Command
 void Player::moveUp()
 {
+    if (this->map.getplayerPositionY() - 1 >= 0)
+    {
+        Position prevpos = Position(map.getplayerPosition());
+        this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY() - 1);
+        this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
+    }
+    else
+    {
+        throw "Invalid move Player Up (Mentok)";
+    }
 }
 
 void Player::moveDown()
 {
+    if (this->map.getplayerPositionY() + 1 <= map.getymax())
+    {
+        Position prevpos = Position(map.getplayerPosition());
+        this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY() + 1);
+        this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
+    }
+    else
+    {
+        throw "Invalid move Player Down (Mentok)";
+    }
 }
 
 void Player::moveLeft()
 {
+    if (this->map.getplayerPositionX() - 1 >= 0)
+    {
+        Position prevpos = Position(map.getplayerPosition());
+        this->map.setplayerPosition(this->map.getplayerPositionX() - 1, this->map.getplayerPositionY());
+        this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
+    }
+    else
+    {
+        throw "Invalid move Player Left (Mentok)";
+    }
 }
 
 void Player::moveRight()
 {
+    if (this->map.getplayerPositionX() + 1 <= map.getxmax())
+    {
+        Position prevpos = Position(map.getplayerPosition());
+        this->map.setplayerPosition(this->map.getplayerPositionX() + 1, this->map.getplayerPositionY());
+        this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
+    }
+    else
+    {
+        throw "Invalid move Player Right (Mentok)";
+    }
 }
 
 //Engimon Command
