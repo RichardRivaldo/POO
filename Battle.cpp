@@ -293,6 +293,7 @@ float Battle::checkMultiplier(string elemen1, string elemen2)
     //         throw elemen1, elemen2;
     //     }
     // }
+    return 0;
 }
 
 void Battle::showTotalPower()

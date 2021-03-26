@@ -24,7 +24,8 @@ void showHelp()
     cout << "items : Show Skill Items" << endl;
     cout << "engimons : Show Engimons" << endl;
     cout << "breed : Breed Two Engimons" << endl;
-    cout << "stats: Show Active Engimons" << endl;
+    cout << "show: Show Active Engimons" << endl;
+    cout << "stats: Show Engimons Stats" << endl;
     cout << "engi: Interact With Engimons" << endl;
     cout << "swap: Swap Active Engimons" << endl;
     cout << "learn: Learn New Skills" << endl;
@@ -126,10 +127,7 @@ int main()
     // Starting game, initialize starter engimon
 
     Engimon starterEngimon = initializeStarterEngimon(fireSkills, waterSkills, electricSkills, groundSkills, iceSkills);
-
-    cout << "sini" << endl;
     Player player(starterEngimon);
-    cout << "sinibawah" << endl;
 
     while (!gameEnd)
     {
@@ -186,9 +184,15 @@ int main()
                 cout << endl;
                 player.doBreed(pilihan1, pilihan2);
             }
-            else if (command == "stats")
+            else if (command == "show")
             {
                 player.showActiveEngimon();
+            }
+            else if (command == "stats"){
+                cout << "Masukkan nama Engimon yang ingin dicek: " << endl;
+                string engimonName;
+                cin >> engimonName;
+                player.showStatsEngimon(engimonName);
             }
             else if (command == "engi")
             {

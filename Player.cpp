@@ -253,10 +253,23 @@ void Player::showOwnedEngimon()
     }
 }
 
-void Player::showStatsEngimon(Engimon engimon)
+void Player::showStatsEngimon(string engimonName)
 {
-    cout << "Engimon stats: " << endl;
-    engimon.showStats();
+    bool finish = false;
+    int i = 0;
+    while (i < this->inventoryEngimon.getInventorySize() && !finish)
+    {
+        if (this->inventoryEngimon.getInventoryVector()[i].getName().compare(engimonName) == 0)
+        {
+            finish = true;
+            cout << "Engimon stats: " << endl;
+            this->inventoryEngimon.getInventoryVector()[i].showStats();
+        }
+        i++;
+    }
+    if(!finish){
+        cout << "Gagal menampilkan stats Engimon!" << endl;
+    }
 }
 
 void Player::showActiveEngimon()

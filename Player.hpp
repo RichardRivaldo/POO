@@ -46,7 +46,7 @@ public:
 
     //Engimon Command
     void showOwnedEngimon();
-    void showStatsEngimon(Engimon engimon);
+    void showStatsEngimon(string engimonName);
     void showActiveEngimon();
     void swapActiveEngimon(string newEngimonName); // Swap active engimon with engimon from inventory
     void interactWithEngimon();
