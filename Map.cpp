@@ -210,6 +210,83 @@ void Map::addEngimonLiar()
     }
 }
 
+void Map::moveAllEngimonLiar()
+{
+    //cleaning dulu
+    for (int i = 0; i < xmax; i++)
+    {
+        for (int j = 0; j < ymax; j++)
+        {
+            if (peta[i][j] != 'P' && peta[i][j] != 'X')
+            {
+                if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
+                {
+                    peta.at(i).at(j) = '-';
+                }
+                else
+                {
+                    peta.at(i).at(j) = '0';
+                }
+            }
+        }
+    }
+    for (int a = 0; a < engimonLiar.size(); a++)
+    {
+        enum Direction{
+            N,
+            E,
+            S,
+            W
+        };
+        static const char *enum_str_direction[] = {"North", "East", "South", "West"};
+        Direction direction = Direction(rand() % 3);
+        string arah(enum_str_direction[direction]);
+        if (arah == "North" && engimonLiar.at(a).first.getYCoordinate() - 1 >= 0 && engimonLiar.at(a).first.getYCoordinate() -1 != playerPosition.getYCoordinate() && engimonLiar.at(a).first.getYCoordinate() -1 != activeEngimonPositon.getYCoordinate()){
+            if (engimonLiar.at(a).second.getElement().at(0) == "Water" && engimonLiar.at(a).second.getElement().at(0) == "Ground"){
+                engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() - 1);
+            }
+            else if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice"){
+                if (engimonLiar.at(a).first.getXCoordinate() < xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() >= ymax - dimensiWater){
+                    engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() - 1);
+                }
+            }else{
+                if (engimonLiar.at(a).first.getYCoordinate() - 1 >= ymax - dimensiWater){
+                    engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() - 1);
+                }
+            }
+        }else if (arah == "South" && engimonLiar.at(a).first.getYCoordinate() + 1 < ymax && engimonLiar.at(a).first.getYCoordinate() + 1 <= playerPosition.getYCoordinate() && engimonLiar.at(a).first.getYCoordinate() + 1 <= activeEngimonPositon.getYCoordinate()){
+            if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice"){
+                if (engimonLiar.at(a).first.getXCoordinate() < xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() >= ymax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() + 1 < ymax - dimensiWater){
+                    engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() + 1);
+                }
+            }else{
+                engimonLiar.at(a).first.setYCoordinate(engimonLiar.at(a).first.getYCoordinate() + 1);
+            }
+        }else if (arah == "West" && engimonLiar.at(a).first.getXCoordinate() - 1 >= 0 && engimonLiar.at(a).first.getXCoordinate() - 1 <= playerPosition.getXCoordinate() && engimonLiar.at(a).first.getXCoordinate() - 1 <= activeEngimonPositon.getXCoordinate()){
+            if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice"){
+                if (engimonLiar.at(a).first.getXCoordinate() < xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() >= ymax - dimensiWater && engimonLiar.at(a).first.getXCoordinate() - 1 >= xmax - dimensiWater){
+                    engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() - 1);
+                }
+            }else{
+                engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() - 1);
+            }
+        }else if (arah == "East" && engimonLiar.at(a).first.getXCoordinate() + 1 < xmax && engimonLiar.at(a).first.getXCoordinate() + 1 != playerPosition.getXCoordinate() && engimonLiar.at(a).first.getXCoordinate() + 1 != activeEngimonPositon.getXCoordinate()){
+            if (engimonLiar.at(a).second.getElement().at(0) == "Water" && engimonLiar.at(a).second.getElement().at(0) == "Ground"){
+                engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() + 1);
+            }
+            else if (engimonLiar.at(a).second.getElement().at(0) == "Water" || engimonLiar.at(a).second.getElement().at(0) == "Ice"){
+                if (engimonLiar.at(a).first.getXCoordinate() < xmax - dimensiWater && engimonLiar.at(a).first.getYCoordinate() >= ymax - dimensiWater){
+                    engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() + 1);
+                }
+            }else{
+                if (engimonLiar.at(a).first.getXCoordinate() + 1 < xmax - dimensiWater){
+                    engimonLiar.at(a).first.setXCoordinate(engimonLiar.at(a).first.getXCoordinate() - 1);
+                }
+            }
+        }
+    }
+}
+
 void Map::removeEngimonLiar(Engimon engimon){
     int index;
     int xnya;

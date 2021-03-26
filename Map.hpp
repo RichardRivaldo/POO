@@ -41,5 +41,6 @@ public:
     void setactiveEngimonPosition(int _x, int _y);
     void addEngimonLiar();
     void removeEngimonLiar(Engimon engimon);
+    void moveAllEngimonLiar();
 };
 #endif
