@@ -3,6 +3,7 @@
 #include "Engimon.hpp"
 #include <stdlib.h>
 #include <iostream>
+#include<fstream>
 #include <vector>
 #include <iterator>
 #include <new>
@@ -407,9 +408,13 @@ void Map::setactiveEngimonPosition(int _x, int _y)
     peta[_y][_x] = 'X';
 }
 
-/*int main(int argc, char const *argv[])
-{
-    Map m = Map();
-    m.printMap();
-    return 0;
-}*/
+void Map::bacaMap(string namafile){
+    ifstream myReadFile;
+    myReadFile.open(namafile);
+    char output[100];
+    if (myReadFile.is_open()) {
+    while (!myReadFile.eof()) {
+        myReadFile >> output;
+        cout<<output;
+    }
+}
