@@ -350,7 +350,7 @@ void Map::setactiveEngimonPosition(int _x, int _y)
         {
             if (peta[j][i] == 'X')
             {
-                if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
+                if (i >= ymax - dimensiWater || j < xmax - dimensiWater)
                 {
                     peta.at(j).at(i) = '-';
                 }
