@@ -153,6 +153,8 @@ void Player::moveUp()
         if (peluang > 50)
         {
             this->map.addEngimonLiar();
+        }else{
+            this->map.moveAllEngimonLiar();
         }
     }
     else
@@ -172,6 +174,8 @@ void Player::moveDown()
         if (peluang > 50)
         {
             this->map.addEngimonLiar();
+        }else{
+            this->map.moveAllEngimonLiar();
         }
     }
     else
@@ -191,6 +195,8 @@ void Player::moveLeft()
         if (peluang > 50)
         {
             this->map.addEngimonLiar();
+        }else{
+            this->map.moveAllEngimonLiar();
         }
     }
     else
@@ -210,6 +216,8 @@ void Player::moveRight()
         if (peluang > 50)
         {
             this->map.addEngimonLiar();
+        }else{
+            this->map.moveAllEngimonLiar();
         }
     }
     else

@@ -175,38 +175,7 @@ void Map::addEngimonLiar()
         engimonnya.first = engimonLiarpos;
         engimonnya.second = engimonbaru;
         engimonLiar.push_back(engimonnya);
-        if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Fire")
-        {
-            peta[coorY][coorX] = 'f';
-        }
-        else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Water")
-        {
-            peta[coorY][coorX] = 'w';
-        }
-        else if (engimonbaru.getElement().at(0) == "Ice" && engimonbaru.getElement().at(1) == "Ice")
-        {
-            peta[coorY][coorX] = 'i';
-        }
-        else if (engimonbaru.getElement().at(0) == "Ground" && engimonbaru.getElement().at(1) == "Ground")
-        {
-            peta[coorY][coorX] = 'g';
-        }
-        else if (engimonbaru.getElement().at(0) == "Electric" && engimonbaru.getElement().at(1) == "Electric")
-        {
-            peta[coorY][coorX] = 'e';
-        }
-        else if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Electric")
-        {
-            peta[coorY][coorX] = 'l';
-        }
-        else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ice")
-        {
-            peta[coorY][coorX] = 's';
-        }
-        else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ground")
-        {
-            peta[coorY][coorX] = 'n';
-        }
+        setAlphabet(engimonbaru, coorX, coorY);
     }
 }
 
@@ -284,9 +253,44 @@ void Map::moveAllEngimonLiar()
                 }
             }
         }
+        setAlphabet(engimonLiar.at(a).second, engimonLiar.at(a).first.getYCoordinate(), engimonLiar.at(a).first.getXCoordinate());
     }
 }
 
+void Map::setAlphabet(Engimon engimonbaru, int coorY, int coorX){
+    if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Fire")
+    {
+        peta[coorY][coorX] = 'f';
+    }
+    else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Water")
+    {
+        peta[coorY][coorX] = 'w';
+    }
+    else if (engimonbaru.getElement().at(0) == "Ice" && engimonbaru.getElement().at(1) == "Ice")
+    {
+        peta[coorY][coorX] = 'i';
+    }
+    else if (engimonbaru.getElement().at(0) == "Ground" && engimonbaru.getElement().at(1) == "Ground")
+    {
+        peta[coorY][coorX] = 'g';
+    }
+    else if (engimonbaru.getElement().at(0) == "Electric" && engimonbaru.getElement().at(1) == "Electric")
+    {
+        peta[coorY][coorX] = 'e';
+    }
+    else if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Electric")
+    {
+        peta[coorY][coorX] = 'l';
+    }
+    else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ice")
+    {
+        peta[coorY][coorX] = 's';
+    }
+    else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ground")
+    {
+        peta[coorY][coorX] = 'n';
+    }
+}
 void Map::removeEngimonLiar(Engimon engimon){
     int index;
     int xnya;

@@ -42,5 +42,6 @@ public:
     void addEngimonLiar();
     void removeEngimonLiar(Engimon engimon);
     void moveAllEngimonLiar();
+    void setAlphabet(Engimon engimonbaru, int coorY, int coorX);
 };
 #endif
