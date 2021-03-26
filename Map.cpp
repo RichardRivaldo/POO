@@ -70,22 +70,34 @@ void Map::addEngimonLiar(){
         string spesies(enum_str_species[species]);
         //spesies ketemu
         //random element (susah nih wkwk)
-        enum Element {W, I, F, G, E, L, S, N};
-        static const char *enum_str_element[] = { "Water", "Ice", "Fire", "Ground", "Electric", "Fire/Electric", "Water/Ice", "Water/Ground" };
-        Element element = Element(rand()%7);
-        string elemen(enum_str_element[element]);
         vector<string> elemennya = vector<string>();
-        if (elemen == "Fire/Electric"){
-            elemennya = {"Fire", "Electric"};
-        }else if (elemen == "Water/Ice"){
-            elemennya = {"Water","Ice"};
-        }else if (elemen == "Water/Ground"){
-            elemennya = {"Water","Ground"};
+        if(coorX >= xmax-dimensiWater || coorY < ymax-dimensiWater){ //grassland
+            enum Element {F, G, E, L, N};
+            static const char *enum_str_element[] = { "Fire", "Ground", "Electric", "Fire/Electric", "Water/Ground" };
+            Element element = Element(rand()%4);
+            string elemen(enum_str_element[element]);
+            vector<string> elemennya = vector<string>();
+            if (elemen == "Fire/Electric"){
+                elemennya = {"Fire", "Electric"};
+            }else if (elemen == "Water/Ground"){
+                elemennya = {"Water","Ground"};
+            }else{
+                elemennya = {elemen,elemen};
+            }
         }else{
-            elemennya = {elemen,elemen};
+            enum Element {W, I, S, N};
+            static const char *enum_str_element[] = { "Water", "Ice", "Water/Ice", "Water/Ground" };
+            Element element = Element(rand()%3);
+            string elemen(enum_str_element[element]);           
+            if (elemen == "Water/Ice"){
+                elemennya = {"Water","Ice"};
+            }else{
+                elemennya = {elemen,elemen};
+            }
         }
         Engimon engimonbaru = Engimon(nama, spesies, elemennya);
         engimonLiar.insert({engimonLiarpos, engimonbaru});
+        //peta[coorX][coorY] = 
     }
 }
 

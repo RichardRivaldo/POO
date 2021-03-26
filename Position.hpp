@@ -12,7 +12,7 @@ class Position{
         Position& operator=(const Position& pos);
         int getXCoordinate();
         int getYCoordinate();
-        int setXCoordinate(int _x);
-        int setYCoordinate(int _y);
+        void setXCoordinate(int _x);
+        void setYCoordinate(int _y);
 };
 #endif

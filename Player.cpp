@@ -13,6 +13,7 @@ Player::Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEng
     this->inventoryEngimon = inventoryEngimon;
     this->inventorySkillItem = inventorySkillItem;
     this->map = Map();
+    map.setplayerPosition(1,1);
 }
 
 // Inventory
