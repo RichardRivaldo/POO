@@ -25,11 +25,13 @@ class Map{
         Map();
         ~Map();
         void printMap();
+        Position getplayerPosition();
         int getplayerPositionX();
         int getplayerPositionY();
         int getxmax();
         int getymax();
         void setplayerPosition(int _x, int _y);
+        Position getactiveEngimonPosition();
         int getactiveEngimonPositionX();
         int getactiveEngimonPositionY();
         void setactiveEngimonPosition(int _x, int _y);

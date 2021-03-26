@@ -35,6 +35,10 @@ void Map::printMap(){
     }
 }
 
+Position Map::getplayerPosition(){
+    return this->playerPosition;
+}
+
 int Map::getplayerPositionX(){
     return this->playerPosition.getXCoordinate();
 }
@@ -54,6 +58,10 @@ int Map::getymax(){
 void Map::setplayerPosition(int _x, int _y){
     playerPosition.setXCoordinate(_x);
     playerPosition.setXCoordinate(_y);
+}
+
+Position Map::getactiveEngimonPosition(){
+    return this->activeEngimonPositon;
 }
 
 int Map::getactiveEngimonPositionX(){

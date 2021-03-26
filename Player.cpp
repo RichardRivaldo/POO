@@ -127,7 +127,9 @@ void Player::replaceSkillItem(int replacedSkillIdx, Skill newSkill)
 void Player::moveUp()
 {
     if(this->map.getplayerPositionY()-1>=0){
+        Position prevpos = Position(map.getplayerPosition());
         this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY()-1);
+        this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
     }
     else{
         throw "Invalid move Player Up (Mentok)";
@@ -137,7 +139,9 @@ void Player::moveUp()
 void Player::moveDown()
 {
     if(this->map.getplayerPositionY()+1 <= map.getymax()){
+        Position prevpos = Position(map.getplayerPosition());
         this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY()+1);
+        this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
     }else{
         throw "Invalid move Player Down (Mentok)";
     }
@@ -146,7 +150,9 @@ void Player::moveDown()
 void Player::moveLeft()
 {
     if(this->map.getplayerPositionX()-1 >= 0){
+        Position prevpos = Position(map.getplayerPosition()); 
         this->map.setplayerPosition(this->map.getplayerPositionX()-1, this->map.getplayerPositionY());
+        this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
     }else{
         throw "Invalid move Player Left (Mentok)";
     }
@@ -155,7 +161,9 @@ void Player::moveLeft()
 void Player::moveRight()
 {
     if(this->map.getplayerPositionX()+1 <= map.getxmax()){
+        Position prevpos = Position(map.getplayerPosition());
         this->map.setplayerPosition(this->map.getplayerPositionX()+1, this->map.getplayerPositionY());
+        this->map.setactiveEngimonPosition(prevpos.getXCoordinate(), prevpos.getYCoordinate());
     }else{
         throw "Invalid move Player Right (Mentok)";
     }
