@@ -20,7 +20,7 @@ public:
     // Copy Constructor
     SkillItem(const SkillItem& item);
     // Operator=
-    SkillItem& operator=(const SkillItem&& item);
+    SkillItem& operator=(const SkillItem& item);
 
     // Methods
     void addItemAmount(int amount = 1);

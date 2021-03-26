@@ -18,7 +18,7 @@ SkillItem::SkillItem(const SkillItem& item){
     this->skillItem.second = item.skillItem.second;
 }
 
-SkillItem& SkillItem::operator=(const SkillItem&& item){
+SkillItem& SkillItem::operator=(const SkillItem& item){
     this->skillItem.first = item.skillItem.first;
     this->skillItem.second = item.skillItem.second;
 
