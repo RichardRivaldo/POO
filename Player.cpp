@@ -129,7 +129,7 @@ void Player::moveUp()
     if(this->map.getplayerPositionY()-1>=0){
         this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY()-1);
     }else{
-        throw "Invalid move Player Up";
+        throw "Invalid move Player Up (Mentok)";
     }
 }
 
@@ -138,16 +138,26 @@ void Player::moveDown()
     if(this->map.getplayerPositionY()+1 <= map.getymax()){
         this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY()+1);
     }else{
-        throw "Invalid move Player Down";
+        throw "Invalid move Player Down (Mentok)";
     }
 }
 
 void Player::moveLeft()
 {
+    if(this->map.getplayerPositionX()-1 >= 0){
+        this->map.setplayerPosition(this->map.getplayerPositionX()-1, this->map.getplayerPositionY());
+    }else{
+        throw "Invalid move Player Left (Mentok)";
+    }
 }
 
 void Player::moveRight()
 {
+    if(this->map.getplayerPositionX()+1 <= map.getxmax()){
+        this->map.setplayerPosition(this->map.getplayerPositionX()+1, this->map.getplayerPositionY());
+    }else{
+        throw "Invalid move Player Right (Mentok)";
+    }
 }
 
 //Engimon Command
