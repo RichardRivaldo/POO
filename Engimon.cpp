@@ -75,7 +75,7 @@ bool Engimon::CheckDead(Engimon engimon)
     }
 }
 
-bool Engimon::CheckLevelUp(Engimon engimon)
+void Engimon::CheckLevelUp(Engimon engimon)
 {
     // Level up akan terjadi setiap experience mencapai lebih dari 100
     if (engimon.experience >= 100)
