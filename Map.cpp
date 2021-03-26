@@ -116,10 +116,26 @@ int Map::getactiveEngimonPositionY(){ return this->activeEngimonPositon.getYCoor
 void Map::setplayerPosition(int _x, int _y){
     playerPosition.setXCoordinate(_x);
     playerPosition.setXCoordinate(_y);
+    for (int i = 0; i < xmax; i++){
+        for (int j = 0; j < ymax; j++){
+            if (peta[i][j] == 'P'){
+                peta[i][j] = '-';
+            }
+        }
+    }
+    peta[_x][_y] = 'P';
 }
 void Map::setactiveEngimonPosition(int _x, int _y){
     activeEngimonPositon.setXCoordinate(_x);
     activeEngimonPositon.setXCoordinate(_y);
+    for (int i = 0; i < xmax; i++){
+        for (int j = 0; j < ymax; j++){
+            if (peta[i][j] == 'X'){
+                peta[i][j] = '-';
+            }
+        }
+    }
+    peta[_x][_y] = 'X';
 }
 
 /*
