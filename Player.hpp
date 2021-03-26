@@ -29,10 +29,11 @@ private:
     Position pos;
     Inventory<Engimon> inventoryEngimon;
     Inventory<SkillItem> inventorySkillItem;
+    Map map;
 
 public:
     //Ctor
-    Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem);
+    Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem, Map map);
 
     // Inventory
     void addSkillItem(SkillItem newSkillItem);

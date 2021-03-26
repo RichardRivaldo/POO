@@ -34,6 +34,27 @@ void Map::printMap(){
         cout << endl;
     }
 }
+
+int Map::getplayerPositionX(){
+    return this->playerPosition.getXCoordinate();
+}
+
+int Map::getplayerPositionY(){
+    return this->playerPosition.getYCoordinate();
+}
+
+int Map::getxmax(){
+    return this->xmax;
+}
+
+int Map::getymax(){
+    return this->ymax;
+}
+
+void Map::setplayerPosition(int _x, int _y){
+    playerPosition.setXCoordinate(_x);
+    playerPosition.setXCoordinate(_y);
+}
 /*
 void Map::printMap(){
     for (int i = 0; i < xmax; i++){

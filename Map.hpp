@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Engimon.hpp"
 #include "Position.hpp"
+#include "Player.hpp"
 
 using namespace std;
 
@@ -22,8 +23,11 @@ class Map{
         Map();
         ~Map();
         void printMap();
-        Position getplayerPosition();
-        void setplayerPosition();
+        int getplayerPositionX();
+        int getplayerPositionY();
+        int getxmax();
+        int getymax();
+        void setplayerPosition(int _x, int _y);
         vector<Engimon> getEngimon();
         //vector<string> getCurrElement(Position k);
         bool isAboveLevel(Position k);

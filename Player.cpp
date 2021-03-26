@@ -6,12 +6,13 @@
 
 using namespace std;
 
-Player::Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem)
+Player::Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem, Map map)
 {
     this->pos = pos;
     this->ActiveEngimon = activeEngi;
     this->inventoryEngimon = inventoryEngimon;
     this->inventorySkillItem = inventorySkillItem;
+    this->map = map;
 }
 
 // Inventory
@@ -125,11 +126,20 @@ void Player::replaceSkillItem(int replacedSkillIdx, Skill newSkill)
 //Move Command
 void Player::moveUp()
 {
-    
+    if(this->map.getplayerPositionY()-1>=0){
+        this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY()-1);
+    }else{
+        throw "Invalid move Player Up";
+    }
 }
 
 void Player::moveDown()
 {
+    if(this->map.getplayerPositionY()+1 <= map.getymax()){
+        this->map.setplayerPosition(this->map.getplayerPositionX(), this->map.getplayerPositionY()+1);
+    }else{
+        throw "Invalid move Player Down";
+    }
 }
 
 void Player::moveLeft()
