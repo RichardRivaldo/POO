@@ -355,7 +355,7 @@ void Map::setactiveEngimonPosition(int _x, int _y)
     {
         for (int j = 0; j < ymax; j++)
         {
-            if (peta[j][i] == 'X')
+            if (peta[i][j] == 'X')
             {
                 if (i >= xmax - dimensiWater || j < ymax - dimensiWater)
                 {
