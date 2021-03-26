@@ -24,16 +24,17 @@ using namespace std;
 class Player
 {
 private:
+    Engimon ActiveEngimon;
     Position pos;
     Inventory<Engimon> inventoryEngimon;
     Inventory<SkillItem> inventorySkillItem;
 
 public:
     //Ctor
-    Player(Position pos);
+    Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem);
 
     // Inventory
-    void addSkill(SkillItem newSkillItem);
+    void addSkillItem(SkillItem newSkillItem);
     void addEngimon(Engimon newEngimon);
 
     //Move Command
@@ -44,16 +45,15 @@ public:
 
     //Engimon Command
     void showOwnedEngimon();
-    void showStatsEngimon(Engimon a);
+    void showStatsEngimon(Engimon engimon);
     void showActiveEngimon();
-    void swapActiveEngimon(Engimon b);
+    void swapActiveEngimon(string newEngimonName); // Swap active engimon with engimon from inventory
 
-    //Skill Command
-    void showOwnedSkill();
-    void useOwnedSkill(Skill x, Engimon y);
+    //Skill Items Command
+    void showOwnedItems();
 
     //Breed
-    void doBreed(Engimon a, Engimon b);
+    void doBreed(string firstEngimonName, string secondEngimonName);
 
     //Battle
     void doBattle();

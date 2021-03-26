@@ -1,15 +1,17 @@
 #include <string>
 #include <list>
 #include <iostream>
+#include <vector>
 #include "Engimon.hpp"
 #include "Skill.hpp"
 
 using namespace std;
 
-Engimon::Engimon() {
+Engimon::Engimon()
+{
     this->name = "NO NAME";
     this->species = "NO SPECIES";
-    this->element = { "NULL", "NULL" };
+    this->element = {"NULL", "NULL"};
     this->level = -1;
     this->experience = -1;
     this->cumulativeExperience = -1;
@@ -25,7 +27,7 @@ Engimon::Engimon(string nama, string species, vector<string> element)
     this->cumulativeExperience = 0;
 }
 
-Engimon::Engimon(const Engimon& engimon)
+Engimon::Engimon(const Engimon &engimon)
 {
     this->name = engimon.name;
     this->element = engimon.element;
@@ -38,10 +40,9 @@ Engimon::Engimon(const Engimon& engimon)
 
 Engimon::~Engimon()
 {
-    
 }
 
-Engimon& Engimon::operator=(const Engimon& engimon)
+Engimon &Engimon::operator=(const Engimon &engimon)
 {
     this->name = engimon.name;
     this->species = engimon.species;
@@ -50,7 +51,8 @@ Engimon& Engimon::operator=(const Engimon& engimon)
     this->level = engimon.level;
     this->experience = engimon.experience;
     this->cumulativeExperience = engimon.cumulativeExperience;
-    for(list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++){
+    for (list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++)
+    {
         this->skill.push_back(*iter);
     }
     return *this;
@@ -79,11 +81,14 @@ bool Engimon::CheckLevelUp(Engimon engimon)
     }
 }
 
-const Skill Engimon::getHighestMastery(){
+const Skill Engimon::getHighestMastery()
+{
     int highest = -9999;
     Skill highestMasterySkill;
-    for(list<Skill>::iterator iter = skill.begin(); iter != skill.end(); iter++){
-        if(highest <= (*iter).getSkillMastery()){
+    for (list<Skill>::iterator iter = skill.begin(); iter != skill.end(); iter++)
+    {
+        if (highest <= (*iter).getSkillMastery())
+        {
             highest = (*iter).getSkillMastery();
             highestMasterySkill = (*iter);
         }
@@ -91,13 +96,23 @@ const Skill Engimon::getHighestMastery(){
     return highestMasterySkill;
 }
 
-void Engimon::showStats() {
+void Engimon::showStats()
+{
     cout << "Nama : " << this->getName() << endl;
     cout << "Spesies : " << this->getSpecies() << endl;
 
+    if (this->parents.size() > 0)
+    {
+        cout << "Parents : ";
+        for (int i = 0; i < this->parents.size() - 1; i++)
+            cout << this->parents[i].getName() << ", ";
+        cout << this->parents[this->parents.size() - 1].getName() << endl;
+    }
+
     list<Skill>::iterator it;
     cout << "List Skills : | ";
-    for (it = this->skill.begin(); it != this->skill.end(); it++) {
+    for (it = this->skill.begin(); it != this->skill.end(); it++)
+    {
         cout << (*it).getSkillName() << " | ";
     }
     cout << endl;
@@ -108,81 +123,115 @@ void Engimon::showStats() {
     cout << "Cumulative experience : " << this->getCumulativeExperience() << endl;
 }
 
-void Engimon::AddSkill(Skill skill) {
+void Engimon::AddSkill(Skill skill)
+{
     list<Skill>::iterator it;
     it = this->skill.begin();
     this->skill.insert(it, skill);
 }
 
-void Engimon::RemoveSkillByIdx(int SkillIdx){
+void Engimon::RemoveSkillByIdx(int SkillIdx)
+{
     list<Skill>::iterator iter = skill.begin();
     advance(iter, SkillIdx - 1);
     this->skill.erase(iter);
 }
 
-void Engimon::RemoveSkill(Skill skill) {
-    if(this->skill.size() == 1){
-        if(skill.getSkillName() == (*(this->skill.begin())).getSkillName()) {
+void Engimon::RemoveSkill(Skill skill)
+{
+    if (this->skill.size() == 1)
+    {
+        if (skill.getSkillName() == (*(this->skill.begin())).getSkillName())
+        {
             this->skill.erase(this->skill.begin());
         }
     }
-    for(list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++){
-        if(skill.getSkillName() == (*iter).getSkillName()){
+    for (list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++)
+    {
+        if (skill.getSkillName() == (*iter).getSkillName())
+        {
             this->skill.erase(iter);
         }
     }
 }
 
-Engimon Engimon::breed(Engimon engimon1, Engimon engimon2) {
-    if (engimon1.getElement() != engimon2.getElement()){
+void Engimon::pushToParents(Engimon parent)
+{
+    this->parents.push_back(parent);
+}
+
+Engimon Engimon::breed(Engimon anotherEngimon)
+{
+    if (this->getElement() != anotherEngimon.getElement())
+    {
         cout << "Tidak bisa melakukan cross breeding";
-    } else if (engimon1.getLevel() < 30 || engimon2.getLevel() < 30) {
+    }
+    else if (this->getLevel() < 30 || anotherEngimon.getLevel() < 30)
+    {
         cout << "Engimon parent belum cukup umur";
-    } else {
-        Engimon engimon1tmp = engimon1;
-        Engimon engimon2tmp = engimon2;
+    }
+    else
+    {
+        Engimon engimon1tmp = *this;
+        Engimon engimon2tmp = anotherEngimon;
 
         string nama;
         cout << "Masukkan nama Engimon mu : ";
         cin >> nama;
         cout << endl;
-        Engimon engimonAnak = Engimon(nama, engimon1.species, engimon1.element);
-        
-        for (int i = 0; i < engimon1.getSkill().size(); i++) {
+        Engimon engimonAnak = Engimon(nama, this->species, this->element);
+
+        engimonAnak.pushToParents(*this);
+        engimonAnak.pushToParents(anotherEngimon);
+
+        for (int i = 0; i < this->getSkill().size(); i++)
+        {
             Skill highest1 = engimon1tmp.getHighestMastery();
-            Skill highest2 = engimon2tmp.getHighestMastery();   
+            Skill highest2 = engimon2tmp.getHighestMastery();
 
             //case 1
-            if (highest1.getSkillMastery() > highest2.getSkillMastery()) {
-                if (containsSkill(engimon2tmp.getSkill(), highest1.getSkillName())) {
+            if (highest1.getSkillMastery() > highest2.getSkillMastery())
+            {
+                if (containsSkill(engimon2tmp.getSkill(), highest1.getSkillName()))
+                {
                     engimonAnak.AddSkill(highest1);
                     engimon1tmp.RemoveSkill(highest1);
                     engimon2tmp.RemoveSkill(highest2);
-                } else {
+                }
+                else
+                {
                     engimonAnak.AddSkill(highest1);
                     engimon1tmp.RemoveSkill(highest1);
                 }
-            } else if (highest1.getSkillMastery() < highest2.getSkillMastery()) {
-                if (containsSkill(engimon1tmp.getSkill(), highest2.getSkillName())) {
+            }
+            else if (highest1.getSkillMastery() < highest2.getSkillMastery())
+            {
+                if (containsSkill(engimon1tmp.getSkill(), highest2.getSkillName()))
+                {
                     engimonAnak.AddSkill(highest2);
                     engimon1tmp.RemoveSkill(highest1);
                     engimon2tmp.RemoveSkill(highest2);
-                } else {
+                }
+                else
+                {
                     engimonAnak.AddSkill(highest2);
                     engimon2tmp.RemoveSkill(highest2);
                 }
-            } else {
+            }
+            else
+            {
                 engimon1tmp.showStats();
                 engimon2tmp.showStats();
-                if (highest1.getSkillName() == highest2.getSkillName()) {
+                if (highest1.getSkillName() == highest2.getSkillName())
+                {
                     Skill tmp = highest1;
                     tmp.masteryLevelUp(highest1.getSkillPower());
                     engimonAnak.AddSkill(tmp);
-                    cout << "testaaaa" << endl;
                     engimon1tmp.RemoveSkill(highest1);
-                    cout << "testbbbb" << endl;
                     engimon2tmp.RemoveSkill(highest2);
-                } else {
+                }
+                else
+                {
                     engimonAnak.AddSkill(highest1);
                     engimon1tmp.RemoveSkill(highest1);
                 }
@@ -193,13 +242,17 @@ Engimon Engimon::breed(Engimon engimon1, Engimon engimon2) {
     }
 }
 
-bool Engimon::isSkillSizeValid(Engimon engimon) {
+bool Engimon::isSkillSizeValid(Engimon engimon)
+{
     return (engimon.skill.size() <= 4);
 }
 
-bool Engimon::containsSkill(list<Skill> listSkill, string skillName) {
-    for(list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++){
-        if(skillName == (*iter).getSkillName()){
+bool Engimon::containsSkill(list<Skill> listSkill, string skillName)
+{
+    for (list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++)
+    {
+        if (skillName == (*iter).getSkillName())
+        {
             return true;
         }
     }

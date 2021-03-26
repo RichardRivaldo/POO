@@ -6,13 +6,16 @@
 
 using namespace std;
 
-Player::Player(Position pos)
+Player::Player(Position pos, Engimon activeEngi, Inventory<Engimon> inventoryEngimon, Inventory<SkillItem> inventorySkillItem)
 {
     this->pos = pos;
+    this->ActiveEngimon = activeEngi;
+    this->inventoryEngimon = inventoryEngimon;
+    this->inventorySkillItem = inventorySkillItem;
 }
 
 // Inventory
-void Player::addSkill(SkillItem newSkillItem)
+void Player::addSkillItem(SkillItem newSkillItem)
 {
     try
     {
@@ -21,14 +24,14 @@ void Player::addSkill(SkillItem newSkillItem)
         {
             if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName() == newSkillItem.getSkill().getSkillName())
             {
-                cout << "Berhasil menambahkan add skill ke " << newSkillItem.getSkill().getSkillName() << endl;
+                cout << "Menambahkan Skill Item untuk " << newSkillItem.getSkill().getSkillName() << endl;
                 this->inventorySkillItem.getInventoryVector()[i].addItemAmount();
                 return;
             }
             i++;
         }
 
-        cout << "Berhasil menambahkan skill baru" << endl;
+        cout << "Berhasil menambahkan skill item baru!" << endl;
         this->inventorySkillItem << newSkillItem;
     }
     catch (string err)
@@ -139,32 +142,88 @@ void Player::moveRight()
 //Engimon Command
 void Player::showOwnedEngimon()
 {
+    if (this->inventoryEngimon.getInventorySize() == 0)
+        cout << "Tidak ada engimon di inventory" << endl;
+    else
+    {
+        cout << "Daftar engimon yang dimiliki" << endl;
+        for (Engimon engimon : this->inventoryEngimon.getInventoryVector())
+        {
+            engimon.showStats();
+            cout << endl;
+        }
+    }
 }
 
-void Player::showStatsEngimon(Engimon a)
+void Player::showStatsEngimon(Engimon engimon)
 {
+    cout << "Engimon stats: " << endl;
+    engimon.showStats();
 }
 
 void Player::showActiveEngimon()
 {
+    cout << "Engimon yang sedang aktif berpetualang: " << endl;
+    this->ActiveEngimon.showStats();
 }
 
-void Player::swapActiveEngimon(Engimon b)
+void Player::swapActiveEngimon(string newEngimonName)
 {
+    for (int i = 0; i < this->inventoryEngimon.getInventorySize(); i++)
+        if (this->inventoryEngimon.getInventoryVector()[i].getName() == newEngimonName)
+        {
+            Engimon temp = this->ActiveEngimon;
+            this->ActiveEngimon = this->inventoryEngimon.getInventoryVector()[i];
+            this->inventoryEngimon.getInventoryVector()[i] = temp;
+            cout << "Success change active engimon" << endl;
+            break;
+        }
 }
 
 //Skill Command
-void Player::showOwnedSkill()
+void Player::showOwnedItems()
 {
-}
+    if (this->inventorySkillItem.getInventorySize() == 0)
+    {
+        cout << "Tidak ada Skill Items di Inventory!";
+    }
+    else
+    {
+        cout << "Daftar Skill Items yang dimiliki: " << endl;
 
-void Player::useOwnedSkill(Skill x, Engimon y)
-{
+        for (SkillItem items : this->inventorySkillItem.getInventoryVector())
+        {
+            items.skillItemInfo();
+        }
+    }
 }
 
 //Breed
-void Player::doBreed(Engimon a, Engimon b)
+void Player::doBreed(string firstEngimonName, string secondEngimonName)
 {
+    int firstEngimonIdx = -1, secondEngimonIdx = -1;
+    for (int i = 0; i < this->inventoryEngimon.getInventorySize(); i++)
+    {
+        if (this->inventoryEngimon.getInventoryVector()[i].getName() == firstEngimonName && firstEngimonIdx == -1)
+            firstEngimonIdx = i;
+        else if (this->inventoryEngimon.getInventoryVector()[i].getName() == secondEngimonName && secondEngimonIdx == -1)
+            secondEngimonIdx = i;
+    }
+
+    cout << "Breeding...." << endl;
+    if (firstEngimonIdx != -1 && secondEngimonIdx != -1)
+    {
+        Engimon engimonParent1 = this->inventoryEngimon.getInventoryVector()[firstEngimonIdx];
+        Engimon engimonParent2 = this->inventoryEngimon.getInventoryVector()[secondEngimonIdx];
+        Engimon engimonChild = engimonParent1.breed(engimonParent2);
+
+        this->addEngimon(engimonChild);
+    }
+    else
+    {
+        cout << "No corresponding Engimons in your Inventory!" << endl;
+        cout << "Breeding failed" << endl;
+    }
 }
 
 //Battle

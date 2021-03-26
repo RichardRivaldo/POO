@@ -2,6 +2,7 @@
 #define ENGIMON_HPP
 #include <string>
 #include <list>
+#include <vector>
 #include <iostream>
 #include "Skill.hpp"
 
@@ -17,13 +18,14 @@ protected:
     int level;
     int experience;
     int cumulativeExperience;
+    vector<Engimon> parents;
 
 public:
     Engimon();
     Engimon(string nama, string species, vector<string> element);
-    Engimon(const Engimon& engimon);
+    Engimon(const Engimon &engimon);
     ~Engimon();
-    Engimon& operator=(const Engimon&);
+    Engimon &operator=(const Engimon &);
 
     bool CheckLevelUp(Engimon engimon);
     bool CheckDead(Engimon engimon);
@@ -34,7 +36,7 @@ public:
     void RemoveSkill(Skill skill);
     bool containsSkill(list<Skill> listSkill, string skillName);
 
-    Engimon breed(Engimon engimon1, Engimon engimon2);
+    Engimon breed(Engimon anotherEngimon);
     bool isSkillSizeValid(Engimon engimon);
 
     //Getters
@@ -48,5 +50,6 @@ public:
 
     //Setters
     void setLevel(int level); // Used for debugging purposes
+    void pushToParents(Engimon parent);
 };
 #endif
