@@ -1,10 +1,11 @@
 #include "Map.hpp"
-#include "Position.cpp"
-#include "Engimon.cpp"
+#include "Position.hpp"
+#include "Engimon.hpp"
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
 #include <iterator>
+#include <new>
 using namespace std;
 
 Map::Map()

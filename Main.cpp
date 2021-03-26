@@ -6,6 +6,7 @@
 #include "SkillItem.hpp"
 #include "Map.hpp"
 #include "Battle.hpp"
+#include "SkillandElementsInit.hpp"
 #include <string>
 
 using namespace std;
