@@ -15,6 +15,7 @@ Engimon::Engimon()
     this->level = -1;
     this->experience = -1;
     this->cumulativeExperience = -1;
+    this->message = "";
 }
 
 Engimon::Engimon(string nama, string species, vector<string> element)
@@ -25,6 +26,7 @@ Engimon::Engimon(string nama, string species, vector<string> element)
     this->level = 1;
     this->experience = 0;
     this->cumulativeExperience = 0;
+    this->message = "I'm an Engimon";
 }
 
 Engimon::Engimon(const Engimon &engimon)
@@ -36,6 +38,7 @@ Engimon::Engimon(const Engimon &engimon)
     this->experience = engimon.experience;
     this->cumulativeExperience = engimon.cumulativeExperience;
     this->skill = engimon.skill;
+    this->message = engimon.message;
 }
 
 Engimon::~Engimon()
@@ -51,6 +54,7 @@ Engimon &Engimon::operator=(const Engimon &engimon)
     this->level = engimon.level;
     this->experience = engimon.experience;
     this->cumulativeExperience = engimon.cumulativeExperience;
+    this->message = engimon.message;
     for (list<Skill>::iterator iter = this->skill.begin(); iter != this->skill.end(); iter++)
     {
         this->skill.push_back(*iter);
@@ -162,6 +166,7 @@ void Engimon::pushToParents(Engimon parent)
 
 Engimon Engimon::breed(Engimon anotherEngimon)
 {
+    Engimon engimonAnak = Engimon();
     if (this->getElement() != anotherEngimon.getElement())
     {
         cout << "Tidak bisa melakukan cross breeding";
@@ -175,11 +180,14 @@ Engimon Engimon::breed(Engimon anotherEngimon)
         Engimon engimon1tmp = *this;
         Engimon engimon2tmp = anotherEngimon;
 
+        this->setLevel(this->getLevel() - 29);
+        anotherEngimon.setLevel(anotherEngimon.getLevel() - 29);
+
         string nama;
         cout << "Masukkan nama Engimon mu : ";
         cin >> nama;
         cout << endl;
-        Engimon engimonAnak = Engimon(nama, this->species, this->element);
+        engimonAnak = Engimon(nama, this->species, this->element);
 
         engimonAnak.pushToParents(*this);
         engimonAnak.pushToParents(anotherEngimon);
@@ -267,6 +275,8 @@ int Engimon::getLevel() { return this->level; }
 int Engimon::getExperience() { return this->experience; }
 int Engimon::getCumulativeExperience() { return this->cumulativeExperience; }
 list<Skill> Engimon::getSkill() { return this->skill; }
+string Engimon::getMessage() { return this->message; }
 
 //Setters
 void Engimon::setLevel(int level) { this->level = level; }
+void Engimon::setMessage(string newMessage) { this->message = newMessage; }

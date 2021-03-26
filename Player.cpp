@@ -125,7 +125,6 @@ void Player::replaceSkillItem(int replacedSkillIdx, Skill newSkill)
 //Move Command
 void Player::moveUp()
 {
-    
 }
 
 void Player::moveDown()
@@ -180,6 +179,8 @@ void Player::swapActiveEngimon(string newEngimonName)
             break;
         }
 }
+
+void Player::interactWithEngimon() { cout << this->ActiveEngimon.getName() << " : " << this->ActiveEngimon.getMessage() << endl; }
 
 //Skill Command
 void Player::showOwnedItems()
