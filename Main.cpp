@@ -31,11 +31,14 @@ void showHelp()
     cout << "quit: Exit The Game." << endl;
 }
 
-Engimon initializeStarterEngimon(int pilihan, vector<Skill> fireSkills, vector<Skill> waterSkills, vector<Skill> electricSkills, vector<Skill> groundSkills, vector<Skill> iceSkills)
+Engimon initializeStarterEngimon(vector<Skill> fireSkills, vector<Skill> waterSkills, vector<Skill> electricSkills, vector<Skill> groundSkills, vector<Skill> iceSkills)
 {
     string nama;
+    int pilihan;
+    cout << "Pilih Engimon kamu (1 - 5): " << endl;
     while (true)
     {
+        cin >> pilihan;
         if (pilihan == 1)
         {
             cout << "Masukkan nama Firemon mu : ";
@@ -115,9 +118,9 @@ int main()
     vector<SkillItem> iceItems = createSkillItem(iceSkills);
 
     // Starting game, initialize starter engimon
-    int pilihan;
-    cin >> pilihan;
-    Engimon starterEngimon = initializeStarterEngimon(pilihan, fireSkills, waterSkills, electricSkills, groundSkills, iceSkills);
+
+    
+    Engimon starterEngimon = initializeStarterEngimon(fireSkills, waterSkills, electricSkills, groundSkills, iceSkills);
 
     Player player(starterEngimon);
 
