@@ -4,11 +4,8 @@
 #include "Battle.hpp"
 using namespace std;
 
-Battle::Battle(Player player, Engimon EngimonPlayer, Engimon EngimonWild)
+Battle::Battle(Player Player, Engimon EngimonPlayer, Engimon EngimonWild): player(Player), engimonWild(EngimonWild), engimonPlayer(EngimonPlayer)
 {
-    this->player = player;
-    this->engimonPlayer = EngimonPlayer;
-    this->engimonWild = EngimonWild;
     this->levelEngimonPlayer = EngimonPlayer.getLevel();
     this->levelEngimonWild = EngimonWild.getLevel();
     this->setMultiplierEngimon();
@@ -171,10 +168,11 @@ float Battle::checkMultiplier(string elemen1, string elemen2)
         {
             return 2;
         }
-        else
-        {
-            throw elemen2;
-        }
+        // else
+        // {
+        //     cout << "test" << endl;
+        //     throw elemen2;
+        // }
     }
     else if (elemen2 == "Water")
     {
@@ -198,10 +196,10 @@ float Battle::checkMultiplier(string elemen1, string elemen2)
         {
             return 1;
         }
-        else
-        {
-            throw elemen2;
-        }
+        // else
+        // {
+        //     throw elemen2;
+        // }
     }
     else if (elemen2 == "Electric")
     {
@@ -225,10 +223,10 @@ float Battle::checkMultiplier(string elemen1, string elemen2)
         {
             return 1.5;
         }
-        else
-        {
-            throw elemen2;
-        }
+        // else
+        // {
+        //     throw elemen2;
+        // }
     }
     else if (elemen2 == "Ground")
     {
@@ -252,10 +250,10 @@ float Battle::checkMultiplier(string elemen1, string elemen2)
         {
             return 0;
         }
-        else
-        {
-            throw elemen2;
-        }
+        // else
+        // {
+        //     throw elemen2;
+        // }
     }
     else if (elemen2 == "Ice")
     {
@@ -279,29 +277,29 @@ float Battle::checkMultiplier(string elemen1, string elemen2)
         {
             return 1;
         }
-        else
-        {
-            throw elemen2;
-        }
+        // else
+        // {
+        //     throw elemen2;
+        // }
     }
-    else
-    {
-        if ((elemen2 == "Ice") || (elemen2 == "Fire") || (elemen2 == "Water") || (elemen2 == "Electric") || (elemen2 == "Ground"))
-        {
-            throw elemen1;
-        }
-        else
-        {
-            throw elemen1, elemen2;
-        }
-    }
+    // else
+    // {
+    //     if ((elemen2 == "Ice") || (elemen2 == "Fire") || (elemen2 == "Water") || (elemen2 == "Electric") || (elemen2 == "Ground"))
+    //     {
+    //         throw elemen1;
+    //     }
+    //     else
+    //     {
+    //         throw elemen1, elemen2;
+    //     }
+    // }
 }
 
 void Battle::showTotalPower()
 {
     string elemenPlayer, elemenWild;
 
-    if (this->engimonPlayer.getElement().size() == 1)
+    if (this->engimonPlayer.getElement()[0] == this->engimonPlayer.getElement()[1])
     {
         elemenPlayer = (this->engimonPlayer.getElement())[0];
     }
@@ -310,7 +308,7 @@ void Battle::showTotalPower()
         elemenPlayer = (this->engimonPlayer.getElement())[0] + " / " + (this->engimonPlayer.getElement())[1];
     }
 
-    if (this->engimonWild.getElement().size() == 1)
+    if (this->engimonWild.getElement()[0] == this->engimonWild.getElement()[1])
     {
         elemenWild = (this->engimonWild.getElement())[0];
     }
@@ -345,8 +343,6 @@ void Battle::doBattle()
     {
         this->winner = this->engimonPlayer.getName();
         this->loser = this->engimonWild.getName();
-        this->player.addEngimon(this->engimonWild);
-        this->engimonPlayer.addExp(floor(100 / this->levelEngimonPlayer));
     }
     else if (this->totalPowerPlayer < this->totalPowerWild)
     {
@@ -360,8 +356,6 @@ void Battle::doBattle()
         {
             this->winner = this->engimonPlayer.getName();
             this->loser = this->engimonWild.getName();
-            this->player.addEngimon(this->engimonWild);
-            this->engimonPlayer.addExp(floor(100 / this->levelEngimonPlayer));
         }
         else if (this->levelEngimonPlayer < this->levelEngimonWild)
         {
@@ -375,8 +369,6 @@ void Battle::doBattle()
             {
                 this->winner = this->engimonPlayer.getName();
                 this->loser = this->engimonWild.getName();
-                this->player.addEngimon(this->engimonWild);
-                this->engimonPlayer.addExp(floor(100 / this->levelEngimonPlayer));
             }
             else if (this->multiplierEngimonPlayer < this->multiplierEngimonWild)
             {

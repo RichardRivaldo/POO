@@ -27,6 +27,7 @@ public:
     Engimon(const Engimon &engimon);
     ~Engimon();
     Engimon &operator=(const Engimon &);
+    bool operator==(const Engimon &engimon) const;
 
     void CheckLevelUp(Engimon engimon);
     bool CheckDead(Engimon engimon);

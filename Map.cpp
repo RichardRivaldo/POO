@@ -113,7 +113,7 @@ void Map::addEngimonLiar()
         //spesies ketemu
         //random element (susah nih wkwk)
         vector<string> elemennya = vector<string>();
-        if (coorX >= xmax - dimensiWater || coorY < ymax - dimensiWater)
+        if (coorX <= xmax - dimensiWater || coorY >= ymax - dimensiWater)
         { //grassland
             enum Element
             {
@@ -177,39 +177,60 @@ void Map::addEngimonLiar()
         engimonLiar.push_back(engimonnya);
         if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Fire")
         {
-            peta[coorX][coorY] = 'f';
+            peta[coorY][coorX] = 'f';
         }
         else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Water")
         {
-            peta[coorX][coorY] = 'w';
+            peta[coorY][coorX] = 'w';
         }
         else if (engimonbaru.getElement().at(0) == "Ice" && engimonbaru.getElement().at(1) == "Ice")
         {
-            peta[coorX][coorY] = 'i';
+            peta[coorY][coorX] = 'i';
         }
         else if (engimonbaru.getElement().at(0) == "Ground" && engimonbaru.getElement().at(1) == "Ground")
         {
-            peta[coorX][coorY] = 'g';
+            peta[coorY][coorX] = 'g';
         }
         else if (engimonbaru.getElement().at(0) == "Electric" && engimonbaru.getElement().at(1) == "Electric")
         {
-            peta[coorX][coorY] = 'e';
+            peta[coorY][coorX] = 'e';
         }
         else if (engimonbaru.getElement().at(0) == "Fire" && engimonbaru.getElement().at(1) == "Electric")
         {
-            peta[coorX][coorY] = 'l';
+            peta[coorY][coorX] = 'l';
         }
         else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ice")
         {
-            peta[coorX][coorY] = 's';
+            peta[coorY][coorX] = 's';
         }
         else if (engimonbaru.getElement().at(0) == "Water" && engimonbaru.getElement().at(1) == "Ground")
         {
-            peta[coorX][coorY] = 'n';
+            peta[coorY][coorX] = 'n';
         }
     }
 }
 
+void Map::removeEngimonLiar(Engimon engimon){
+    int index;
+    int xnya;
+    int ynya;
+    for (int i = 0; i < engimonLiar.size(); i++){
+        if (engimonLiar.at(i).second == engimon){
+            index = i;
+        }
+    }
+    xnya = engimonLiar.at(index).first.getXCoordinate();
+    ynya = engimonLiar.at(index).first.getYCoordinate();
+    if (xnya <= xmax - dimensiWater || ynya >= ymax - dimensiWater)
+    {
+        peta.at(xnya).at(ynya) == '-';
+    }
+    else
+    {
+        peta.at(xnya).at(ynya) == '0';
+    }
+    engimonLiar.erase(engimonLiar.begin()+index);
+}
 //getter
 int Map::getmaxEngimonLiar() { return this->maxEngimonLiar; }
 int Map::getxmax() { return this->xmax; }
@@ -225,34 +246,34 @@ int Map::getactiveEngimonPositionY() { return this->activeEngimonPositon.getYCoo
 void Map::setplayerPosition(int _x, int _y)
 {
     playerPosition.setXCoordinate(_x);
-    playerPosition.setXCoordinate(_y);
+    playerPosition.setYCoordinate(_y);
     for (int i = 0; i < xmax; i++)
     {
         for (int j = 0; j < ymax; j++)
         {
-            if (peta[i][j] == 'P')
+            if (peta[j][i] == 'P')
             {
-                peta[i][j] = '-';
+                peta[j][i] = '-';
             }
         }
     }
-    peta[_x][_y] = 'P';
+    peta[_y][_x] = 'P';
 }
 void Map::setactiveEngimonPosition(int _x, int _y)
 {
     activeEngimonPositon.setXCoordinate(_x);
-    activeEngimonPositon.setXCoordinate(_y);
+    activeEngimonPositon.setYCoordinate(_y);
     for (int i = 0; i < xmax; i++)
     {
         for (int j = 0; j < ymax; j++)
         {
-            if (peta[i][j] == 'X')
+            if (peta[j][i] == 'X')
             {
-                peta[i][j] = '-';
+                peta[j][i] = '-';
             }
         }
     }
-    peta[_x][_y] = 'X';
+    peta[_y][_x] = 'X';
 }
 
 /*int main(int argc, char const *argv[])

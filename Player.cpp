@@ -17,14 +17,14 @@ Player::Player()
     map.setactiveEngimonPosition(0, 0);
 }
 
-Player::Player(Engimon activeEngimon)
+Player::Player(Engimon activeEngimon): ActiveEngimon(activeEngimon)
 {
-    this->ActiveEngimon = activeEngimon;
     this->map = Map();
     this->addEngimon(activeEngimon);
     map.setplayerPosition(1, 1);
     map.setactiveEngimonPosition(0, 0);
 }
+
 
 // Inventory
 void Player::addSkillItem(SkillItem newSkillItem)
@@ -41,7 +41,7 @@ void Player::addSkillItem(SkillItem newSkillItem)
         if (this->inventorySkillItem.getInventoryVector()[i].getSkill().getSkillName() == newSkillItem.getSkill().getSkillName())
         {
             cout << "Menambahkan Skill Item untuk " << newSkillItem.getSkill().getSkillName() << endl;
-            this->inventorySkillItem.getInventoryVector()[i].addItemAmount();
+            this->inventorySkillItem.getInventoryVector()[i].addItemAmount(1);
             return;
         }
         i++;
@@ -230,6 +230,7 @@ void Player::showOwnedEngimon()
         for (Engimon engimon : this->inventoryEngimon.getInventoryVector())
         {
             cout << index << ". " << engimon.getName() << endl;
+            index++;
         }
     }
 }
@@ -266,7 +267,7 @@ void Player::showOwnedItems()
 {
     if (this->inventorySkillItem.getInventorySize() == 0)
     {
-        cout << "Tidak ada Skill Items di Inventory!";
+        cout << "Tidak ada Skill Items di Inventory!" << endl;
     }
     else
     {

@@ -14,7 +14,7 @@ protected:
 
 public:
     // Constructor
-    Inventory() { cout << "make inventory" << endl; }
+    Inventory() {  }
 
     // Operator
     Inventory<T> &operator<<(const T &inventory_item)
