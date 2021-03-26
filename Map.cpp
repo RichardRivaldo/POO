@@ -1,6 +1,6 @@
 #include "Map.hpp"
 #include "Position.cpp"
-//#include "Engimon.cpp"
+#include "Engimon.cpp"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -160,53 +160,7 @@ bool Map::isAboveLevel(Position k){
     return (k.getEngimon().getLevel() >= setCapital);
 }
 */
-void Map::movePlayerUp(){
-    if((player_position.getYCoordinate())-1>=0){
-        int a = player_position.getXCoordinate();
-        int b = player_position.getYCoordinate();
-        peta.at(a).at(b-1) = player_position; 
-        peta.at(a).at(b) = Position(a,b);
-    }else{
-        throw "Invalid move Player Up";
-    }
-}
 
-void Map::movePlayerLeft(){
-    if((player_position.getXCoordinate())-1>=0){
-        int a = player_position.getXCoordinate();
-        int b = player_position.getYCoordinate();
-        peta.at(a-1).at(b) = player_position; 
-        peta.at(a).at(b) = Position(a,b);
-    }else{
-        throw "Invalid move Player Left";
-    }
-}
-
-void Map::movePlayerRight(){
-    if((player_position.getXCoordinate())+1<=xmax){
-        int a = player_position.getXCoordinate();
-        int b = player_position.getYCoordinate();
-        peta.at(a+1).at(b) = player_position; 
-        peta.at(a).at(b) = Position(a,b);
-    }else{
-        throw "Invalid move Player Left";
-    }
-}
-
-void Map::movePlayerDown(){
-    if((player_position.getYCoordinate())+1 <= ymax){
-        int a = player_position.getXCoordinate();
-        int b = player_position.getYCoordinate();
-        peta.at(a).at(b+1) = player_position; 
-        peta.at(a).at(b) = Position(a,b);
-    }else{
-        throw "Invalid move Player Down";
-    }
-}
-
-void Map::moveAllEngimon(){
-    for_each()
-}
 int main(int argc, char const *argv[])
 {
     Map m = Map();
