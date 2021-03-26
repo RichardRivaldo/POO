@@ -22,6 +22,8 @@ Map::Map(){
     }
 }
 
+Map::Map()
+
 
 Map::~Map(){
     //
