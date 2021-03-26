@@ -92,10 +92,11 @@ void Map::addEngimonLiar()
             Devimon,
             Apocalypmon,
             Etemon,
-            Agumon
+            Agumon,
+            Total
         };
         static const char *enum_str_name[] = {"Omnimon", "Skull", "Greymon", "Piedmon", "War_Greymon", "MagnaAngemon", "Garurumon", "Devimon", "Apocalypmon", "Etemon", "Agumon"};
-        Name name = Name(rand() % 10);
+        Name name = Name(rand() % 11);
         string nama(enum_str_name[name]);
         //nama ketemu
         //random species
@@ -105,10 +106,11 @@ void Map::addEngimonLiar()
             Watermon,
             Electromon,
             Groundmon,
-            Icemon
+            Icemon,
+            Total3
         };
         static const char *enum_str_species[] = {"Firemon", "Watermon", "Electromon", "Groundmon", "Icemon"};
-        Species species = Species(rand() % 4);
+        Species species = Species(rand() % 5);
         string spesies(enum_str_species[species]);
         //spesies ketemu
         //random element (susah nih wkwk)
@@ -121,10 +123,11 @@ void Map::addEngimonLiar()
                 G,
                 E,
                 L,
-                N
+                N,
+                Total2
             };
             static const char *enum_str_element[] = {"Fire", "Ground", "Electric", "Fire/Electric", "Water/Ground"};
-            Element element = Element(rand() % 4);
+            Element element = Element(rand() % 5);
             string elemen(enum_str_element[element]);
             if (elemen == "Fire/Electric")
             {
@@ -149,10 +152,11 @@ void Map::addEngimonLiar()
                 W,
                 I,
                 S,
-                N
+                N,
+                Total1
             };
             static const char *enum_str_element[] = {"Water", "Ice", "Water/Ice", "Water/Ground"};
-            Element element = Element(rand() % 3);
+            Element element = Element(rand() % 4);
             string elemen(enum_str_element[element]);
             if (elemen == "Water/Ice")
             {
