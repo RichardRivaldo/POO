@@ -122,6 +122,7 @@ void Player::replaceSkillItem(int replacedSkillIdx, Skill newSkill)
 //Move Command
 void Player::moveUp()
 {
+    
 }
 
 void Player::moveDown()
