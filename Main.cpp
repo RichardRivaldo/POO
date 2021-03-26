@@ -71,6 +71,9 @@ int main(){
     vector <SkillItem> groundItems = createSkillItem(groundSkills);
     vector <SkillItem> iceItems = createSkillItem(iceSkills);
 
+    // Init Map Items
+    Map map = Map();
+    
     int pilihan;
     cin >> pilihan;
     
